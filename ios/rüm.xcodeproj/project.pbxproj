@@ -12,7 +12,7 @@
 		494A82791CD4057F001C0BAA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */ = {isa = PBXBuildFile; fileRef = 494A827A1CD40C8F001C0BAA /* Hope.aif */; };
 		49742C661CC9A6CC0024415A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742C651CC9A6CC0024415A /* AppDelegate.swift */; };
-		49742C681CC9A6CC0024415A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742C671CC9A6CC0024415A /* ViewController.swift */; };
+		49742C681CC9A6CC0024415A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742C671CC9A6CC0024415A /* MainViewController.swift */; };
 		49742C6B1CC9A6CC0024415A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49742C691CC9A6CC0024415A /* Main.storyboard */; };
 		49742C6D1CC9A6CC0024415A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49742C6C1CC9A6CC0024415A /* Assets.xcassets */; };
 		49742C701CC9A6CC0024415A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49742C6E1CC9A6CC0024415A /* LaunchScreen.storyboard */; };
@@ -46,7 +46,7 @@
 		496D51A81CCDD1D600754D3E /* rüm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rüm-Bridging-Header.h"; sourceTree = "<group>"; };
 		49742C621CC9A6CB0024415A /* rüm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rüm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49742C651CC9A6CC0024415A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49742C671CC9A6CC0024415A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49742C671CC9A6CC0024415A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		49742C6A1CC9A6CC0024415A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49742C6C1CC9A6CC0024415A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49742C6F1CC9A6CC0024415A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
-				49742C671CC9A6CC0024415A /* ViewController.swift */,
+				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				49742CCA1CC9F6D00024415A /* DataViewController.swift */,
 				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
 				49742C6C1CC9A6CC0024415A /* Assets.xcassets */,
@@ -304,7 +304,7 @@
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
 				49742C7B1CC9B6BE0024415A /* TaskCollectionViewCell.swift in Sources */,
 				49742CCD1CC9F7370024415A /* UIColor+rüm.swift in Sources */,
-				49742C681CC9A6CC0024415A /* ViewController.swift in Sources */,
+				49742C681CC9A6CC0024415A /* MainViewController.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
 				497893B31CD3D919004D7371 /* NotificationManager.swift in Sources */,
 				49742C661CC9A6CC0024415A /* AppDelegate.swift in Sources */,

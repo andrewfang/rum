@@ -68,6 +68,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
+        if let userInfoDict = userInfo as? [String: AnyObject] {
+//            if let aps = userInfoDict["aps"] as? [String: String] {
+//                print(aps)
+//            }
+            if let task = userInfoDict["task"] as? String, person = userInfoDict["person"] as? String {
+                if let vc = window?.rootViewController?.childViewControllers.first?.childViewControllers.first as? MainViewController {
+                    vc.someOneJustActioned(person, action: task)
+                }
+            }
+        }
+    }
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
         print(userInfo)
         if let details = userInfo as? [String:AnyObject] {

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  rüm
 //
 //  Created by Andrew Fang on 4/21/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UICollectionViewDataSource, UICollectionViewDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UICollectionViewDataSource, UICollectionViewDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.ME_CELL, forIndexPath: indexPath)
         
         if let cell = cell as? TaskCollectionViewCell {
-            cell.taskImage.image = UIImage(named: Database.tasks[indexPath.item])
+            cell.taskImage.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
             cell.taskName.text = Database.tasks[indexPath.item]
         }
         return cell
@@ -55,9 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.peopleJustNameLabel.text = "You just..."
         self.peopleJustTaskLabel.text = Database.tasks[indexPath.item]
         self.peopleJustProfileImageView.image = UIImage(named: "Andrew")
-        self.peopleJustBackgroundImageView.image = UIImage(named: Database.tasks[indexPath.item])
-        
-        NotificationManager.sharedInstance.sendNotification()
+        self.peopleJustBackgroundImageView.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
         
         // Show alert that you did good
         self.showAlert(withMessage: "You just \(Database.tasks[indexPath.item].lowercaseString)!")
@@ -102,6 +100,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let alertController = UIAlertController(title: message, message: "", preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Woohoo!", style: .Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: - External facing methods
+    // AppDelegate calls this method when a notification comes in
+    func someOneJustActioned(name:String, action:String) {
+        self.peopleJustNameLabel.text = "\(name) just..."
+        self.peopleJustTaskLabel.text = action
+        self.peopleJustProfileImageView.image = UIImage(named: name)
+        self.peopleJustBackgroundImageView.image = UIImage(named: action.lowercaseString)
     }
     
     

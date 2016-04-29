@@ -11,7 +11,7 @@
         <!--Rüm-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -43,27 +43,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aha-Nd-jn0">
                                 <rect key="frame" x="0.0" y="176" width="600" height="128"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Took out trash" translatesAutoresizingMaskIntoConstraints="NO" id="q0E-7G-xMf">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="took out trash" translatesAutoresizingMaskIntoConstraints="NO" id="q0E-7G-xMf">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                                     </imageView>
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B34-Ug-QL4">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWD-Jz-6iz">
-                                                <rect key="frame" x="521" y="8" width="64" height="64"/>
-                                                <state key="normal" image="kudos">
-                                                    <color key="titleColor" red="0.94509803920000002" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                                        <color key="value" red="0.94509803921568625" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="gaveKudos" destination="BYZ-38-t0r" eventType="touchUpInside" id="r1O-uC-4NN"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jare" translatesAutoresizingMaskIntoConstraints="NO" id="eIj-s8-lfh">
@@ -73,22 +57,40 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7cW-YP-ke9">
-                                        <rect key="frame" x="126" y="31" width="209" height="66"/>
+                                        <rect key="frame" x="126" y="31" width="204" height="66"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Jare just .." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69W-AX-dA4">
-                                                <rect key="frame" x="0.0" y="0.0" width="209" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="204" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Took out the trash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a7Y-2o-wtr">
-                                                <rect key="frame" x="0.0" y="35" width="209" height="32"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="took out the trash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a7Y-2o-wtr">
+                                                <rect key="frame" x="0.0" y="35" width="204" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWD-Jz-6iz">
+                                        <rect key="frame" x="542" y="10" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Ace-ZX-2W3"/>
+                                            <constraint firstAttribute="width" secondItem="rWD-Jz-6iz" secondAttribute="height" multiplier="1:1" id="s6N-hB-Rpx"/>
+                                        </constraints>
+                                        <state key="normal" image="kudos">
+                                            <color key="titleColor" red="0.94509803920000002" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                <color key="value" red="0.94509803921568625" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="gaveKudos" destination="BYZ-38-t0r" eventType="touchUpInside" id="r1O-uC-4NN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -98,12 +100,14 @@
                                     <constraint firstItem="B34-Ug-QL4" firstAttribute="centerY" secondItem="Aha-Nd-jn0" secondAttribute="centerY" id="Jkz-xb-Bma"/>
                                     <constraint firstItem="eIj-s8-lfh" firstAttribute="leading" secondItem="Aha-Nd-jn0" secondAttribute="leading" constant="13" id="Jtj-LW-Pr0"/>
                                     <constraint firstItem="B34-Ug-QL4" firstAttribute="centerX" secondItem="Aha-Nd-jn0" secondAttribute="centerX" id="K3d-Fg-dBm"/>
+                                    <constraint firstAttribute="trailing" secondItem="rWD-Jz-6iz" secondAttribute="trailing" constant="10" id="Kcf-cD-LTT"/>
                                     <constraint firstItem="eIj-s8-lfh" firstAttribute="centerY" secondItem="Aha-Nd-jn0" secondAttribute="centerY" id="NJf-xw-neH"/>
                                     <constraint firstAttribute="bottom" secondItem="7cW-YP-ke9" secondAttribute="bottom" constant="31" id="Od5-gg-dC7"/>
                                     <constraint firstItem="B34-Ug-QL4" firstAttribute="height" secondItem="Aha-Nd-jn0" secondAttribute="height" id="SZ3-js-1NP"/>
                                     <constraint firstItem="B34-Ug-QL4" firstAttribute="width" secondItem="Aha-Nd-jn0" secondAttribute="width" id="Vm7-CW-9Tr"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7cW-YP-ke9" secondAttribute="trailing" constant="5" id="WUp-jA-jaD"/>
                                     <constraint firstItem="q0E-7G-xMf" firstAttribute="width" secondItem="Aha-Nd-jn0" secondAttribute="width" id="acf-p0-iQb"/>
+                                    <constraint firstItem="rWD-Jz-6iz" firstAttribute="top" secondItem="Aha-Nd-jn0" secondAttribute="top" constant="10" id="fbr-Ry-6Pf"/>
                                     <constraint firstItem="q0E-7G-xMf" firstAttribute="height" secondItem="Aha-Nd-jn0" secondAttribute="height" id="k4j-lj-NZX"/>
                                     <constraint firstItem="eIj-s8-lfh" firstAttribute="height" secondItem="Aha-Nd-jn0" secondAttribute="height" multiplier="0.8" id="ndx-Tc-yE0"/>
                                     <constraint firstAttribute="height" constant="128" id="pGK-Yk-QJY"/>
@@ -337,9 +341,9 @@
     </scenes>
     <resources>
         <image name="Jare" width="240" height="240"/>
-        <image name="Took out trash" width="300" height="140"/>
         <image name="data" width="24" height="24"/>
         <image name="kudos" width="64" height="64"/>
         <image name="rüm" width="24" height="24"/>
+        <image name="took out trash" width="300" height="140"/>
     </resources>
 </document>
