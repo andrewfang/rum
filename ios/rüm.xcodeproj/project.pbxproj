@@ -10,6 +10,7 @@
 		1AC5A4FE57F031961DB68CC5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8203871C678ED87348E9EF84 /* Pods.framework */; };
 		494A82781CD4057F001C0BAA /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; };
 		494A82791CD4057F001C0BAA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */ = {isa = PBXBuildFile; fileRef = 494A827A1CD40C8F001C0BAA /* Hope.aif */; };
 		49742C661CC9A6CC0024415A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742C651CC9A6CC0024415A /* AppDelegate.swift */; };
 		49742C681CC9A6CC0024415A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742C671CC9A6CC0024415A /* ViewController.swift */; };
 		49742C6B1CC9A6CC0024415A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49742C691CC9A6CC0024415A /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		0DBBF63E879859E40233BBA8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		42AAAF2BAEAE9ACD926969B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		494A82771CD4057F001C0BAA /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Charts.framework; path = "/Users/andrew/Library/Developer/Xcode/DerivedData/rüm-dcqxgmraasayuscefstigftkalht/Build/Products/Debug-iphoneos/Charts.framework"; sourceTree = "<absolute>"; };
+		494A827A1CD40C8F001C0BAA /* Hope.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hope.aif; sourceTree = "<group>"; };
 		496D51A81CCDD1D600754D3E /* rüm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rüm-Bridging-Header.h"; sourceTree = "<group>"; };
 		49742C621CC9A6CB0024415A /* rüm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rüm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49742C651CC9A6CC0024415A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
 				49742C671CC9A6CC0024415A /* ViewController.swift */,
 				49742CCA1CC9F6D00024415A /* DataViewController.swift */,
+				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
 				49742C6C1CC9A6CC0024415A /* Assets.xcassets */,
 			);
 			path = "rüm";
@@ -125,7 +128,7 @@
 		49742C7F1CC9F27A0024415A /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
+				494A827A1CD40C8F001C0BAA /* Hope.aif */,
 				49742C711CC9A6CC0024415A /* Info.plist */,
 				496D51A81CCDD1D600754D3E /* rüm-Bridging-Header.h */,
 				49742C6E1CC9A6CC0024415A /* LaunchScreen.storyboard */,
@@ -237,6 +240,7 @@
 			files = (
 				49742C701CC9A6CC0024415A /* LaunchScreen.storyboard in Resources */,
 				49742C6D1CC9A6CC0024415A /* Assets.xcassets in Resources */,
+				494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */,
 				49742C6B1CC9A6CC0024415A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

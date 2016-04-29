@@ -70,6 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
         print(userInfo)
+        if let details = userInfo as? [String:AnyObject] {
+            if let person = details["person"] as? String {
+                print(person)
+            }
+        }
     }
 
 
