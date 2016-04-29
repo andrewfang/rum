@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "rum",
+  "version": "0.0.0",
+  "dependencies": {
+    "apnagent": "1.1.x"
+  }
+}

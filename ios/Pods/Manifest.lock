@@ -1,0 +1,22 @@
+PODS:
+  - Charts (2.2.4):
+    - Charts/Core (= 2.2.4)
+  - Charts/Core (2.2.4)
+  - Lookback (1.1.4):
+    - PDKTZipArchive
+  - LookbackSafe (1.1.4):
+    - PDKTZipArchive
+  - PDKTZipArchive (0.4.1)
+
+DEPENDENCIES:
+  - Charts
+  - Lookback
+  - LookbackSafe
+
+SPEC CHECKSUMS:
+  Charts: a9e735c83c6d376ade20f6612dcf0ba217394a49
+  Lookback: 9ab9027ff246d2dc5ce34be483f70e4a6718280b
+  LookbackSafe: 3f1271d9a597bbb8ef854784e87c145854e1fbef
+  PDKTZipArchive: 22bbab52b49f46a3adf1acf134311fd252c43feb
+
+COCOAPODS: 0.39.0
