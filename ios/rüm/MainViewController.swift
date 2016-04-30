@@ -25,6 +25,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (!FacebookManager.sharedInstance.connected) {
+            self.performSegueWithIdentifier("ShowLogin", sender: self)
+        }
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self

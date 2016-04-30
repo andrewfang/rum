@@ -227,6 +227,7 @@
                         <outlet property="peopleJustProfileImageView" destination="eIj-s8-lfh" id="KsW-Zw-8zg"/>
                         <outlet property="peopleJustTaskLabel" destination="a7Y-2o-wtr" id="N2L-8Y-uIZ"/>
                         <outlet property="tableView" destination="wKb-dI-q89" id="lJX-zy-QHg"/>
+                        <segue destination="VC8-0d-1Ma" kind="presentation" identifier="ShowLogin" id="eWN-qa-fd2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -290,6 +291,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tx0-GE-KAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1152" y="429"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="IJn-AB-Bsx">
+            <objects>
+                <viewController id="VC8-0d-1Ma" customClass="LoginViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wgo-yo-ArC"/>
+                        <viewControllerLayoutGuide type="bottom" id="M48-qe-RXq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qbG-Up-bNq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nmz-Xw-nuQ">
+                                <rect key="frame" x="200" y="0.0" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nmz-Xw-nuQ" secondAttribute="height" multiplier="1:1" id="XiE-DP-DFD"/>
+                                    <constraint firstAttribute="width" constant="200" id="waX-9Z-KtM"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JK-DV-nxm">
+                                <rect key="frame" x="194" y="261" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="tA5-wf-waG"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="login" destination="VC8-0d-1Ma" eventType="touchUpInside" id="VVM-Gq-8jQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAs-GA-vRr">
+                                <rect key="frame" x="279" y="289.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3JK-DV-nxm" firstAttribute="leading" secondItem="qbG-Up-bNq" secondAttribute="leading" constant="194" id="FpJ-kL-edg"/>
+                            <constraint firstItem="nmz-Xw-nuQ" firstAttribute="top" secondItem="Wgo-yo-ArC" secondAttribute="bottom" constant="-20" id="KP1-Fr-2Q6"/>
+                            <constraint firstItem="nmz-Xw-nuQ" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="dVV-SO-Mkq"/>
+                            <constraint firstItem="3JK-DV-nxm" firstAttribute="top" secondItem="Wgo-yo-ArC" secondAttribute="bottom" constant="241" id="jbf-My-K1y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="uAs-GA-vRr" id="19Z-1E-LgE"/>
+                        <outlet property="photoImgView" destination="nmz-Xw-nuQ" id="xKU-sC-j4T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CEe-gu-kkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1972" y="-286"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sLL-bt-isP">

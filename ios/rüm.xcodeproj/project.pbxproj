@@ -22,6 +22,8 @@
 		49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742CCA1CC9F6D00024415A /* DataViewController.swift */; };
 		49742CCD1CC9F7370024415A /* UIColor+rüm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49742CCC1CC9F7370024415A /* UIColor+rüm.swift */; };
 		497893B31CD3D919004D7371 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497893B21CD3D919004D7371 /* NotificationManager.swift */; };
+		497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497B63341CD5228300DCE361 /* FacebookManager.swift */; };
+		497B633B1CD5256600DCE361 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497B633A1CD5256600DCE361 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +59,10 @@
 		49742CCA1CC9F6D00024415A /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		49742CCC1CC9F7370024415A /* UIColor+rüm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+rüm.swift"; sourceTree = "<group>"; };
 		497893B21CD3D919004D7371 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		497B63341CD5228300DCE361 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		497B63361CD523B600DCE361 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		497B63381CD523ED00DCE361 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
+		497B633A1CD5256600DCE361 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8203871C678ED87348E9EF84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +123,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
+				497B633A1CD5256600DCE361 /* LoginViewController.swift */,
 				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				49742CCA1CC9F6D00024415A /* DataViewController.swift */,
 				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
@@ -149,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				497893B21CD3D919004D7371 /* NotificationManager.swift */,
+				497B63341CD5228300DCE361 /* FacebookManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -165,6 +173,8 @@
 		E986462516E1DA5CD102F044 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				497B63381CD523ED00DCE361 /* Bolts.framework */,
+				497B63361CD523B600DCE361 /* FBSDKLoginKit.framework */,
 				8203871C678ED87348E9EF84 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -306,7 +316,9 @@
 				49742CCD1CC9F7370024415A /* UIColor+rüm.swift in Sources */,
 				49742C681CC9A6CC0024415A /* MainViewController.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
+				497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */,
 				497893B31CD3D919004D7371 /* NotificationManager.swift in Sources */,
+				497B633B1CD5256600DCE361 /* LoginViewController.swift in Sources */,
 				49742C661CC9A6CC0024415A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +439,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = "rüm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewbfang.rum;
@@ -446,6 +462,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = "rüm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewbfang.rum;
