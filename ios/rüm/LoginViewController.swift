@@ -11,8 +11,12 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var nameLabel:UILabel!
-    @IBOutlet weak var photoImgView:UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private struct Constants {
+        static let WELCOME_SEGUE = "WELCOME_SEGUE"
+        static let SIGNUP_SEGUE = "SIGNUP_SEGUE"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +24,20 @@ class LoginViewController: UIViewController {
     
     @IBAction func login() {
         FacebookManager.sharedInstance.login(self)
+        self.activityIndicator.startAnimating()
     }
     
     override func notifyLoggedIn() {
-        self.photoImgView.image = FacebookManager.sharedInstance.photo
-        self.nameLabel.text = FacebookManager.sharedInstance.username
-
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let deviceToken = userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN),
+            userId = userDefaults.stringForKey("ID") {
+             NetworkingManager.sharedInstance.registerUser(userId, deviceToken: deviceToken)
+        }
+        self.activityIndicator.stopAnimating()
+        self.performSegueWithIdentifier(Constants.WELCOME_SEGUE, sender: nil)
+        
     }
     
 }

@@ -14,6 +14,7 @@ class NotificationManager {
     
     struct Constants {
         static let ACTION_CATEGORY = "KudosCategory"
+        static let DEVICE_TOKEN = "DEVICE_TOKEN"
     }
     
     func registerForNotifications() {
