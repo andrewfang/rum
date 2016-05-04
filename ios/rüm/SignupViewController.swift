@@ -10,26 +10,27 @@ import UIKit
 
 class SignupViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet weak var nameLabel:UILabel!
+    @IBOutlet weak var photoImgView:UIImageView!
+    
+    private struct Constants {
+        static let CREATE_SEGUE = "CREATE_SEGUE"
+        static let JOIN_SEGUE = "JOIN_SEGUE"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.photoImgView.image = FacebookManager.sharedInstance.photo
+        self.nameLabel.text = "Hi, \(FacebookManager.sharedInstance.first_name!)"
     }
-    */
+    
+    @IBAction func create() {
+        self.performSegueWithIdentifier(Constants.CREATE_SEGUE, sender: nil)
+    }
+    
+    @IBAction func join() {
+        self.performSegueWithIdentifier(Constants.JOIN_SEGUE, sender: nil)
+    }
 
 }

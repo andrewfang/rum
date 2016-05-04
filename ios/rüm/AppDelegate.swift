@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Lookback.setupWithAppToken("bXBu47CjJLXBtHhMy")
         Lookback.sharedLookback().shakeToRecord = true
+        // Uncomment this if you want to reenable Lookback
 //        Lookback.sharedLookback().feedbackBubbleVisible = true
         
-        NotificationManager.sharedInstance.registerForNotifications()
+//        NotificationManager.sharedInstance.registerForNotifications()
         return true
     }
     

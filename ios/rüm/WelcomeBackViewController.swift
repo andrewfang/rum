@@ -20,6 +20,7 @@ class WelcomeBackViewController: UIViewController {
     }
     
     @IBAction func start() {
+        NotificationManager.sharedInstance.registerForNotifications()
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     

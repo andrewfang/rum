@@ -27,6 +27,8 @@
 		497B633B1CD5256600DCE361 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497B633A1CD5256600DCE361 /* LoginViewController.swift */; };
 		49962C271CD909B80012C365 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C261CD909B80012C365 /* SignupViewController.swift */; };
 		49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C281CD909C70012C365 /* WelcomeBackViewController.swift */; };
+		49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2A1CD938210012C365 /* JoinViewController.swift */; };
+		49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2C1CD961840012C365 /* CreateGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +71,8 @@
 		497B633A1CD5256600DCE361 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49962C261CD909B80012C365 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		49962C281CD909C70012C365 /* WelcomeBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeBackViewController.swift; sourceTree = "<group>"; };
+		49962C2A1CD938210012C365 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		49962C2C1CD961840012C365 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		8203871C678ED87348E9EF84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,9 +133,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
-				497B633A1CD5256600DCE361 /* LoginViewController.swift */,
-				49962C261CD909B80012C365 /* SignupViewController.swift */,
-				49962C281CD909C70012C365 /* WelcomeBackViewController.swift */,
+				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				49742CCA1CC9F6D00024415A /* DataViewController.swift */,
 				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
@@ -168,6 +170,18 @@
 				491C32531CD8728900B6ABAA /* NetworkingManager.swift */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		49962C2E1CD9618F0012C365 /* Login View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				497B633A1CD5256600DCE361 /* LoginViewController.swift */,
+				49962C261CD909B80012C365 /* SignupViewController.swift */,
+				49962C2C1CD961840012C365 /* CreateGroupViewController.swift */,
+				49962C2A1CD938210012C365 /* JoinViewController.swift */,
+				49962C281CD909C70012C365 /* WelcomeBackViewController.swift */,
+			);
+			name = "Login View Controllers";
 			sourceTree = "<group>";
 		};
 		903682CCBD68C0727CAD49F4 /* Pods */ = {
@@ -324,7 +338,9 @@
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
 				49742C7B1CC9B6BE0024415A /* TaskCollectionViewCell.swift in Sources */,
 				49742CCD1CC9F7370024415A /* UIColor+rüm.swift in Sources */,
+				49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */,
 				49742C681CC9A6CC0024415A /* MainViewController.swift in Sources */,
+				49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
 				49962C271CD909B80012C365 /* SignupViewController.swift in Sources */,
 				497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */,
