@@ -13,6 +13,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     struct Constants {
         static let CHORE_CELL = "chore cell"
         static let ME_CELL = "task cell"
+        static let GROUP_ID = "GROUP_ID"
     }
 
     @IBOutlet weak var tableView:UITableView!
@@ -22,17 +23,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var peopleJustTaskLabel: UILabel!
     @IBOutlet weak var peopleJustBackgroundImageView: UIImageView!
     
+    var quickTasks:[String]!
+    var todos:[String]!
+    
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (!FacebookManager.sharedInstance.connected) {
-            self.performSegueWithIdentifier("ShowLogin", sender: self)
-        }
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
+        if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID) {
+            NetworkingManager.sharedInstance.getGroupInfo(groupid)
+            // TODO: Something where we populate the quickTasks and todos
+            self.quickTasks = Database.tasks
+            self.todos = Database.tasks
+        } else {
+            self.performSegueWithIdentifier("ShowLogin", sender: self)
+            self.quickTasks = []
+            self.todos = []
+        }
     }
     
     // MARK: - CollectionView
@@ -45,24 +57,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let cell = cell as? TaskCollectionViewCell {
             cell.taskImage.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
-            cell.taskName.text = Database.tasks[indexPath.item]
+            cell.taskName.text = self.quickTasks[indexPath.item]
         }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Database.tasks.count
+        return self.quickTasks.count
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // Change the banner to be what you just did
-        self.peopleJustNameLabel.text = "You just..."
-        self.peopleJustTaskLabel.text = Database.tasks[indexPath.item]
-        self.peopleJustProfileImageView.image = UIImage(named: "Andrew")
-        self.peopleJustBackgroundImageView.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
+//        self.peopleJustNameLabel.text = "You just..."
+//        self.peopleJustTaskLabel.text = Database.tasks[indexPath.item]
+//        self.peopleJustProfileImageView.image = UIImage(named: "Andrew")
+//        self.peopleJustBackgroundImageView.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
         
         // Show alert that you did good
-        self.showAlert(withMessage: "You just \(Database.tasks[indexPath.item].lowercaseString)!")
+        self.showAlert(withMessage: "You just \(self.quickTasks[indexPath.item].lowercaseString)!")
     }
     
     // MARK: - TableView
@@ -72,12 +84,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath)
-        cell.textLabel?.text = Database.chores[indexPath.item]
+        cell.textLabel?.text = self.todos[indexPath.item]
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Database.chores.count
+        return self.todos.count
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -87,7 +99,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Handle Delete
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            Database.chores.removeAtIndex(indexPath.item)
+            self.todos.removeAtIndex(indexPath.item)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }

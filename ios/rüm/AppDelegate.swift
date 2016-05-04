@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Lookback.setupWithAppToken("bXBu47CjJLXBtHhMy")
         Lookback.sharedLookback().shakeToRecord = true
-        Lookback.sharedLookback().feedbackBubbleVisible = true
+        // Uncomment this if you want to reenable Lookback
+//        Lookback.sharedLookback().feedbackBubbleVisible = true
         
-        NotificationManager.sharedInstance.registerForNotifications()
+//        NotificationManager.sharedInstance.registerForNotifications()
         return true
     }
     
@@ -42,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         print("Device Token", tokenString)
+        NSUserDefaults.standardUserDefaults().setValue(tokenString, forKey: NotificationManager.Constants.DEVICE_TOKEN)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

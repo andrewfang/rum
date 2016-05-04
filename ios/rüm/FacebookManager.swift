@@ -15,7 +15,10 @@ class FacebookManager {
     
     var connected:Bool = NSUserDefaults.standardUserDefaults().boolForKey("LoggedIn")
     var username:String?
+    var first_name:String?
+    var last_name:String?
     var photo:UIImage?
+    var imageURL:String?
     
     func login(viewController:UIViewController) {
         FBSDKLoginManager().logInWithReadPermissions(["public_profile"], fromViewController: viewController, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) in
@@ -26,9 +29,7 @@ class FacebookManager {
                 FBSDKLoginManager().logOut()
                 print ("cancelled")
             } else {
-                print ("connected")
                 self.loadFBDetails(viewController)
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LoggedIn")
                 self.connected = true
             }
         })
@@ -50,18 +51,31 @@ class FacebookManager {
     
     private func loadFBDetails(viewController: UIViewController) {
         if (FBSDKAccessToken.currentAccessToken() != nil) {
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, picture.width(500)"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.width(500)"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if (error == nil){
                     print(result)
                     if let name = result["name"] as? String {
                         self.username = name
                     }
                     
+                    if let first_name = result["first_name"] as? String {
+                        self.first_name = first_name
+                    }
+                    
+                    if let last_name = result["last_name"] as? String {
+                        self.last_name = last_name
+                    }
+                    
+                    
+                    if let id = result["id"] as? String {
+                        NSUserDefaults.standardUserDefaults().setValue(id, forKey: "ID")
+                    }
+                    
                     guard let picture = result["picture"] as? [String: AnyObject] else {
                         return
                     }
                     guard let data = picture["data"] as? [String: AnyObject] else {
-                        return
+                        return  
                     }
                     guard let url = data["url"] as? String else {
                         return
@@ -70,6 +84,7 @@ class FacebookManager {
                     if let nsurl = NSURL(string: url) {
                         if let imageData = NSData(contentsOfURL: nsurl) {
                             self.photo = UIImage(data: imageData)
+                            self.imageURL = url
                         }
                     }
                     viewController.notifyLoggedIn()
