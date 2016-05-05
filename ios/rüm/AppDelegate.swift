@@ -97,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
         if let details = userInfo as? [String:AnyObject] {
             if let userId = details["userId"] as? String {
+                application.applicationIconBadgeNumber = 0
                 NetworkingManager.sharedInstance.giveKudos(userId, completionHandler: completionHandler)
             }
         }

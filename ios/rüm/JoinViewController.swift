@@ -19,6 +19,9 @@ class JoinViewController: UIViewController {
         
         // NetworkManager will send out notifications if the user join was successful
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JoinViewController.userJoined(_:)), name: NetworkingManager.Constants.USER_JOINED_GROUP, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JoinViewController.groupDontExist(_:)), name: NetworkingManager.Constants.GROUP_DOESNT_EXIST, object: nil)
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -92,6 +95,42 @@ class JoinViewController: UIViewController {
                 self.presentViewController(notif, animated: true, completion: nil)
             }
         })
+    }
+    
+    func groupDontExist(notification:NSNotification) {
+        
+        var message = "Not sure what happened"
+        
+        if let userInfo = notification.userInfo {
+            if let statusCode = userInfo["status"] as? Int {
+                switch (statusCode) {
+                case 404:
+                    message = "No group exists with code \"\(self.textField.text!)\". Please double check your code and try again."
+                case 409:
+                    message = ""
+                default:
+                    message = "Error: status code \(statusCode)"
+                }
+                
+            }
+        }
+        
+        
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.activityIndicator.stopAnimating()
+            
+            if (message == "") {
+                // Error 409, user already part of group. Just take them there.
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                let notif = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+                notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                
+                self.presentViewController(notif, animated: true, completion: nil)
+            }
+        })
+        
     }
 
 }

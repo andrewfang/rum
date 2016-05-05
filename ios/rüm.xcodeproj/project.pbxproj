@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1AC5A4FE57F031961DB68CC5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8203871C678ED87348E9EF84 /* Pods.framework */; };
+		49086F0D1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49086F0C1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift */; };
+		49086F0F1CDBBEFE001144D6 /* ChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */; };
 		491C32541CD8728900B6ABAA /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C32531CD8728900B6ABAA /* NetworkingManager.swift */; };
 		494A82781CD4057F001C0BAA /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; };
 		494A82791CD4057F001C0BAA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		0DBBF63E879859E40233BBA8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		42AAAF2BAEAE9ACD926969B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		49086F0C1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewChoreTableViewCell.swift; sourceTree = "<group>"; };
+		49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoreTableViewCell.swift; sourceTree = "<group>"; };
 		491C32531CD8728900B6ABAA /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		494A82771CD4057F001C0BAA /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Charts.framework; path = "/Users/andrew/Library/Developer/Xcode/DerivedData/rüm-dcqxgmraasayuscefstigftkalht/Build/Products/Debug-iphoneos/Charts.framework"; sourceTree = "<absolute>"; };
 		494A827A1CD40C8F001C0BAA /* Hope.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hope.aif; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				49742C7A1CC9B6BE0024415A /* TaskCollectionViewCell.swift */,
+				49086F0C1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift */,
+				49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49086F0D1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift in Sources */,
 				49742C7E1CC9B82C0024415A /* UIImage+Flickr.swift in Sources */,
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
@@ -343,6 +350,7 @@
 				49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
 				49962C271CD909B80012C365 /* SignupViewController.swift in Sources */,
+				49086F0F1CDBBEFE001144D6 /* ChoreTableViewCell.swift in Sources */,
 				497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */,
 				491C32541CD8728900B6ABAA /* NetworkingManager.swift in Sources */,
 				497893B31CD3D919004D7371 /* NotificationManager.swift in Sources */,
