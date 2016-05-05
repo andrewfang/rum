@@ -47,6 +47,17 @@ class LoginViewController: UIViewController {
             
             let userDefaults = NSUserDefaults.standardUserDefaults()
             
+            if let userId = userDefaults.stringForKey("ID"),
+                first_name = FacebookManager.sharedInstance.first_name,
+                last_name = FacebookManager.sharedInstance.last_name,
+                image_url = FacebookManager.sharedInstance.imageURL
+            {
+                NetworkingManager.sharedInstance.registerUser(userId, deviceToken: userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN),
+                    firstName: first_name,
+                    lastName: last_name,
+                    imageUrl: image_url)
+            }
+            
             if (response.statusCode == 200) {
                 // User exists in DB
                 self.activityIndicator.stopAnimating()
@@ -55,19 +66,11 @@ class LoginViewController: UIViewController {
                     let firstGroup = groups[0] as? [String: AnyObject] else {
                         return
                 }
+                
                 userDefaults.setValue(firstGroup["id"]!, forKey: MainViewController.Constants.GROUP_ID)
                 self.performSegueWithIdentifier(Constants.WELCOME_SEGUE, sender: nil)
             } else {
-                if let userId = userDefaults.stringForKey("ID"),
-                    first_name = FacebookManager.sharedInstance.first_name,
-                    last_name = FacebookManager.sharedInstance.last_name,
-                    image_url = FacebookManager.sharedInstance.imageURL
-                {
-                    NetworkingManager.sharedInstance.registerUser(userId, deviceToken: userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN),
-                        firstName: first_name,
-                        lastName: last_name,
-                        imageUrl: image_url)
-                }
+                
                 self.activityIndicator.stopAnimating()
                 
                 self.performSegueWithIdentifier(Constants.SIGNUP_SEGUE, sender: nil)

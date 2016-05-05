@@ -14,6 +14,10 @@ class CreateGroupViewController: UIViewController {
     @IBOutlet weak var textField:UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var createGroupStackView:UIStackView!
+    @IBOutlet weak var showCodeStackView:UIStackView!
+    @IBOutlet weak var backButton: UIButton!
+    
     // MARK: - Btn Actions
     @IBAction private func back() {
         self.navigationController?.popViewControllerAnimated(true)
@@ -39,8 +43,10 @@ class CreateGroupViewController: UIViewController {
         self.setupTextField()
         
         // NetworkManager will send out notifications if the user join was successful
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateGroupViewController.userCreated(_:)), name: NetworkingManager.Constants.USER_CREATED_GROUP, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateGroupViewController.groupCreated(_:)), name: NetworkingManager.Constants.USER_CREATED_GROUP, object: nil)
 
+        self.showCodeStackView.alpha = 0
+        self.showCodeStackView.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -63,7 +69,7 @@ class CreateGroupViewController: UIViewController {
         textField.attributedPlaceholder = NSAttributedString(string: "group name", attributes: [NSForegroundColorAttributeName : UIColor.lightGrayColor()])
     }
     
-    func userCreated(notification: NSNotification) {
+    func groupCreated(notification: NSNotification) {
         NSOperationQueue.mainQueue().addOperationWithBlock({
             self.activityIndicator.stopAnimating()
             
@@ -71,28 +77,36 @@ class CreateGroupViewController: UIViewController {
                 return
             }
             
-            guard let response = userInfo["response"] as? NSHTTPURLResponse else {
+            guard let code = userInfo["code"] as? String else {
                 return
             }
             
-            if (response.statusCode == 200) {
-                if let tabvc = self.presentingViewController as? UITabBarController {
-                    if let navvc = tabvc.viewControllers?.first as? UINavigationController {
-                        if let mainvc = navvc.viewControllers.first as? MainViewController {
-                            mainvc.setupTasks()
-                        }
-                    }
-                }
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-            } else {
-                print(response)
-                // TODO: fix this
-                let notif = UIAlertController(title: "Error", message: "Group name taken: \"\(self.textField.text!)\". Please try another name.", preferredStyle: .Alert)
-                notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                
-                self.presentViewController(notif, animated: true, completion: nil)
-            }
+            self.codeLabel.text = code
+            
+            self.textField.resignFirstResponder()
+            
+            UIView.animateWithDuration(1.0, animations: {
+                self.showCodeStackView.hidden = false
+                self.showCodeStackView.alpha = 1.0
+                self.createGroupStackView.alpha = 0.0
+                self.backButton.hidden = true
+                }, completion: { done in
+                    self.createGroupStackView.hidden = true
+                    
+            })
         })
+    }
+    
+    @IBAction private func done() {
+        if let tabvc = self.presentingViewController as? UITabBarController {
+            if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+                if let mainvc = navvc.viewControllers.first as? MainViewController {
+                    mainvc.setupTasks()
+                }
+            }
+        }
+        
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }

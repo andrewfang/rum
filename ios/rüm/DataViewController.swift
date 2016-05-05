@@ -31,5 +31,8 @@ class DataViewController: UIViewController {
             
         }
     }
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

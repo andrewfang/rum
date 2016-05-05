@@ -59,7 +59,7 @@ class JoinViewController: UIViewController {
         
         // If it hits here, we're ready to try joining the group
         self.activityIndicator.startAnimating()
-        NetworkingManager.sharedInstance.joinUserToGroup(id, groupId: text)
+        NetworkingManager.sharedInstance.joinUserToGroup(id, groupCode: text)
     }
     
     // MARK: - Actions triggered by NetworkManager
@@ -76,7 +76,6 @@ class JoinViewController: UIViewController {
             }
             
             if (response.statusCode == 200) {
-                NSUserDefaults.standardUserDefaults().setValue(self.textField.text!, forKey: MainViewController.Constants.GROUP_ID)
                 if let tabvc = self.presentingViewController as? UITabBarController {
                     if let navvc = tabvc.viewControllers?.first as? UINavigationController {
                         if let mainvc = navvc.viewControllers.first as? MainViewController {

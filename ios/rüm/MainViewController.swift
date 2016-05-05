@@ -15,14 +15,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         static let ME_CELL = "task cell"
         static let GROUP_ID = "GROUP_ID"
     }
-
+    
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var peopleJustProfileImageView: UIImageView!
     @IBOutlet weak var peopleJustNameLabel: UILabel!
     @IBOutlet weak var peopleJustTaskLabel: UILabel!
     @IBOutlet weak var peopleJustBackgroundImageView: UIImageView!
+    @IBOutlet weak var kudosButton:UIButton!
     
+    var lastCompletedTaskUserId:String?
     var quickTasks:[String]!
     var todos:[String]!
     
@@ -34,11 +36,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        self.kudosButton.hidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.lastTask(_:)), name: NetworkingManager.Constants.LAST_TASK, object: nil)
         
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID) {
             NetworkingManager.sharedInstance.getGroupInfo(groupid)
+            NetworkingManager.sharedInstance.generateCodeForGroup(groupid, userid: NSUserDefaults.standardUserDefaults().stringForKey("ID")!)
             // TODO: Something where we populate the quickTasks and todos
             self.quickTasks = Database.tasks
             self.todos = Database.tasks
@@ -47,17 +51,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.quickTasks = []
             self.todos = []
         }
+        
+        self.getLastTask()
     }
     
     func setupTasks() {
         self.quickTasks = Database.tasks
         self.collectionView.reloadData()
-        self.getLastTask()
     }
     
     func getLastTask() {
         // post notifcation, get back stuff
-        
+        if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID) {
+            NetworkingManager.sharedInstance.getLastTask(groupid)
+        }
     }
     
     func lastTask(notification:NSNotification) {
@@ -66,14 +73,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         guard let data = userInfo["data"] as? [String:String],
-        user = userInfo["user"] as? [String:AnyObject] else {
-            return
+            user = userInfo["user"] as? [String:AnyObject] else {
+                return
         }
         
         guard let firstName = user["firstName"] as? String,
             photoURL = user["photo"] as? String,
             action = data["title"] else {
                 return
+        }
+        
+        if let id = user["id"] as? String, savedid = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
+            // Don't let me give myself kudos
+            self.kudosButton.hidden = id == savedid
+            self.lastCompletedTaskUserId = id
         }
         
         self.someOneJustActioned(firstName, action: action, photo: photoURL)
@@ -100,10 +113,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // Change the banner to be what you just did
-//        self.peopleJustNameLabel.text = "You just..."
-//        self.peopleJustTaskLabel.text = Database.tasks[indexPath.item]
-//        self.peopleJustProfileImageView.image = UIImage(named: "Andrew")
-//        self.peopleJustBackgroundImageView.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
         
         // Show alert that you did good
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID),
@@ -142,15 +151,26 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction private func gaveKudos() {
         let labelSplit = self.peopleJustNameLabel.text!.characters.split{$0 == " "}.map(String.init)
-        let name = labelSplit[0] == "You" ? "yourself" : labelSplit[0]
         
-        self.showAlert(withMessage: "You just gave \(name) kudos!")
+        if let id = self.lastCompletedTaskUserId {
+            NetworkingManager.sharedInstance.giveKudos(id, completionHandler: nil)
+            self.showAlert(withMessage: "You just gave \(labelSplit[0]) kudos!")
+        }
     }
     
     // Shows a popup with the given message
     private func showAlert(withMessage message:String) {
         let alertController = UIAlertController(title: message, message: "", preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Woohoo!", style: .Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func showJoinCode() {
+        guard let code = NSUserDefaults.standardUserDefaults().stringForKey("code") else {
+            return
+        }
+        let alertController = UIAlertController(title: code, message: "Share this code to invite people to this group.", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -169,7 +189,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             self.peopleJustBackgroundImageView.image = UIImage.imageFromTaskName(action.lowercaseString)
-
+            
         })
     }
     

@@ -74,8 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
-        
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID) {
             NetworkingManager.sharedInstance.getLastTask(groupid)
         }
@@ -97,12 +95,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        print(userInfo)
         if let details = userInfo as? [String:AnyObject] {
-            if let person = details["person"] as? String {
-                print(person)
+            if let userId = details["userId"] as? String {
+                NetworkingManager.sharedInstance.giveKudos(userId, completionHandler: completionHandler)
             }
         }
+        
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
