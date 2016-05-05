@@ -35,6 +35,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.lastTask(_:)), name: NetworkingManager.Constants.LAST_TASK, object: nil)
+        
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID) {
             NetworkingManager.sharedInstance.getGroupInfo(groupid)
             // TODO: Something where we populate the quickTasks and todos
@@ -47,6 +49,36 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func setupTasks() {
+        self.quickTasks = Database.tasks
+        self.collectionView.reloadData()
+        self.getLastTask()
+    }
+    
+    func getLastTask() {
+        // post notifcation, get back stuff
+        
+    }
+    
+    func lastTask(notification:NSNotification) {
+        guard let userInfo = notification.userInfo as? [String:AnyObject] else {
+            return
+        }
+        
+        guard let data = userInfo["data"] as? [String:String],
+        user = userInfo["user"] as? [String:AnyObject] else {
+            return
+        }
+        
+        guard let firstName = user["firstName"] as? String,
+            photoURL = user["photo"] as? String,
+            action = data["title"] else {
+                return
+        }
+        
+        self.someOneJustActioned(firstName, action: action, photo: photoURL)
+    }
+    
     // MARK: - CollectionView
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -56,7 +88,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.ME_CELL, forIndexPath: indexPath)
         
         if let cell = cell as? TaskCollectionViewCell {
-            cell.taskImage.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
+            cell.taskImage.image = UIImage.imageFromTaskName(self.quickTasks[indexPath.item].lowercaseString)
             cell.taskName.text = self.quickTasks[indexPath.item]
         }
         return cell
@@ -74,6 +106,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        self.peopleJustBackgroundImageView.image = UIImage(named: Database.tasks[indexPath.item].lowercaseString)
         
         // Show alert that you did good
+        if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID),
+            let id = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
+            NetworkingManager.sharedInstance.quickDoTask(groupid, creatorId: id, taskName: self.quickTasks[indexPath.item])
+        }
         self.showAlert(withMessage: "You just \(self.quickTasks[indexPath.item].lowercaseString)!")
     }
     
@@ -120,11 +156,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - External facing methods
     // AppDelegate calls this method when a notification comes in
-    func someOneJustActioned(name:String, action:String) {
-        self.peopleJustNameLabel.text = "\(name) just..."
-        self.peopleJustTaskLabel.text = action
-        self.peopleJustProfileImageView.image = UIImage(named: name)
-        self.peopleJustBackgroundImageView.image = UIImage(named: action.lowercaseString)
+    func someOneJustActioned(name:String, action:String, photo: String) {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.peopleJustNameLabel.text = "\(name) just..."
+            self.peopleJustTaskLabel.text = action
+            
+            if let imageUrl = NSURL(string: photo) {
+                if let data = NSData(contentsOfURL: imageUrl) {
+                    self.peopleJustProfileImageView.image = UIImage(data: data)
+                }
+            }
+            
+            self.peopleJustBackgroundImageView.image = UIImage.imageFromTaskName(action.lowercaseString)
+
+        })
     }
     
     

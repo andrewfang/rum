@@ -75,16 +75,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         print(userInfo)
+        
+        if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID) {
+            NetworkingManager.sharedInstance.getLastTask(groupid)
+        }
+        
         if let userInfoDict = userInfo as? [String: AnyObject] {
-//            if let aps = userInfoDict["aps"] as? [String: String] {
-//                print(aps)
-//            }
-            if let task = userInfoDict["task"] as? String, person = userInfoDict["person"] as? String {
-                if let vc = window?.rootViewController?.childViewControllers.first?.childViewControllers.first as? MainViewController {
-                    vc.someOneJustActioned(person, action: task)
-                }
+            if let aps = userInfoDict["aps"] as? [String: String] {
+                print(aps)
             }
         }
+//
+//            NetworkingManager.
+//            if let task = userInfoDict["userId"] as? String, person = userInfoDict["taskId"] as? String {
+//                if let vc = window?.rootViewController?.childViewControllers.first?.childViewControllers.first as? MainViewController {
+//                    vc.someOneJustActioned(person, action: task)
+//                    vc.someOneJustActioned(person, action: <#T##String#>, photo: <#T##String#>)
+//                }
+//            }
+//        }
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {

@@ -11,6 +11,31 @@ import UIKit
 
 extension UIImage {
     
+    
+    class func imageFromTaskName(task:String) -> UIImage {
+        if let image = UIImage(named: task) {
+            return image
+        }
+        
+        let includedImage = ["bathroom", "dish", "trash", "vacuum"]
+        
+        for image in includedImage {
+            if task.lowercaseString.rangeOfString(image) != nil {
+                if let image = UIImage(named: image) {
+                    return image
+                }
+            }
+        }
+        
+        if let data = UIImage.flickrImageFromQuery(task) {
+            if let image = UIImage(data: data) {
+                return image
+            }
+        }
+        
+        return UIImage(named: "welcome")!
+    }
+    
     // Given a search term, returns an image
     // CAUTION: BLOCKS. You must run this on a separate thread
     @objc class func flickrImageFromQuery(query:String) -> NSData? {

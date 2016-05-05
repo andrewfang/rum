@@ -77,6 +77,13 @@ class JoinViewController: UIViewController {
             
             if (response.statusCode == 200) {
                 NSUserDefaults.standardUserDefaults().setValue(self.textField.text!, forKey: MainViewController.Constants.GROUP_ID)
+                if let tabvc = self.presentingViewController as? UITabBarController {
+                    if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+                        if let mainvc = navvc.viewControllers.first as? MainViewController {
+                            mainvc.setupTasks()
+                        }
+                    }
+                }
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 print(response)

@@ -21,6 +21,15 @@ class WelcomeBackViewController: UIViewController {
     
     @IBAction func start() {
         NotificationManager.sharedInstance.registerForNotifications()
+        
+        if let tabvc = self.presentingViewController as? UITabBarController {
+            if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+                if let mainvc = navvc.viewControllers.first as? MainViewController {
+                    mainvc.setupTasks()
+                }
+            }
+        }
+        
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     

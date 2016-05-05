@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.checkUser(_:)), name: NetworkingManager.Constants.CHECK_USER_EXISTS, object: nil)
+        NotificationManager.sharedInstance.registerForNotifications()
     }
     
     @IBAction func login() {
@@ -57,13 +58,15 @@ class LoginViewController: UIViewController {
                 userDefaults.setValue(firstGroup["id"]!, forKey: MainViewController.Constants.GROUP_ID)
                 self.performSegueWithIdentifier(Constants.WELCOME_SEGUE, sender: nil)
             } else {
-                if let deviceToken = userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN),
-                    userId = userDefaults.stringForKey("ID"),
+                if let userId = userDefaults.stringForKey("ID"),
                     first_name = FacebookManager.sharedInstance.first_name,
                     last_name = FacebookManager.sharedInstance.last_name,
                     image_url = FacebookManager.sharedInstance.imageURL
                 {
-                    NetworkingManager.sharedInstance.registerUser(userId, deviceToken: deviceToken, firstName: first_name, lastName: last_name, imageUrl: image_url)
+                    NetworkingManager.sharedInstance.registerUser(userId, deviceToken: userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN),
+                        firstName: first_name,
+                        lastName: last_name,
+                        imageUrl: image_url)
                 }
                 self.activityIndicator.stopAnimating()
                 
