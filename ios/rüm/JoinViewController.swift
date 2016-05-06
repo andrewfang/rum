@@ -78,7 +78,7 @@ class JoinViewController: UIViewController {
                 return
             }
             
-            if (response.statusCode == 200) {
+            if (response.statusCode == 200 || response.statusCode == 409) {
                 if let tabvc = self.presentingViewController as? UITabBarController {
                     if let navvc = tabvc.viewControllers?.first as? UINavigationController {
                         if let mainvc = navvc.viewControllers.first as? MainViewController {
@@ -87,9 +87,14 @@ class JoinViewController: UIViewController {
                     }
                 }
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-            } else {
+            } else if (response.statusCode == 404){
                 print(response)
                 let notif = UIAlertController(title: "Error", message: "No group exists with code \"\(self.textField.text!)\". Please double check your code and try again.", preferredStyle: .Alert)
+                notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                
+                self.presentViewController(notif, animated: true, completion: nil)
+            } else {
+                let notif = UIAlertController(title: "Error: \(response.statusCode)", message: "Not sure what happened", preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 
                 self.presentViewController(notif, animated: true, completion: nil)

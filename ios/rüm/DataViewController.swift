@@ -90,12 +90,17 @@ class DataViewController: UIViewController {
             if let navVC = self.tabBarController?.viewControllers?.first as? UINavigationController {
                 if let mainVC = navVC.viewControllers.first as? MainViewController {
                     mainVC.todos = []
-                    mainVC.someOneJustActioned("Hello", action: "Start by doing a task above or adding a new task below", photo: "")
+                    mainVC.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
+                    mainVC.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
+                    mainVC.peopleJustNameLabel.text = "Hello!"
+                    mainVC.kudosButton.hidden = true
                     mainVC.userId = nil
                     mainVC.groupId = nil
                     let userDef = NSUserDefaults.standardUserDefaults()
                     userDef.setValue(nil, forKey: MainViewController.Constants.GROUP_ID)
                     userDef.setValue(nil, forKey: "ID")
+                    
+                    mainVC.performSegueWithIdentifier("ShowLogin", sender: self)
                     
                     self.tabBarController?.selectedIndex = 0
                 }

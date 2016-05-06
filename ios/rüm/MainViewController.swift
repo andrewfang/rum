@@ -52,8 +52,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let userid = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
             self.groupId = groupid
             self.userId = userid
-            NetworkingManager.sharedInstance.getGroupInfo(groupid)
-            NetworkingManager.sharedInstance.generateCodeForGroup(groupid, userid: userid)
+            NetworkingManager.sharedInstance.login(self.userId, groupid: self.groupId)
             // TODO: Something where we populate the quickTasks and todos
             self.quickTasks = Database.tasks
             self.todos = []
@@ -62,8 +61,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.quickTasks = []
             self.todos = []
         }
-        
-        self.getLastTask()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,6 +114,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         guard let data = userInfo["data"] as? [String:AnyObject],
             user = userInfo["user"] as? [String:AnyObject] else {
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
+                    self.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
+                    self.peopleJustNameLabel.text = "Hello!"
+                    self.kudosButton.hidden = true
+                })
                 return
         }
         
@@ -213,7 +216,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func checkOffItem(sender: UIButton) {
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as? ChoreTableViewCell {
             cell.isChecked = !cell.isChecked
-            let triggerTime = (Int64(NSEC_PER_SEC) * 3)
+            let triggerTime = (Int64(NSEC_PER_SEC) * 1)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
                 self.toggleItemsCompleted()
             })
@@ -238,7 +241,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if let text = textField.text where text.characters.count > 0 {
-            NetworkingManager.sharedInstance.createTask(self.groupId, creatorId:self.userId, taskName: text)
+            NetworkingManager.sharedInstance.createTask(self.groupId, taskName: text)
             self.todos.append(["title":text])
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.todos.count, inSection: 0)], withRowAnimation: .Automatic)
             self.getTodos()
@@ -299,6 +302,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             NetworkingManager.sharedInstance.giveKudos(id, completionHandler: nil)
             self.showAlert(withMessage: "You just gave \(labelSplit[0]) kudos!")
         }
+    }
+    
+    @IBAction private func switchGroups() {
+        self.performSegueWithIdentifier("GROUP_SWITCH", sender: nil)
     }
     
     // Shows a popup with the given message

@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private struct Constants {
-        static let WELCOME_SEGUE = "WELCOME_SEGUE"
+        static let GROUP_SEGUE = "GROUP_SEGUE"
         static let SIGNUP_SEGUE = "SIGNUP_SEGUE"
     }
 
@@ -61,14 +61,8 @@ class LoginViewController: UIViewController {
             if (response.statusCode == 200) {
                 // User exists in DB
                 self.activityIndicator.stopAnimating()
-                guard let data = userInfo["data"] as? [String: AnyObject],
-                    let groups = data["groups"] as? [AnyObject],
-                    let firstGroup = groups[0] as? [String: AnyObject] else {
-                        return
-                }
                 
-                userDefaults.setValue(firstGroup["id"]!, forKey: MainViewController.Constants.GROUP_ID)
-                self.performSegueWithIdentifier(Constants.WELCOME_SEGUE, sender: nil)
+                self.performSegueWithIdentifier(Constants.GROUP_SEGUE, sender: nil)
             } else {
                 
                 self.activityIndicator.stopAnimating()

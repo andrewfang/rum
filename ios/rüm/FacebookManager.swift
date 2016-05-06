@@ -12,12 +12,26 @@ import FBSDKLoginKit
 class FacebookManager {
     
     static let sharedInstance = FacebookManager()
-    
-    var connected:Bool = NSUserDefaults.standardUserDefaults().boolForKey("LoggedIn")
+
     var username:String?
-    var first_name:String?
+    var first_name:String? {
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "FIRST_NAME")
+        } get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("FIRST_NAME") as? String
+        }
+    }
     var last_name:String?
-    var photo:UIImage?
+    var photo:UIImage? {
+        set {
+            if newValue != nil {
+                NSUserDefaults.standardUserDefaults().setObject(UIImagePNGRepresentation(newValue!), forKey: "PROFILE_IMAGE")
+            }
+        } get {
+            let imageData = NSUserDefaults.standardUserDefaults().objectForKey("PROFILE_IMAGE") as! NSData
+            return UIImage(data: imageData)
+        }
+    }
     var imageURL:String?
     
     func login(viewController:UIViewController) {
@@ -30,7 +44,6 @@ class FacebookManager {
                 print ("cancelled")
             } else {
                 self.loadFBDetails(viewController)
-                self.connected = true
             }
         })
     }
@@ -53,7 +66,6 @@ class FacebookManager {
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.width(500)"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if (error == nil){
-                    print(result)
                     if let name = result["name"] as? String {
                         self.username = name
                     }

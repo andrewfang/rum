@@ -22,8 +22,11 @@ class NetworkingManager {
         static let UPDATE_TODO = "UPDATE_TODO"
         static let LAST_TASK = "LAST_TASK"
         static let GROUP_DATA = "GROUP_DATA"
+        static let GET_USER_INFO = "GET_USER_INFO"
     }
     
+    
+    // MARK: - First time flows
     func registerUser(userid:String, deviceToken:String?, firstName:String, lastName:String, imageUrl:String) {
         let registerEndpoint = "/register"
         var bodyDict = ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString, "firstName":firstName, "lastName":lastName, "photo":imageUrl]
@@ -36,7 +39,8 @@ class NetworkingManager {
     }
     
     func checkUser(userid:String) {
-        self.sendGetRequest("/user/\(userid)", handler: { data, response, error in
+        
+        self.sendPostRequest("/login", body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: { data, response, error in
             
             self.reportErrors(data, response: response, error: error)
             
@@ -45,19 +49,17 @@ class NetworkingManager {
                 userInfo["response"] = response
             }
             
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+            if let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) {
                 userInfo["data"] = json
-            } catch {
             }
             
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.CHECK_USER_EXISTS, object: nil, userInfo: userInfo)
         })
     }
     
-    func createGroup(userid:String, groupname:String) {
+    func createGroup(groupname:String) {
         let createEndpoint = "/group"
-        let jsonArray = ["name":groupname, "userId":userid]
+        let jsonArray = ["name":groupname]
         self.sendPostRequest(createEndpoint, body: jsonArray, handler: { data, response, error in
             
             self.reportErrors(data, response: response, error: error)
@@ -76,13 +78,13 @@ class NetworkingManager {
             
             NSUserDefaults.standardUserDefaults().setValue(groupId, forKey: MainViewController.Constants.GROUP_ID)
             
-            self.generateCodeForGroup(groupId, userid: userid)
+            self.generateCodeForGroup(groupId)
             
         })
     }
     
-    func generateCodeForGroup(groupid:String, userid:String) {
-        self.sendPostRequest("/invite", body: ["groupId":groupid, "inviter":userid], handler: { data, response, error in
+    func generateCodeForGroup(groupid:String) {
+        self.sendPostRequest("/invite", body: ["groupId":groupid], handler: { data, response, error in
             
             self.reportErrors(data, response: response, error: error)
             
@@ -134,6 +136,18 @@ class NetworkingManager {
         })
     }
     
+    // MARK: - Login
+    
+    func login(userid:String, groupid:String) {
+        self.sendPostRequest("/login", body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: {data, response, error in
+            self.reportErrors(data, response: response, error: error)
+            NetworkingManager.sharedInstance.getGroupInfo(groupid)
+            NetworkingManager.sharedInstance.generateCodeForGroup(groupid)
+            NetworkingManager.sharedInstance.getLastTask(groupid)
+        })
+    }
+    
+    // MARK: - Group Info
     func getGroupInfo(groupId:String) {
         self.sendGetRequest("/group/\(groupId)", handler: nil)
     }
@@ -151,8 +165,21 @@ class NetworkingManager {
         })
     }
     
+    func getUserInfo(userId:String) {
+        self.sendGetRequest("/user/\(userId)", handler: {data, response, error in
+            self.reportErrors(data, response: response, error: error)
+            
+            guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
+                return
+            }
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.GET_USER_INFO, object: nil, userInfo: json)
+        })
+    }
+    
+    // MARK: - Tasks
     func quickDoTask(groupId:String, creatorId:String, taskName:String) {
-        self.sendPostRequest("/group/\(groupId)/task", body: ["groupId":groupId, "creator":creatorId, "title":taskName], handler: {data, response, error in
+        self.sendPostRequest("/group/\(groupId)/task", body: ["groupId":groupId, "title":taskName], handler: {data, response, error in
             
             self.reportErrors(data, response: response, error: error)
             
@@ -171,8 +198,8 @@ class NetworkingManager {
         })
     }
     
-    func createTask(groupId:String, creatorId:String, taskName:String) {
-        self.sendPostRequest("/group/\(groupId)/task", body: ["groupId":groupId, "creator":creatorId, "title":taskName], handler: nil)
+    func createTask(groupId:String, taskName:String) {
+        self.sendPostRequest("/group/\(groupId)/task", body: ["groupId":groupId, "title":taskName], handler: nil)
     }
     
     func getIncompleteTasks(groupId:String) {
@@ -216,6 +243,7 @@ class NetworkingManager {
                 var responseData = [String:AnyObject]()
                 if let jsonArray = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [AnyObject] {
                     guard let jsonArray = jsonArray where jsonArray.count > 0 else {
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.LAST_TASK, object: nil, userInfo: [:])
                         return
                     }
                     if let json = jsonArray[0] as? [String:AnyObject] {
@@ -234,6 +262,8 @@ class NetworkingManager {
         })
     }
     
+    
+    // MARK: - Kudos
     func giveKudos(userid:String, completionHandler: (() -> Void)?) {
         self.sendPostRequest("/user/\(userid)/kudos", body: [:], handler: nil)
         if (completionHandler != nil) {
@@ -270,7 +300,6 @@ class NetworkingManager {
             let postString = String(jsonBody)
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         }
-        
         
         
         var handlerBlock:(NSData?, NSURLResponse?, NSError?) -> Void

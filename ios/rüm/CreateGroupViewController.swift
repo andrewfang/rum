@@ -28,12 +28,8 @@ class CreateGroupViewController: UIViewController {
             return
         }
         
-        guard let id = NSUserDefaults.standardUserDefaults().stringForKey("ID") else {
-            return
-        }
-        
         self.activityIndicator.startAnimating()
-        NetworkingManager.sharedInstance.createGroup(id, groupname: text)
+        NetworkingManager.sharedInstance.createGroup(text)
         
     }
     
