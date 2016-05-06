@@ -335,7 +335,14 @@
                             <constraint firstAttribute="trailing" secondItem="dj6-jC-tsa" secondAttribute="trailing" id="dG2-qu-EyB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Data" id="wmW-Rv-o0D"/>
+                    <navigationItem key="navigationItem" title="Data" id="wmW-Rv-o0D">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="XOH-U3-rGH">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logout" destination="D9p-xv-0HJ" id="Ozm-Sd-aqP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pieChartView" destination="dj6-jC-tsa" id="adc-id-VMX"/>
                     </connections>

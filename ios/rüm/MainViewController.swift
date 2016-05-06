@@ -70,6 +70,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
         if (self.groupId != nil) {
             self.getTodos()
+            self.getLastTask()
         }
     }
     
@@ -114,21 +115,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
-        guard let data = userInfo["data"] as? [String:String],
+        guard let data = userInfo["data"] as? [String:AnyObject],
             user = userInfo["user"] as? [String:AnyObject] else {
                 return
         }
         
         guard let firstName = user["firstName"] as? String,
             photoURL = user["photo"] as? String,
-            action = data["title"] else {
+            action = data["title"] as? String else {
                 return
         }
         
-        if let id = user["id"] as? String, savedid = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
+        if let id = user["id"] as? String {
             // Don't let me give myself kudos
-            self.kudosButton.hidden = id == savedid
-            self.lastCompletedTaskUserId = id
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                self.kudosButton.hidden = id == self.userId
+                self.lastCompletedTaskUserId = id
+            })
         }
         
         self.someOneJustActioned(firstName, action: action, photo: photoURL)

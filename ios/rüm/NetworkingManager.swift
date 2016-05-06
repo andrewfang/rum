@@ -21,6 +21,7 @@ class NetworkingManager {
         static let CHECK_USER_EXISTS = "CHECK_USER_EXISTS"
         static let UPDATE_TODO = "UPDATE_TODO"
         static let LAST_TASK = "LAST_TASK"
+        static let GROUP_DATA = "GROUP_DATA"
     }
     
     func registerUser(userid:String, deviceToken:String?, firstName:String, lastName:String, imageUrl:String) {
@@ -137,6 +138,19 @@ class NetworkingManager {
         self.sendGetRequest("/group/\(groupId)", handler: nil)
     }
     
+    func getGroupForData(groupId:String) {
+        self.sendGetRequest("/group/\(groupId)", handler: { data, response, error in
+            
+            self.reportErrors(data, response: response, error: error)
+            
+            guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
+                return
+            }
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.GROUP_DATA, object: nil, userInfo: ["members":json!["members"]!])
+        })
+    }
+    
     func quickDoTask(groupId:String, creatorId:String, taskName:String) {
         self.sendPostRequest("/group/\(groupId)/task", body: ["groupId":groupId, "creator":creatorId, "title":taskName], handler: {data, response, error in
             
@@ -204,9 +218,9 @@ class NetworkingManager {
                     guard let jsonArray = jsonArray where jsonArray.count > 0 else {
                         return
                     }
-                    if let json = jsonArray[0] as? [String:String] {
+                    if let json = jsonArray[0] as? [String:AnyObject] {
                         responseData["data"] = json
-                        self.sendGetRequest("/user/\(json["creator"]!)", handler: { data, response, error in
+                        self.sendGetRequest("/user/\(json["completer"]!)", handler: { data, response, error in
                             
                             self.reportErrors(data, response: response, error: error)
                             if let user = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] {
