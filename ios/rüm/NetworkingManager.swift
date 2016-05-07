@@ -144,6 +144,7 @@ class NetworkingManager {
             NetworkingManager.sharedInstance.getGroupInfo(groupid)
             NetworkingManager.sharedInstance.generateCodeForGroup(groupid)
             NetworkingManager.sharedInstance.getLastTask(groupid)
+            NetworkingManager.sharedInstance.getIncompleteTasks(groupid)
         })
     }
     
