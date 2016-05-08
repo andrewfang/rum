@@ -40,9 +40,11 @@ class NetworkingManager {
     
     func checkUser(userid:String) {
         
-        self.sendPostRequest("/login", body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: { data, response, error in
-            
-            self.reportErrors(data, response: response, error: error)
+        let endpoint = "/login"
+//        self.sendPostRequest(endpoint, body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString, "deviceToken":userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN)], handler: { data, response, error in
+        
+        self.sendPostRequest(endpoint, body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: { data, response, error in
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             var userInfo = [String: AnyObject]()
             if let response = response as? NSHTTPURLResponse {
@@ -58,11 +60,11 @@ class NetworkingManager {
     }
     
     func createGroup(groupname:String) {
-        let createEndpoint = "/group"
+        let endpoint = "/group"
         let jsonArray = ["name":groupname]
-        self.sendPostRequest(createEndpoint, body: jsonArray, handler: { data, response, error in
+        self.sendPostRequest(endpoint, body: jsonArray, handler: { data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let response = response as? NSHTTPURLResponse where response.statusCode == 200 else {
                 return
@@ -84,9 +86,10 @@ class NetworkingManager {
     }
     
     func generateCodeForGroup(groupid:String) {
-        self.sendPostRequest("/invite", body: ["groupId":groupid], handler: { data, response, error in
+        let endpoint = "/invite"
+        self.sendPostRequest(endpoint, body: ["groupId":groupid], handler: { data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let response = response as? NSHTTPURLResponse where response.statusCode == 200 else {
                 return
@@ -103,9 +106,11 @@ class NetworkingManager {
     
     func joinUserToGroup(userid:String, groupCode:String) {
         
-        self.sendGetRequest("/invite/\(groupCode)", handler: { data, response, error in
+        let endpoint = "/invite/\(groupCode)"
+        
+        self.sendGetRequest(endpoint, handler: { data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let httpresponse = response as? NSHTTPURLResponse where httpresponse.statusCode == 200 else {
                 var userInfo = [String:Int]()
@@ -124,9 +129,10 @@ class NetworkingManager {
                 return
             }
             
-            self.sendRequest("/group/\(groupId)", body: ["userId":userid], method: "PUT", useJSON: true, handler: { data, response, error in
+            let endpoint2 = "/group/\(groupId)"
+            self.sendRequest(endpoint2, body: ["userId":userid], method: "PUT", useJSON: true, handler: { data, response, error in
                 
-                self.reportErrors(data, response: response, error: error)
+                self.reportErrors(endpoint2, data: data, response: response, error: error)
                 
                 if let response = response as? NSHTTPURLResponse {
                     NSUserDefaults.standardUserDefaults().setValue(groupId, forKey: MainViewController.Constants.GROUP_ID)
@@ -137,10 +143,10 @@ class NetworkingManager {
     }
     
     // MARK: - Login
-    
     func login(userid:String, groupid:String) {
-        self.sendPostRequest("/login", body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: {data, response, error in
-            self.reportErrors(data, response: response, error: error)
+        let endpoint = "/login"
+        self.sendPostRequest(endpoint, body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: {data, response, error in
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             NetworkingManager.sharedInstance.getGroupInfo(groupid)
             NetworkingManager.sharedInstance.generateCodeForGroup(groupid)
             NetworkingManager.sharedInstance.getLastTask(groupid)
@@ -154,9 +160,10 @@ class NetworkingManager {
     }
     
     func getGroupForData(groupId:String) {
-        self.sendGetRequest("/group/\(groupId)", handler: { data, response, error in
+        let endpoint = "/group/\(groupId)"
+        self.sendGetRequest(endpoint, handler: { data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
                 return
@@ -167,8 +174,9 @@ class NetworkingManager {
     }
     
     func getUserInfo(userId:String) {
-        self.sendGetRequest("/user/\(userId)", handler: {data, response, error in
-            self.reportErrors(data, response: response, error: error)
+        let endpoint = "/user/\(userId)"
+        self.sendGetRequest(endpoint, handler: {data, response, error in
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
                 return
@@ -180,9 +188,10 @@ class NetworkingManager {
     
     // MARK: - Tasks
     func quickDoTask(groupId:String, creatorId:String, taskName:String) {
-        self.sendPostRequest("/group/\(groupId)/task", body: ["groupId":groupId, "title":taskName], handler: {data, response, error in
+        let endpoint = "/group/\(groupId)/task"
+        self.sendPostRequest(endpoint, body: ["groupId":groupId, "title":taskName], handler: {data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let response = response as? NSHTTPURLResponse where response.statusCode == 200 else {
                 return
@@ -204,9 +213,10 @@ class NetworkingManager {
     }
     
     func getIncompleteTasks(groupId:String) {
-        self.sendGetRequest("/group/\(groupId)/task", handler: { data, response, error in
+        let endpoint = "/group/\(groupId)/task"
+        self.sendGetRequest(endpoint, handler: { data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             guard let response = response as? NSHTTPURLResponse where response.statusCode == 200 else {
                 return
@@ -221,24 +231,27 @@ class NetworkingManager {
     }
     
     func deleteTask(groupId:String, taskId:String) {
-        self.sendRequest("/group/\(groupId)/task/\(taskId)", body: [:], method: "DELETE", useJSON: false, handler: { data, response, error in
-            self.reportErrors(data, response: response, error: error)
+        let endpoint = "/group/\(groupId)/task/\(taskId)"
+        self.sendRequest(endpoint, body: [:], method: "DELETE", useJSON: false, handler: { data, response, error in
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             self.getIncompleteTasks(NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)!)
         })
     }
     
     func completeTask(groupId:String, taskId:String, userId:String) {
-        self.sendPostRequest("/group/\(groupId)/complete/\(taskId)", body: ["groupId":groupId, "taskId":taskId, "userId":userId], handler: {data, response, error in
-            self.reportErrors(data, response: response, error: error)
+        let endpoint = "/group/\(groupId)/complete/\(taskId)"
+        self.sendPostRequest(endpoint, body: ["groupId":groupId, "taskId":taskId, "userId":userId], handler: {data, response, error in
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             self.getIncompleteTasks(NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)!)
         })
     }
     
     // Gets the last task that was completed in this group
     func getLastTask(groupId:String) {
-        self.sendGetRequest("/group/\(groupId)/completed?limit=1", handler: { data, response, error in
+        let endpoint = "/group/\(groupId)/completed?limit=1"
+        self.sendGetRequest(endpoint, handler: { data, response, error in
             
-            self.reportErrors(data, response: response, error: error)
+            self.reportErrors(endpoint, data: data, response: response, error: error)
             
             if let response = response as? NSHTTPURLResponse where response.statusCode == 200 {
                 var responseData = [String:AnyObject]()
@@ -249,9 +262,10 @@ class NetworkingManager {
                     }
                     if let json = jsonArray[0] as? [String:AnyObject] {
                         responseData["data"] = json
-                        self.sendGetRequest("/user/\(json["completer"]!)", handler: { data, response, error in
+                        let endpoint2 = "/user/\(json["completer"]!)"
+                        self.sendGetRequest(endpoint2, handler: { data, response, error in
                             
-                            self.reportErrors(data, response: response, error: error)
+                            self.reportErrors(endpoint2, data: data, response: response, error: error)
                             if let user = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] {
                                 responseData["user"] = user
                                 NSNotificationCenter.defaultCenter().postNotificationName(Constants.LAST_TASK, object: nil, userInfo: responseData)
@@ -316,12 +330,13 @@ class NetworkingManager {
                 
                 // check for http errors
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
-                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                    print("response = \(response)")
+                    print("statusCode for \(endpoint) is \(httpStatus.statusCode)")
+//                    print("response = \(response)")
+                    let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                    print("responseString = \(responseString)")
                 }
                 
-                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("responseString = \(responseString)")
+                
             }
         }
         
@@ -329,7 +344,7 @@ class NetworkingManager {
         task.resume()
     }
     
-    private func reportErrors(data:NSData?, response:NSURLResponse?, error:NSError?) {
+    private func reportErrors(endpoint:String, data:NSData?, response:NSURLResponse?, error:NSError?) {
         // check for fundamental networking error
         guard error == nil && data != nil else {
             print("error=\(error)")
@@ -338,11 +353,12 @@ class NetworkingManager {
         
         // check for http errors
         if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
-            print("statusCode should be 200, but is \(httpStatus.statusCode)")
-            print("response = \(response)")
+            print("statusCode for \(endpoint) is \(httpStatus.statusCode)")
+//            print("response = \(response)")
+            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print("responseString = \(responseString)")
         }
         
-        let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-        print("responseString = \(responseString)")
+        
     }
 }

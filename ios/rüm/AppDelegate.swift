@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Lookback.sharedLookback().feedbackBubbleVisible = true
         
 //        NotificationManager.sharedInstance.registerForNotifications()
+        print(NSUserDefaults.standardUserDefaults().valueForKey(NotificationManager.Constants.DEVICE_TOKEN))
         return true
     }
     

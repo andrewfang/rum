@@ -88,7 +88,6 @@ class JoinViewController: UIViewController {
                 }
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else if (response.statusCode == 404){
-                print(response)
                 let notif = UIAlertController(title: "Error", message: "No group exists with code \"\(self.textField.text!)\". Please double check your code and try again.", preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 

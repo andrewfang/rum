@@ -13,6 +13,11 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var nameLabel:UILabel!
     @IBOutlet weak var photoImgView:UIImageView!
     @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    @IBAction private func cancel() {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     var groups:[[String:AnyObject]] = []
     
@@ -27,8 +32,16 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
         self.tableView.dataSource = self
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SwitchGroupViewController.loadUsersGroups(_:)), name: NetworkingManager.Constants.GET_USER_INFO, object: nil)
+        self.spinner.startAnimating()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+    }
+    
     func loadUsersGroups(notification:NSNotification) {
         guard let userInfo = notification.userInfo else {
             return
@@ -39,6 +52,7 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
         }
         self.groups = groups
         NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.spinner.stopAnimating()
             self.tableView.reloadData()
         })
         

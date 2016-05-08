@@ -1,6 +1,7 @@
 server/node_modules/
 server/certs
 server/.git
+server/_private
 server/.env
 .DS_Store
 ios/rüm.xcworkspace/xcuserdata/

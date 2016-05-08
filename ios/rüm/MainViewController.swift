@@ -116,6 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             user = userInfo["user"] as? [String:AnyObject] else {
                 NSOperationQueue.mainQueue().addOperationWithBlock({
                     self.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
+                    self.peopleJustProfileImageView.image = nil
                     self.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
                     self.peopleJustNameLabel.text = "Hello!"
                     self.kudosButton.hidden = true
