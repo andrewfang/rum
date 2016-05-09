@@ -33,6 +33,8 @@
 		49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C281CD909C70012C365 /* WelcomeBackViewController.swift */; };
 		49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2A1CD938210012C365 /* JoinViewController.swift */; };
 		49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2C1CD961840012C365 /* CreateGroupViewController.swift */; };
+		49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */; };
+		49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +83,8 @@
 		49962C281CD909C70012C365 /* WelcomeBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeBackViewController.swift; sourceTree = "<group>"; };
 		49962C2A1CD938210012C365 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		49962C2C1CD961840012C365 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskViewController.swift; sourceTree = "<group>"; };
+		49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		8203871C678ED87348E9EF84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +116,7 @@
 				49086F0C1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift */,
 				49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */,
 				496E3D171CDD506300072B3F /* GroupTableViewCell.swift */,
+				49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				496E3D151CDD4C1C00072B3F /* SwitchGroupViewController.swift */,
+				49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */,
 				49742CCA1CC9F6D00024415A /* DataViewController.swift */,
 				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
 				49742C6C1CC9A6CC0024415A /* Assets.xcassets */,
@@ -349,11 +355,13 @@
 				49742C7E1CC9B82C0024415A /* UIImage+Flickr.swift in Sources */,
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
+				49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */,
 				49742C7B1CC9B6BE0024415A /* TaskCollectionViewCell.swift in Sources */,
 				49742CCD1CC9F7370024415A /* UIColor+rüm.swift in Sources */,
 				49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */,
 				49742C681CC9A6CC0024415A /* MainViewController.swift in Sources */,
 				49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */,
+				49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
 				49962C271CD909B80012C365 /* SignupViewController.swift in Sources */,
 				49086F0F1CDBBEFE001144D6 /* ChoreTableViewCell.swift in Sources */,

@@ -12,9 +12,9 @@ import UIKit
 extension UIImage {
     
     
-    class func imageFromTaskName(task:String) -> UIImage {
+    class func imageDataFromTaskName(task:String) -> NSData? {
         if let image = UIImage(named: task) {
-            return image
+            return UIImagePNGRepresentation(image)
         }
         
         let includedImage = ["bathroom", "dish", "trash", "vacuum"]
@@ -22,18 +22,12 @@ extension UIImage {
         for image in includedImage {
             if task.lowercaseString.rangeOfString(image) != nil {
                 if let image = UIImage(named: image) {
-                    return image
+                    return UIImagePNGRepresentation(image)
                 }
             }
         }
         
-        if let data = UIImage.flickrImageFromQuery(task) {
-            if let image = UIImage(data: data) {
-                return image
-            }
-        }
-        
-        return UIImage(named: "welcome")!
+        return UIImage.flickrImageFromQuery(task)
     }
     
     // Given a search term, returns an image

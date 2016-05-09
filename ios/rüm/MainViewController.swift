@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userId:String!
     var lastCompletedTaskUserId:String?
     var quickTasks:[String]!
-    var todos:[[String:String]]!
+    var todos:[[String:AnyObject]]!
     var keyboardVisible:Bool = false
     var keyboardSize:CGFloat!
     
@@ -92,7 +92,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
-        if let data = userInfo["data"] as? [[String:String]] {
+        if let data = userInfo["data"] as? [[String:AnyObject]] {
             self.todos = data.reverse()
             NSOperationQueue.mainQueue().addOperationWithBlock({
                 self.tableView.reloadData()
@@ -150,7 +150,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.ME_CELL, forIndexPath: indexPath)
         
         if let cell = cell as? TaskCollectionViewCell {
-            cell.taskImage.image = UIImage.imageFromTaskName(self.quickTasks[indexPath.item].lowercaseString)
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+                if let data = UIImage.imageDataFromTaskName(self.quickTasks[indexPath.item].lowercaseString) {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({
+                        cell.taskImage.image = UIImage(data: data)
+                    })
+                }
+            })
+            
             cell.taskName.text = self.quickTasks[indexPath.item]
         }
         return cell
@@ -186,11 +193,31 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath) as? ChoreTableViewCell {
-            cell.nameLabel.text = self.todos[indexPath.item]["title"]!
+            cell.tintColor = UIColor.appRed()
+            cell.nameLabel.text = self.todos[indexPath.item]["title"] as? String
             cell.checkbox.addTarget(self, action: #selector(MainViewController.checkOffItem(_:)), forControlEvents: .TouchUpInside)
             cell.checkbox.tag = indexPath.item
             cell.isChecked = false
             cell.checkbox.userInteractionEnabled = true
+            // TODO: Add in imageview of person
+            let savedIndexPathItem = indexPath.item
+            if let assignee = self.todos[indexPath.item]["assignedTo"] as? [String: AnyObject] {
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+                    if let urlString = assignee["photo"] as? String {
+                        if let url = NSURL(string: urlString) {
+                            if let data = NSData(contentsOfURL: url) {
+                                if indexPath.item == savedIndexPathItem {
+                                    NSOperationQueue.mainQueue().addOperationWithBlock({
+                                        cell.assignedToImageView.image = UIImage(data: data)
+                                    })
+                                }
+                            }
+                        }
+                    }
+                })
+            } else {
+                cell.assignedToImageView.image = nil
+            }
             return cell
         }
         
@@ -205,10 +232,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return indexPath.item < self.todos.count
     }
     
+    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("ASSIGN_TASK_SEGUE", sender: indexPath)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "ASSIGN_TASK_SEGUE") {
+            guard let indexPath = sender as? NSIndexPath else {
+                return
+            }
+            if let navVC = segue.destinationViewController as? UINavigationController {
+                if let destVC = navVC.viewControllers.first as? AssignTaskViewController {
+                    destVC.task = self.todos[indexPath.item]
+                }
+            }
+        }
+    }
+    
     // Handle Delete
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            NetworkingManager.sharedInstance.deleteTask(self.groupId, taskId: self.todos[indexPath.item]["id"]!)
+            NetworkingManager.sharedInstance.deleteTask(self.groupId, taskId: self.todos[indexPath.item]["id"] as! String)
             self.todos.removeAtIndex(indexPath.item)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
@@ -228,7 +272,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         for i in 0 ... self.todos.count {
             if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? ChoreTableViewCell {
                 if (cell.isChecked) {
-                    NetworkingManager.sharedInstance.completeTask(self.groupId, taskId: self.todos[i]["id"]!, userId: self.userId)
+                    NetworkingManager.sharedInstance.completeTask(self.groupId, taskId: self.todos[i]["id"] as! String, userId: self.userId)
                 }
             }
         }
@@ -339,8 +383,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-            self.peopleJustBackgroundImageView.image = UIImage.imageFromTaskName(action.lowercaseString)
-            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+                if let data = UIImage.imageDataFromTaskName(action.lowercaseString) {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({
+                        self.peopleJustBackgroundImageView.image = UIImage(data: data)
+                    })
+                }
+            })
         })
     }
     

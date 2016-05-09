@@ -41,10 +41,12 @@ class NetworkingManager {
     func checkUser(userid:String) {
         
         let endpoint = "/login"
-//        self.sendPostRequest(endpoint, body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString, "deviceToken":userDefaults.stringForKey(NotificationManager.Constants.DEVICE_TOKEN)], handler: { data, response, error in
+        var data = ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString]
+        if let deviceToken = NSUserDefaults.standardUserDefaults().stringForKey(NotificationManager.Constants.DEVICE_TOKEN) {
+            data["deviceToken"] = deviceToken
+        }
         
-        self.sendPostRequest(endpoint, body: ["userId":userid, "accessToken":FBSDKAccessToken.currentAccessToken().tokenString], handler: { data, response, error in
-            self.reportErrors(endpoint, data: data, response: response, error: error)
+        self.sendPostRequest(endpoint, body: data, handler: { data, response, error in
             
             var userInfo = [String: AnyObject]()
             if let response = response as? NSHTTPURLResponse {
@@ -222,12 +224,17 @@ class NetworkingManager {
                 return
             }
             
-            guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? [[String:String]] else {
+            guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? [[String:AnyObject]] else {
                 return
             }
             
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.UPDATE_TODO, object: nil, userInfo: ["data":json!])
         })
+    }
+    
+    func assignTask(groupId:String, taskId:String, assignToId:String?) {
+        let endPoint = "/group/\(groupId)/task/\(taskId)"
+        self.sendRequest(endPoint, body: ["assignedTo":assignToId ?? ""], method: "PUT", useJSON: true, handler: nil)
     }
     
     func deleteTask(groupId:String, taskId:String) {

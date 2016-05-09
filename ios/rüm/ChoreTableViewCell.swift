@@ -12,6 +12,7 @@ class ChoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var checkbox: UIButton!
+    @IBOutlet weak var assignedToImageView: UIImageView!
 
     var isChecked:Bool = false {
         didSet {

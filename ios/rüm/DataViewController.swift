@@ -45,8 +45,6 @@ class DataViewController: UIViewController {
             return
         }
         
-        
-        
         NSUserDefaults.standardUserDefaults().setValue(members, forKey: Constants.MEMBER_DATA)
         
         self.showData(members)
