@@ -33,6 +33,7 @@
 		49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2C1CD961840012C365 /* CreateGroupViewController.swift */; };
 		49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */; };
 		49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */; };
+		49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C04ABC1CE267E000E0F1DA /* ActionButton.swift */; };
 		4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */; };
 		4F5B4D5F1CE16BB2001C7806 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D5E1CE16BB2001C7806 /* Charts.framework */; };
 		4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D601CE16BBD001C7806 /* Bolts.framework */; };
@@ -84,6 +85,7 @@
 		49962C2C1CD961840012C365 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskViewController.swift; sourceTree = "<group>"; };
 		49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		49C04ABC1CE267E000E0F1DA /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F5B4D5E1CE16BB2001C7806 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
 		4F5B4D601CE16BBD001C7806 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Bolts.framework"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */,
 				496E3D171CDD506300072B3F /* GroupTableViewCell.swift */,
 				49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */,
+				49C04ABC1CE267E000E0F1DA /* ActionButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				4F5B4D661CE16F00001C7806 /* GA.swift in Sources */,
 				49742C7E1CC9B82C0024415A /* UIImage+Flickr.swift in Sources */,
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
+				49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
 				49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */,
 				49742C7B1CC9B6BE0024415A /* TaskCollectionViewCell.swift in Sources */,

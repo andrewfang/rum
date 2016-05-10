@@ -21,6 +21,8 @@ class JoinViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JoinViewController.userJoined(_:)), name: NetworkingManager.Constants.USER_JOINED_GROUP, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JoinViewController.groupDontExist(_:)), name: NetworkingManager.Constants.GROUP_DOESNT_EXIST, object: nil)
         
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         
     }
     

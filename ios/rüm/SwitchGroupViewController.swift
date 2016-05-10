@@ -14,6 +14,7 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var photoImgView:UIImageView!
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var overlayView: UIView!
     
     @IBAction private func cancel() {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -36,6 +37,26 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SwitchGroupViewController.loadUsersGroups(_:)), name: NetworkingManager.Constants.GET_USER_INFO, object: nil)
         self.spinner.startAnimating()
+        
+        self.tableView.clipsToBounds = false
+        self.tableView.layer.masksToBounds = false
+        self.tableView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.tableView.layer.shadowOffset = CGSizeMake(0, 1)
+        self.tableView.layer.shadowRadius = 2.0
+        self.tableView.layer.shadowOpacity = 0.3
+        
+        //only apply the blur if the user hasn't disabled transparency effects
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.alpha = 0.8
+            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            
+            self.view.insertSubview(blurEffectView, atIndex: 1)
+        }
+        
     }
 
     override func viewWillAppear(animated: Bool) {

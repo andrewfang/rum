@@ -44,6 +44,7 @@ class CreateGroupViewController: UIViewController {
         // NetworkManager will send out notifications if the user join was successful
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateGroupViewController.groupCreated(_:)), name: NetworkingManager.Constants.USER_CREATED_GROUP, object: nil)
 
+        self.navigationItem.setHidesBackButton(true, animated: false)
         self.showCodeStackView.alpha = 0
         self.showCodeStackView.hidden = true
     }
