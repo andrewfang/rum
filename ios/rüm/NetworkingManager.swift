@@ -202,6 +202,12 @@ class NetworkingManager {
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] {
                     if let taskId = json["taskId"] as? String {
+                        
+                        
+                        // send GA events
+                        // label = "taskCompleter : taskId"
+                        GA.sendEvent("task", action: "complete-quick", label: "\(creatorId) : \(taskId)", value: nil)
+                        
                         self.sendPostRequest("/group/\(groupId)/complete/\(taskId)", body: ["groupId":groupId, "taskId":taskId, "userId":creatorId], handler: nil)
                     }
                 }

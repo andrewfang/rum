@@ -62,6 +62,10 @@ class JoinViewController: UIViewController {
         
         // If it hits here, we're ready to try joining the group
         self.activityIndicator.startAnimating()
+        
+        let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) : \(text)"
+        GA.sendEvent("group", action: "join", label: eventLabel, value: nil)
+        
         NetworkingManager.sharedInstance.joinUserToGroup(id, groupCode: text)
     }
     

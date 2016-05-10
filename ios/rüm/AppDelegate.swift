@@ -27,6 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        NotificationManager.sharedInstance.registerForNotifications()
         print(NSUserDefaults.standardUserDefaults().valueForKey(NotificationManager.Constants.DEVICE_TOKEN))
+        
+        // Configure tracker from GoogleService-Info.plist
+        var configureError:NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        // GAI options
+        let gai = GAI.sharedInstance()
+        gai.trackUncaughtExceptions = true
+        
         return true
     }
     

@@ -24,6 +24,9 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // register switch group page view with ga
+        GA.registerPageView("SwitchGroup")
+        
         NetworkingManager.sharedInstance.getUserInfo(NSUserDefaults.standardUserDefaults().stringForKey("ID")!)
         self.photoImgView.image = FacebookManager.sharedInstance.photo
         self.nameLabel.text = "Hi, \(FacebookManager.sharedInstance.first_name!)"
