@@ -5,3 +5,6 @@ server/_private
 server/.env
 .DS_Store
 ios/rüm.xcworkspace/xcuserdata/
+ios/Pods/Google
+ios/GoogleService-Info.plist
+

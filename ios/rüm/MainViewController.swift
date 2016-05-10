@@ -37,6 +37,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // register main page view with ga
+        GA.registerPageView("Main")
+        
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self
@@ -172,6 +176,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Show alert that you did good
         if let id = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
+            let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
+            GA.sendEvent("task", action: "create-quick", label: eventLabel, value: nil)
+            
+            // NOTE: do event logging for completion in the networking manager, since it's a little tough
+            // to get the task ID back. Should probably clean up
             NetworkingManager.sharedInstance.quickDoTask(self.groupId, creatorId: id, taskName: self.quickTasks[indexPath.item])
         }
         self.showAlert(withMessage: "You just \(self.quickTasks[indexPath.item].lowercaseString)!")
@@ -258,6 +267,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // complete a task
     func checkOffItem(sender: UIButton) {
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as? ChoreTableViewCell {
             cell.isChecked = !cell.isChecked
@@ -272,7 +282,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         for i in 0 ... self.todos.count {
             if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? ChoreTableViewCell {
                 if (cell.isChecked) {
-                    NetworkingManager.sharedInstance.completeTask(self.groupId, taskId: self.todos[i]["id"] as! String, userId: self.userId)
+                    let taskId = self.todos[i]["id"] as! String
+                    // send a GA event on task completion
+                    let label = "\(self.userId) : \(taskId)"
+                    GA.sendEvent("task", action: "complete", label: label, value: nil)
+                    NetworkingManager.sharedInstance.completeTask(self.groupId, taskId: taskId, userId: self.userId)
                 }
             }
         }
@@ -286,6 +300,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if let text = textField.text where text.characters.count > 0 {
+            
+            let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
+            GA.sendEvent("task", action: "create", label: eventLabel, value: nil)
+            
             NetworkingManager.sharedInstance.createTask(self.groupId, taskName: text)
             self.todos.append(["title":text])
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.todos.count, inSection: 0)], withRowAnimation: .Automatic)
@@ -345,6 +363,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let id = self.lastCompletedTaskUserId {
             NetworkingManager.sharedInstance.giveKudos(id, completionHandler: nil)
+            
+            // "giver --> reciever"
+            // TODO: may want to include task ID
+            let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(id)"
+            GA.sendEvent("task", action: "kudos", label: eventLabel, value: nil)
+            
             self.showAlert(withMessage: "You just gave \(labelSplit[0]) kudos!")
         }
     }

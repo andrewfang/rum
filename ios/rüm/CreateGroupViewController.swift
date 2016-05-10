@@ -29,6 +29,9 @@ class CreateGroupViewController: UIViewController {
         }
         
         self.activityIndicator.startAnimating()
+        // "userId"
+        let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
+        GA.sendEvent("group", action: "create", label: eventLabel, value: nil)
         NetworkingManager.sharedInstance.createGroup(text)
         
     }

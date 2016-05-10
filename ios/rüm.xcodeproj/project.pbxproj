@@ -11,8 +11,6 @@
 		49086F0D1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49086F0C1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift */; };
 		49086F0F1CDBBEFE001144D6 /* ChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */; };
 		491C32541CD8728900B6ABAA /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C32531CD8728900B6ABAA /* NetworkingManager.swift */; };
-		494A82781CD4057F001C0BAA /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; };
-		494A82791CD4057F001C0BAA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494A82771CD4057F001C0BAA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */ = {isa = PBXBuildFile; fileRef = 494A827A1CD40C8F001C0BAA /* Hope.aif */; };
 		496E3D161CDD4C1C00072B3F /* SwitchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E3D151CDD4C1C00072B3F /* SwitchGroupViewController.swift */; };
 		496E3D181CDD506300072B3F /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E3D171CDD506300072B3F /* GroupTableViewCell.swift */; };
@@ -35,6 +33,11 @@
 		49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2C1CD961840012C365 /* CreateGroupViewController.swift */; };
 		49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */; };
 		49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */; };
+		4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */; };
+		4F5B4D5F1CE16BB2001C7806 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D5E1CE16BB2001C7806 /* Charts.framework */; };
+		4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D601CE16BBD001C7806 /* Bolts.framework */; };
+		4F5B4D631CE16BCE001C7806 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */; };
+		4F5B4D661CE16F00001C7806 /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B4D651CE16F00001C7806 /* GA.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				494A82791CD4057F001C0BAA /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,7 +59,6 @@
 		49086F0C1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewChoreTableViewCell.swift; sourceTree = "<group>"; };
 		49086F0E1CDBBEFE001144D6 /* ChoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoreTableViewCell.swift; sourceTree = "<group>"; };
 		491C32531CD8728900B6ABAA /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
-		494A82771CD4057F001C0BAA /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Charts.framework; path = "/Users/andrew/Library/Developer/Xcode/DerivedData/rüm-dcqxgmraasayuscefstigftkalht/Build/Products/Debug-iphoneos/Charts.framework"; sourceTree = "<absolute>"; };
 		494A827A1CD40C8F001C0BAA /* Hope.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hope.aif; sourceTree = "<group>"; };
 		496D51A81CCDD1D600754D3E /* rüm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rüm-Bridging-Header.h"; sourceTree = "<group>"; };
 		496E3D151CDD4C1C00072B3F /* SwitchGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchGroupViewController.swift; sourceTree = "<group>"; };
@@ -76,8 +77,6 @@
 		49742CCC1CC9F7370024415A /* UIColor+rüm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+rüm.swift"; sourceTree = "<group>"; };
 		497893B21CD3D919004D7371 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		497B63341CD5228300DCE361 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
-		497B63361CD523B600DCE361 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		497B63381CD523ED00DCE361 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
 		497B633A1CD5256600DCE361 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49962C261CD909B80012C365 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		49962C281CD909C70012C365 /* WelcomeBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeBackViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +84,11 @@
 		49962C2C1CD961840012C365 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskViewController.swift; sourceTree = "<group>"; };
 		49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4F5B4D5E1CE16BB2001C7806 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
+		4F5B4D601CE16BBD001C7806 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Bolts.framework"; sourceTree = "<group>"; };
+		4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		4F5B4D651CE16F00001C7806 /* GA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
 		8203871C678ED87348E9EF84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,8 +97,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */,
 				1AC5A4FE57F031961DB68CC5 /* Pods.framework in Frameworks */,
-				494A82781CD4057F001C0BAA /* Charts.framework in Frameworks */,
+				4F5B4D631CE16BCE001C7806 /* FBSDKLoginKit.framework in Frameworks */,
+				4F5B4D5F1CE16BB2001C7806 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +130,8 @@
 		49742C591CC9A6CB0024415A = {
 			isa = PBXGroup;
 			children = (
-				494A82771CD4057F001C0BAA /* Charts.framework */,
+				4F5B4D5E1CE16BB2001C7806 /* Charts.framework */,
+				4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */,
 				49742C641CC9A6CC0024415A /* rüm */,
 				49742C631CC9A6CB0024415A /* Products */,
 				903682CCBD68C0727CAD49F4 /* Pods */,
@@ -143,6 +150,7 @@
 		49742C641CC9A6CC0024415A /* rüm */ = {
 			isa = PBXGroup;
 			children = (
+				4F5B4D641CE16EF2001C7806 /* Analytics */,
 				49742C7F1CC9F27A0024415A /* Support */,
 				49742C801CC9F2830024415A /* Extensions */,
 				496042711CD03BB600B658A0 /* Model */,
@@ -202,6 +210,14 @@
 			name = "Login View Controllers";
 			sourceTree = "<group>";
 		};
+		4F5B4D641CE16EF2001C7806 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B4D651CE16F00001C7806 /* GA.swift */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
 		903682CCBD68C0727CAD49F4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +230,8 @@
 		E986462516E1DA5CD102F044 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				497B63381CD523ED00DCE361 /* Bolts.framework */,
-				497B63361CD523B600DCE361 /* FBSDKLoginKit.framework */,
+				4F5B4D601CE16BBD001C7806 /* Bolts.framework */,
+				4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */,
 				8203871C678ED87348E9EF84 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -291,6 +307,7 @@
 			files = (
 				49742C701CC9A6CC0024415A /* LaunchScreen.storyboard in Resources */,
 				49742C6D1CC9A6CC0024415A /* Assets.xcassets in Resources */,
+				4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */,
 				494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */,
 				49742C6B1CC9A6CC0024415A /* Main.storyboard in Resources */,
 			);
@@ -352,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49086F0D1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift in Sources */,
+				4F5B4D661CE16F00001C7806 /* GA.swift in Sources */,
 				49742C7E1CC9B82C0024415A /* UIImage+Flickr.swift in Sources */,
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,

@@ -31,6 +31,11 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // register assign task page view with ga
+        GA.registerPageView("AssignTask")
+        
         self.taskNameLabel.text = self.task["title"] as? String
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
             if let data = UIImage.imageDataFromTaskName(self.task["title"] as! String) {
@@ -69,6 +74,11 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
         var assignedTo:String? = nil
         if let s = self.selected {
             assignedTo = s["id"] as? String
+            
+            // send GA assign event
+            // "assigner --> assignedTo : taskId"
+            let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(assignedTo) : \(self.task["id"])"
+            GA.sendEvent("task", action: "assign", label: eventLabel, value: nil)
         }
         NetworkingManager.sharedInstance.assignTask(NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)!, taskId: self.task["id"]! as! String, assignToId: assignedTo)
         
