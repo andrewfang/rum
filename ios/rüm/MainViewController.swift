@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate, TodoCellDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate, TodoCellDelegate, KudosButtonDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -21,13 +21,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var addTaskButton: UIButton!
-    
-//    @IBOutlet weak var collectionView: UICollectionView!
-//    @IBOutlet weak var peopleJustProfileImageView: UIImageView!
-//    @IBOutlet weak var peopleJustNameLabel: UILabel!
-//    @IBOutlet weak var peopleJustTaskLabel: UILabel!
-//    @IBOutlet weak var peopleJustBackgroundImageView: UIImageView!
-//    @IBOutlet weak var kudosButton:UIButton!
     
     var groupId:String!
     var userId:String!
@@ -67,9 +60,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-//        self.collectionView.dataSource = self
-//        self.collectionView.delegate = self
-//        self.kudosButton.hidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.lastTask(_:)), name: NetworkingManager.Constants.LAST_TASK, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.updateTodos(_:)), name: NetworkingManager.Constants.UPDATE_TODO, object: nil)
@@ -146,11 +136,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let data = userInfo["data"] as? [String:AnyObject],
             user = userInfo["user"] as? [String:AnyObject] else {
                 NSOperationQueue.mainQueue().addOperationWithBlock({
-//                    self.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
-//                    self.peopleJustProfileImageView.image = nil
-//                    self.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
-//                    self.peopleJustNameLabel.text = "Hello!"
-//                    self.kudosButton.hidden = true
+                    if self.lastTaskCell != nil {
+                        self.lastTaskCell!.loadEmpty()
+                    }
                 })
                 return
         }
@@ -164,7 +152,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let id = user["id"] as? String {
             // Don't let me give myself kudos
             NSOperationQueue.mainQueue().addOperationWithBlock({
-//                self.kudosButton.hidden = id == self.userId
+                if self.lastTaskCell != nil {
+                    self.lastTaskCell!.disableKudos = id == self.userId
+                }
                 self.lastCompletedTaskUserId = id
             })
         }
@@ -234,6 +224,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // last task cell
                 let lastTaskCell = self.tableView.dequeueReusableCellWithIdentifier("lastTaskCell", forIndexPath: indexPath) as! LastTaskCell
                 self.lastTaskCell = lastTaskCell
+                lastTaskCell.kudosButtonDelegate = self
                 return lastTaskCell
             case 1:
                 // quick complete cell
@@ -396,7 +387,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    
     // MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ASSIGN_TASK_SEGUE") {
@@ -420,20 +410,25 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    @IBAction private func gaveKudos() {
-        // TODO: uncomment
-//        let labelSplit = self.peopleJustNameLabel.text!.characters.split{$0 == " "}.map(String.init)
-        let labelSplit = [""]
+    
+    // MARK: - LastTaskCell delegation
+    var kudosStartTime: Double = 0.0
+    func userDidBeginKudos() {
+        kudosStartTime = NSDate().timeIntervalSince1970
+    }
+    
+    func userDidEndKudos() {
+        let total = NSDate().timeIntervalSince1970 - kudosStartTime
         
-        if let id = self.lastCompletedTaskUserId {
-            NetworkingManager.sharedInstance.giveKudos(id, completionHandler: nil)
+        // give kudos at a rate of 4 per second, + 1 to ensure that we
+        // give at least 1
+        let numKudos = Int(floor(total * 4) + 1)
+        if let receiverId = self.lastCompletedTaskUserId {
+            NetworkingManager.sharedInstance.giveKudos(receiverId, number: numKudos, completionHandler: nil)
             
             // "giver --> reciever"
-            // TODO: may want to include task ID
-            let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(id)"
+            let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(receiverId)"
             GA.sendEvent("task", action: "kudos", label: eventLabel, value: nil)
-            
-            self.showAlert(withMessage: "You just gave \(labelSplit[0]) kudos!")
         }
     }
     

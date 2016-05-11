@@ -292,8 +292,8 @@ class NetworkingManager {
     
     
     // MARK: - Kudos
-    func giveKudos(userid:String, completionHandler: (() -> Void)?) {
-        self.sendPostRequest("/user/\(userid)/kudos", body: [:], handler: nil)
+    func giveKudos(userid:String, number:Int, completionHandler: (() -> Void)?) {
+        self.sendPostRequest("/user/\(userid)/kudos", body: ["number":number], handler: nil)
         if (completionHandler != nil) {
             completionHandler!()
         }

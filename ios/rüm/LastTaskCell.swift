@@ -9,15 +9,35 @@
 import UIKit
 import SpriteKit
 
+protocol KudosButtonDelegate: class {
+    func userDidBeginKudos()
+    func userDidEndKudos()
+}
+
 class LastTaskCell: UITableViewCell {
 
     let heartScene = Hearts()
+    var kudosButtonDelegate: KudosButtonDelegate? {
+        didSet {
+            kudosButton.delegate = kudosButtonDelegate
+        }
+    }
+    
+    var disableKudos = false {
+        didSet {
+            kudosButton.disabled = disableKudos
+            infoLabel.text = disableKudos ?
+                "When people in your group complete tasks, they'll show up here." :
+                "Tap the photo and show some love!"
+        }
+    }
     
     @IBOutlet weak var attributionLabel: UILabel!
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var heartSceneView: UIView!
     @IBOutlet weak var kudosButton: KudosButton!
+    @IBOutlet weak var infoLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,8 +55,10 @@ class LastTaskCell: UITableViewCell {
     }
     
     
+    // caller should make sure to enable/disable kudos themselves
     func loadTask(name:String, task:String, photo:String) {
         attributionLabel.text = "\(name) completed a task"
+        attributionLabel.hidden = false
         taskLabel.text = task
         if let imageUrl = NSURL(string: photo) {
             if let data = NSData(contentsOfURL: imageUrl) {
@@ -46,25 +68,47 @@ class LastTaskCell: UITableViewCell {
             }
         }
     }
+    
+    // NOTE: disables kudos
+    func loadEmpty() {
+        taskLabel.text = "Hi there!"
+        attributionLabel.hidden = true
+        self.disableKudos = true
+    }
 }
 
 class KudosButton: UIImageView {
     
     var heartScene: Hearts?
-    
+    var delegate: KudosButtonDelegate?
+    var disabled = false
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("touching")
+        if disabled {
+            return
+        }
+        
         if heartScene != nil {
             heartScene!.start()
+        }
+        
+        if delegate != nil {
+            delegate!.userDidBeginKudos()
         }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("not touching")
+        if disabled {
+            return
+        }
+        
         if heartScene != nil {
             heartScene!.stop()
+        }
+        
+        if delegate != nil {
+            delegate!.userDidEndKudos()
         }
     }
 }
