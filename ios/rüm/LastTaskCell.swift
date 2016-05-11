@@ -33,7 +33,7 @@ class LastTaskCell: UITableViewCell {
         taskLabel.text = task
         if let imageUrl = NSURL(string: photo) {
             if let data = NSData(contentsOfURL: imageUrl) {
-                self.backgroundImageView.image = UIImage(data: data)
+                self.profileImageView.image = UIImage(data: data)
             }
         }
         
