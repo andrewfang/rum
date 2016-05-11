@@ -60,6 +60,7 @@ class LastTaskCell: UITableViewCell {
         attributionLabel.text = "\(name) completed a task"
         attributionLabel.hidden = false
         taskLabel.text = task
+        
         if let imageUrl = NSURL(string: photo) {
             if let data = NSData(contentsOfURL: imageUrl) {
                 let image = UIImage(data: data)
@@ -71,6 +72,10 @@ class LastTaskCell: UITableViewCell {
     
     // NOTE: disables kudos
     func loadEmpty() {
+        if let photo = FacebookManager.sharedInstance.photo {
+            self.kudosButton.image = photo
+            self.backgroundImageView.image = photo
+        }
         taskLabel.text = "Hi there!"
         attributionLabel.hidden = true
         self.disableKudos = true
