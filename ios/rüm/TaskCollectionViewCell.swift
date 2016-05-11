@@ -11,4 +11,8 @@ import UIKit
 class TaskCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var taskImage: UIImageView!
     @IBOutlet weak var taskName: UILabel!
+    
+    func loadTask(title: String) {
+        
+    }
 }

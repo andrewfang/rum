@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate, UICollectionViewDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -34,6 +34,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var keyboardSize:CGFloat!
     
     var lastTaskCell:LastTaskCell?
+    var quickCompleteCell:QuickCompleteCell?
     
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
@@ -44,6 +45,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let lastTaskNib = UINib(nibName: "LastTaskCell", bundle: nil)
         self.tableView.registerNib(lastTaskNib, forCellReuseIdentifier: "lastTaskCell")
+        
+        let quickCompleteCellNib = UINib(nibName: "QuickCompleteCell", bundle: nil)
+        self.tableView.registerNib(quickCompleteCellNib, forCellReuseIdentifier: "quickCompleteCell")
         
         let todoCellNib = UINib(nibName: "TodoCell", bundle: nil)
         self.tableView.registerNib(todoCellNib, forCellReuseIdentifier: "todoCell")
@@ -153,39 +157,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - CollectionView
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.ME_CELL, forIndexPath: indexPath)
-        
-        if let cell = cell as? TaskCollectionViewCell {
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-                if let data = UIImage.imageDataFromTaskName(self.quickTasks[indexPath.item].lowercaseString) {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        cell.taskImage.image = UIImage(data: data)
-                    })
-                }
-            })
-            
-            cell.taskName.text = self.quickTasks[indexPath.item]
-        }
-        return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.quickTasks.count
-    }
-    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // Change the banner to be what you just did
-        
         // Show alert that you did good
         if let id = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
             let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
             GA.sendEvent("task", action: "create-quick", label: eventLabel, value: nil)
-            
+        
             // NOTE: do event logging for completion in the networking manager, since it's a little tough
             // to get the task ID back. Should probably clean up
             NetworkingManager.sharedInstance.quickDoTask(self.groupId, creatorId: id, taskName: self.quickTasks[indexPath.item])
@@ -194,18 +171,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - TableView
-    
     // last task view, I just section, and remaining tasks
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = NSBundle.mainBundle().loadNibNamed("TableSectionHeaderView", owner: self, options: nil).first as? TableSectionHeaderView
         switch section {
             case 0: return nil
             case 1:
-                if let headerView = NSBundle.mainBundle().loadNibNamed("TableSectionHeaderView", owner: self, options: nil).first as? TableSectionHeaderView {
-                    headerView.headerLabel.text = "TODO"
+                if (headerView != nil) {
+                    headerView!.headerLabel.text = "I JUST..."
+                    return headerView
+                }
+                return nil
+            case 2:
+                if (headerView != nil) {
+                    headerView!.headerLabel.text = "TODO"
                     return headerView
                 }
                 return nil
@@ -223,44 +206,47 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // 1 for the task view, 1 for the "I just..." section, and #tasks for the todo section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 1 {
-            return self.todos.count
-        } else {
-            return 1
+        switch section {
+            case 0, 1: return 1
+            default: return self.todos.count
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell?
-        if indexPath.section == 0 {
-            let lastTaskCell = self.tableView.dequeueReusableCellWithIdentifier("lastTaskCell", forIndexPath: indexPath) as! LastTaskCell
-            self.lastTaskCell = lastTaskCell
-            return lastTaskCell
-        } else if indexPath.section == 1 {
-            // grab the task data from the JSON and load the data into the cell
-            // before returning it
-            let todoCell = self.tableView.dequeueReusableCellWithIdentifier("todoCell", forIndexPath: indexPath) as! TodoCell
-            let taskTitle = self.todos[indexPath.item]["title"] as? String
-            let assignee  = self.todos[indexPath.item]["assignedTo"] as? [String : AnyObject]
-            todoCell.loadTask(taskTitle!, assignedTo: assignee!)
-            return todoCell
-        } else {
-            cell = nil
+        switch indexPath.section {
+            case 0:
+                // last task cell
+                let lastTaskCell = self.tableView.dequeueReusableCellWithIdentifier("lastTaskCell", forIndexPath: indexPath) as! LastTaskCell
+                self.lastTaskCell = lastTaskCell
+                return lastTaskCell
+            case 1:
+                // quick complete cell
+                let quickCompleteCell = self.tableView.dequeueReusableCellWithIdentifier("quickCompleteCell", forIndexPath: indexPath) as! QuickCompleteCell
+                self.quickCompleteCell = quickCompleteCell
+                quickCompleteCell.tasks = self.quickTasks
+                quickCompleteCell.collectionViewDelegate = self
+                return quickCompleteCell
+            default:
+                // todo cell
+                // grab the task data from the JSON and load the data into the cell
+                // before returning it
+                let todoCell = self.tableView.dequeueReusableCellWithIdentifier("todoCell", forIndexPath: indexPath) as! TodoCell
+                let taskTitle = self.todos[indexPath.item]["title"] as? String
+                let assignee  = self.todos[indexPath.item]["assignedTo"] as? [String : AnyObject]
+                todoCell.loadTask(taskTitle!, assignedTo: assignee!)
+                return todoCell
+    
         }
-        return cell!
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // for the last task row, set the height of the cell 0.25 * the height of the window
-        if indexPath.section == 0 {
-            let windowHeight = self.view.window!.frame.size.height
-            return 0.25 * windowHeight
-        } else if indexPath.section == 1 {
-            return 66
-        } else {
-            return 0
+        switch indexPath.section {
+            case 0:
+                let windowHeight = self.view.window!.frame.size.height
+                return 0.25 * windowHeight
+            default: return 66
+            
         }
     }
     

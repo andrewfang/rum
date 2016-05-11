@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="quickCompleteCollectionViewCell" id="gTV-IL-0wX" customClass="QuickCompleteCollectionViewCell" customModule="ru_m" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="351"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="334" height="351"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MFe-Qu-Ldy">
+                        <rect key="frame" x="149" y="0.0" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="fWZ-6m-CKS"/>
+                            <constraint firstAttribute="width" secondItem="MFe-Qu-Ldy" secondAttribute="height" multiplier="1:1" id="hJx-VW-ahv"/>
+                            <constraint firstAttribute="width" constant="36" id="mE6-bs-qKe"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="18"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q38-85-Aal">
+                        <rect key="frame" x="0.0" y="36" width="334" height="315"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
+                        <color key="textColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Q38-85-Aal" secondAttribute="bottom" id="0MU-ku-ch5"/>
+                <constraint firstAttribute="trailing" secondItem="Q38-85-Aal" secondAttribute="trailing" id="FXV-Ue-4Br"/>
+                <constraint firstItem="Q38-85-Aal" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WS3-I1-0XH"/>
+                <constraint firstItem="MFe-Qu-Ldy" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="YXG-CT-Zo8"/>
+                <constraint firstItem="Q38-85-Aal" firstAttribute="top" secondItem="MFe-Qu-Ldy" secondAttribute="bottom" id="hzP-ey-Y3d"/>
+                <constraint firstItem="MFe-Qu-Ldy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="noG-9R-388"/>
+                <constraint firstItem="Q38-85-Aal" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="xZi-EL-9aU"/>
+            </constraints>
+            <size key="customSize" width="334" height="351"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="xZi-EL-9aU"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="imageView" destination="MFe-Qu-Ldy" id="O9k-RL-eIG"/>
+                <outlet property="label" destination="Q38-85-Aal" id="fx7-MA-pEl"/>
+            </connections>
+            <point key="canvasLocation" x="337" y="460.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
