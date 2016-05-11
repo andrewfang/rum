@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Spring
 
 protocol TodoCellDelegate {
     func userDidCompleteTodo(todoCell: TodoCell)
