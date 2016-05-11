@@ -45,6 +45,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let lastTaskNib = UINib(nibName: "LastTaskCell", bundle: nil)
         self.tableView.registerNib(lastTaskNib, forCellReuseIdentifier: "lastTaskCell")
         
+        let todoCellNib = UINib(nibName: "TodoCell", bundle: nil)
+        self.tableView.registerNib(todoCellNib, forCellReuseIdentifier: "todoCell")
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
 //        self.collectionView.dataSource = self
@@ -194,19 +197,39 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // last task view, I just section, and remaining tasks
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Last task"
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+            case 0: return nil
+            case 1:
+                if let headerView = NSBundle.mainBundle().loadNibNamed("TableSectionHeaderView", owner: self, options: nil).first as? TableSectionHeaderView {
+                    headerView.headerLabel.text = "TODO"
+                    return headerView
+                }
+                return nil
+            default: return nil
         }
-        return ""
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+            // no header for last task
+            case 0: return 0
+            default: return 43
+        }
     }
     
     // 1 for the task view, 1 for the "I just..." section, and #tasks for the todo section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return self.todos.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -215,8 +238,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let lastTaskCell = self.tableView.dequeueReusableCellWithIdentifier("lastTaskCell", forIndexPath: indexPath) as! LastTaskCell
             self.lastTaskCell = lastTaskCell
             return lastTaskCell
+        } else if indexPath.section == 1 {
+            // grab the task data from the JSON and load the data into the cell
+            // before returning it
+            let todoCell = self.tableView.dequeueReusableCellWithIdentifier("todoCell", forIndexPath: indexPath) as! TodoCell
+            let taskTitle = self.todos[indexPath.item]["title"] as? String
+            let assignee  = self.todos[indexPath.item]["assignedTo"] as? [String : AnyObject]
+            todoCell.loadTask(taskTitle!, assignedTo: assignee!)
+            return todoCell
         } else {
-            cell = nil;
+            cell = nil
         }
         return cell!
     }
@@ -226,6 +257,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.section == 0 {
             let windowHeight = self.view.window!.frame.size.height
             return 0.25 * windowHeight
+        } else if indexPath.section == 1 {
+            return 66
         } else {
             return 0
         }
@@ -311,16 +344,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // complete a task
-    func checkOffItem(sender: UIButton) {
-        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as? ChoreTableViewCell {
-            cell.isChecked = !cell.isChecked
-            let triggerTime = (Int64(NSEC_PER_SEC) * 1)
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
-                self.toggleItemsCompleted()
-            })
-        }
-    }
+//    // complete a task
+//    func checkOffItem(sender: UIButton) {
+//        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as? ChoreTableViewCell {
+//            cell.isChecked = !cell.isChecked
+//            let triggerTime = (Int64(NSEC_PER_SEC) * 1)
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+//                self.toggleItemsCompleted()
+//            })
+//        }
+//    }
     
     func toggleItemsCompleted() {
         for i in 0 ... self.todos.count {
