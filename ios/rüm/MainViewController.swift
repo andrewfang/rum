@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate, TodoCellDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -16,6 +16,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         static let ME_CELL = "task cell"
         static let GROUP_ID = "GROUP_ID"
     }
+    
+    let TODO_SECTION = 2
     
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var addTaskButton: UIButton!
@@ -95,7 +97,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func setupTasks() {
         self.quickTasks = Database.tasks
-//        self.collectionView.reloadData()
+        if (self.quickCompleteCell != nil) {
+            self.quickCompleteCell?.collectionView.reloadData()
+        }
+        
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID),
          let userid = NSUserDefaults.standardUserDefaults().stringForKey("ID")
         {
@@ -193,7 +198,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     return headerView
                 }
                 return nil
-            case 2:
+            case TODO_SECTION:
                 if (headerView != nil) {
                     headerView!.headerLabel.text = "TODO"
                     return headerView
@@ -238,9 +243,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // grab the task data from the JSON and load the data into the cell
                 // before returning it
                 let todoCell = self.tableView.dequeueReusableCellWithIdentifier("todoCell", forIndexPath: indexPath) as! TodoCell
+                let taskId = self.todos[indexPath.item]["id"] as? String
                 let taskTitle = self.todos[indexPath.item]["title"] as? String
                 let assignee  = self.todos[indexPath.item]["assignedTo"] as? [String : AnyObject]
-                todoCell.loadTask(taskTitle, assignedTo: assignee)
+                todoCell.delegate = self
+                todoCell.loadTask(taskId, title: taskTitle, assignedTo: assignee)
                 return todoCell
     
         }
@@ -263,103 +270,54 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        // Put in the "add new" cell
-//        if (indexPath.item == self.todos.count) {
-//            if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_ADD_CELL, forIndexPath: indexPath) as? AddNewChoreTableViewCell {
-//                cell.textField.delegate = self
-//                return cell
-//            }
-//        }
-//        
-//        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath) as? ChoreTableViewCell {
-//            cell.tintColor = UIColor.appRed()
-//            cell.nameLabel.text = self.todos[indexPath.item]["title"] as? String
-//            cell.checkbox.addTarget(self, action: #selector(MainViewController.checkOffItem(_:)), forControlEvents: .TouchUpInside)
-//            cell.checkbox.tag = indexPath.item
-//            cell.isChecked = false
-//            cell.checkbox.userInteractionEnabled = true
-//            // TODO: Add in imageview of person
-//            let savedIndexPathItem = indexPath.item
-//            if let assignee = self.todos[indexPath.item]["assignedTo"] as? [String: AnyObject] {
-//                dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-//                    if let urlString = assignee["photo"] as? String {
-//                        if let url = NSURL(string: urlString) {
-//                            if let data = NSData(contentsOfURL: url) {
-//                                if indexPath.item == savedIndexPathItem {
-//                                    NSOperationQueue.mainQueue().addOperationWithBlock({
-//                                        cell.assignedToImageView.image = UIImage(data: data)
-//                                    })
-//                                }
-//                            }
-//                        }
-//                    }
-//                })
-//            } else {
-//                cell.assignedToImageView.image = nil
-//            }
-//            return cell
-//        }
-//        
-//        return tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath)
-//    }
+    // MARK: - TodoCell delegation
+    func getTodoIndexPath(taskId:String) -> NSIndexPath? {
+        // find index path for deleted table cell
+        var indexPath: NSIndexPath?
+        // number of rows in todo section
+        let numRows = self.todos.count
+        for i in 0 ..< numRows {
+            if let id = self.todos[i]["id"] as? String {
+                if id == taskId {
+                    indexPath = NSIndexPath.init(forRow: i, inSection: TODO_SECTION)
+                    break
+                }
+            }
+        }
+        return indexPath
+    }
     
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.todos.count + 1
-//    }
-//    
-//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return indexPath.item < self.todos.count
-//    }
-//    
-//    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-//        self.performSegueWithIdentifier("ASSIGN_TASK_SEGUE", sender: indexPath)
-//    }
-//    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == "ASSIGN_TASK_SEGUE") {
-//            guard let indexPath = sender as? NSIndexPath else {
-//                return
-//            }
-//            if let navVC = segue.destinationViewController as? UINavigationController {
-//                if let destVC = navVC.viewControllers.first as? AssignTaskViewController {
-//                    destVC.task = self.todos[indexPath.item]
-//                }
-//            }
-//        }
-//    }
-    
-    // Handle Delete
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            NetworkingManager.sharedInstance.deleteTask(self.groupId, taskId: self.todos[indexPath.item]["id"] as! String)
-            self.todos.removeAtIndex(indexPath.item)
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+    func userDidCompleteTodo(todoCell: TodoCell) {
+        let taskId = todoCell.taskId
+        if (taskId != nil) {
+            // get index path for completed task
+            let indexPath = getTodoIndexPath(taskId!)
+            if indexPath != nil {
+                let label = "\(self.userId) : \(taskId)"
+                GA.sendEvent("task", action: "complete", label: label, value: nil)
+                NetworkingManager.sharedInstance.completeTask(self.groupId, taskId: taskId!, userId: self.userId)
+                
+                self.todos.removeAtIndex(indexPath!.row)
+                tableView.beginUpdates()
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                tableView.endUpdates()
+            }
         }
     }
     
-//    // complete a task
-//    func checkOffItem(sender: UIButton) {
-//        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as? ChoreTableViewCell {
-//            cell.isChecked = !cell.isChecked
-//            let triggerTime = (Int64(NSEC_PER_SEC) * 1)
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
-//                self.toggleItemsCompleted()
-//            })
-//        }
-//    }
-    
-    func toggleItemsCompleted() {
-        for i in 0 ... self.todos.count {
-            if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? ChoreTableViewCell {
-                if (cell.isChecked) {
-                    let taskId = self.todos[i]["id"] as! String
-                    // send a GA event on task completion
-                    let label = "\(self.userId) : \(taskId)"
-                    GA.sendEvent("task", action: "complete", label: label, value: nil)
-                    NetworkingManager.sharedInstance.completeTask(self.groupId, taskId: taskId, userId: self.userId)
-                }
+    func userDidDeleteTodo(todoCell: TodoCell) {
+        let taskId = todoCell.taskId
+        if (taskId != nil) {
+            
+            // find index path for deleted table cell
+            let indexPath = getTodoIndexPath(taskId!)
+            if indexPath != nil {
+                NetworkingManager.sharedInstance.deleteTask(self.groupId, taskId: taskId!)
+                
+                self.todos.removeAtIndex(indexPath!.row)
+                tableView.beginUpdates()
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                tableView.endUpdates()
             }
         }
     }
