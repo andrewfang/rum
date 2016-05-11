@@ -39,6 +39,8 @@
 		4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D601CE16BBD001C7806 /* Bolts.framework */; };
 		4F5B4D631CE16BCE001C7806 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */; };
 		4F5B4D661CE16F00001C7806 /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B4D651CE16F00001C7806 /* GA.swift */; };
+		4FDAA6501CE3C50800B364AC /* HeartsParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA64E1CE3C50800B364AC /* HeartsParticle.sks */; };
+		4FDAA6531CE3C65300B364AC /* Hearts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA6521CE3C65300B364AC /* Hearts.swift */; };
 		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
 		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
 		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
@@ -104,6 +106,8 @@
 		4F5B4D601CE16BBD001C7806 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Bolts.framework"; sourceTree = "<group>"; };
 		4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		4F5B4D651CE16F00001C7806 /* GA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
+		4FDAA64E1CE3C50800B364AC /* HeartsParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HeartsParticle.sks; sourceTree = "<group>"; };
+		4FDAA6521CE3C65300B364AC /* Hearts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hearts.swift; sourceTree = "<group>"; };
 		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
 		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
 		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				496E3D171CDD506300072B3F /* GroupTableViewCell.swift */,
 				49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */,
 				49C04ABC1CE267E000E0F1DA /* ActionButton.swift */,
+				4FDAA6521CE3C65300B364AC /* Hearts.swift */,
+				4FDAA64E1CE3C50800B364AC /* HeartsParticle.sks */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */,
 				4FFE58211CE2B01200B3B00B /* TodoCell.xib in Resources */,
 				4FFE58251CE2C15100B3B00B /* TableSectionHeaderView.xib in Resources */,
+				4FDAA6501CE3C50800B364AC /* HeartsParticle.sks in Resources */,
 				494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */,
 				4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */,
 				4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */,
@@ -463,6 +470,7 @@
 				49962C271CD909B80012C365 /* SignupViewController.swift in Sources */,
 				49086F0F1CDBBEFE001144D6 /* ChoreTableViewCell.swift in Sources */,
 				497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */,
+				4FDAA6531CE3C65300B364AC /* Hearts.swift in Sources */,
 				496E3D181CDD506300072B3F /* GroupTableViewCell.swift in Sources */,
 				491C32541CD8728900B6ABAA /* NetworkingManager.swift in Sources */,
 				496E3D161CDD4C1C00072B3F /* SwitchGroupViewController.swift in Sources */,

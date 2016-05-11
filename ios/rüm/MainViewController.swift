@@ -47,6 +47,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // register main page view with ga
         GA.registerPageView("Main")
         
+        // don't allow scrolling to cancel touch events
+        self.tableView.canCancelContentTouches = false
+        self.tableView.delaysContentTouches = true
+        
         let lastTaskNib = UINib(nibName: "LastTaskCell", bundle: nil)
         self.tableView.registerNib(lastTaskNib, forCellReuseIdentifier: "lastTaskCell")
         
