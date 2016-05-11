@@ -33,18 +33,10 @@ class LastTaskCell: UITableViewCell {
         taskLabel.text = task
         if let imageUrl = NSURL(string: photo) {
             if let data = NSData(contentsOfURL: imageUrl) {
-                self.profileImageView.image = UIImage(data: data)
+                let image = UIImage(data: data)
+                self.profileImageView.image = image
+                self.backgroundImageView.image = image
             }
         }
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let data = UIImage.imageDataFromTaskName(task.lowercaseString) {
-                NSOperationQueue.mainQueue().addOperationWithBlock({
-                    
-                    self.backgroundImageView.image = UIImage(data: data)
-                })
-            }
-        })
     }
-    
 }
