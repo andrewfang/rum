@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -18,12 +18,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBOutlet weak var tableView:UITableView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var peopleJustProfileImageView: UIImageView!
-    @IBOutlet weak var peopleJustNameLabel: UILabel!
-    @IBOutlet weak var peopleJustTaskLabel: UILabel!
-    @IBOutlet weak var peopleJustBackgroundImageView: UIImageView!
-    @IBOutlet weak var kudosButton:UIButton!
+//    @IBOutlet weak var collectionView: UICollectionView!
+//    @IBOutlet weak var peopleJustProfileImageView: UIImageView!
+//    @IBOutlet weak var peopleJustNameLabel: UILabel!
+//    @IBOutlet weak var peopleJustTaskLabel: UILabel!
+//    @IBOutlet weak var peopleJustBackgroundImageView: UIImageView!
+//    @IBOutlet weak var kudosButton:UIButton!
     
     var groupId:String!
     var userId:String!
@@ -33,6 +33,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var keyboardVisible:Bool = false
     var keyboardSize:CGFloat!
     
+    var lastTaskCell:LastTaskCell?
+    
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +42,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // register main page view with ga
         GA.registerPageView("Main")
         
+        let lastTaskNib = UINib(nibName: "LastTaskCell", bundle: nil)
+        self.tableView.registerNib(lastTaskNib, forCellReuseIdentifier: "lastTaskCell")
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        self.kudosButton.hidden = true
+//        self.collectionView.dataSource = self
+//        self.collectionView.delegate = self
+//        self.kudosButton.hidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.lastTask(_:)), name: NetworkingManager.Constants.LAST_TASK, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.updateTodos(_:)), name: NetworkingManager.Constants.UPDATE_TODO, object: nil)
@@ -77,7 +81,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func setupTasks() {
         self.quickTasks = Database.tasks
-        self.collectionView.reloadData()
+//        self.collectionView.reloadData()
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID),
          let userid = NSUserDefaults.standardUserDefaults().stringForKey("ID")
         {
@@ -119,11 +123,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let data = userInfo["data"] as? [String:AnyObject],
             user = userInfo["user"] as? [String:AnyObject] else {
                 NSOperationQueue.mainQueue().addOperationWithBlock({
-                    self.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
-                    self.peopleJustProfileImageView.image = nil
-                    self.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
-                    self.peopleJustNameLabel.text = "Hello!"
-                    self.kudosButton.hidden = true
+//                    self.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
+//                    self.peopleJustProfileImageView.image = nil
+//                    self.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
+//                    self.peopleJustNameLabel.text = "Hello!"
+//                    self.kudosButton.hidden = true
                 })
                 return
         }
@@ -137,7 +141,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let id = user["id"] as? String {
             // Don't let me give myself kudos
             NSOperationQueue.mainQueue().addOperationWithBlock({
-                self.kudosButton.hidden = id == self.userId
+//                self.kudosButton.hidden = id == self.userId
                 self.lastCompletedTaskUserId = id
             })
         }
@@ -187,76 +191,116 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - TableView
+    
+    // last task view, I just section, and remaining tasks
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        // Put in the "add new" cell
-        if (indexPath.item == self.todos.count) {
-            if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_ADD_CELL, forIndexPath: indexPath) as? AddNewChoreTableViewCell {
-                cell.textField.delegate = self
-                return cell
-            }
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Last task"
         }
-        
-        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath) as? ChoreTableViewCell {
-            cell.tintColor = UIColor.appRed()
-            cell.nameLabel.text = self.todos[indexPath.item]["title"] as? String
-            cell.checkbox.addTarget(self, action: #selector(MainViewController.checkOffItem(_:)), forControlEvents: .TouchUpInside)
-            cell.checkbox.tag = indexPath.item
-            cell.isChecked = false
-            cell.checkbox.userInteractionEnabled = true
-            // TODO: Add in imageview of person
-            let savedIndexPathItem = indexPath.item
-            if let assignee = self.todos[indexPath.item]["assignedTo"] as? [String: AnyObject] {
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-                    if let urlString = assignee["photo"] as? String {
-                        if let url = NSURL(string: urlString) {
-                            if let data = NSData(contentsOfURL: url) {
-                                if indexPath.item == savedIndexPathItem {
-                                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                                        cell.assignedToImageView.image = UIImage(data: data)
-                                    })
-                                }
-                            }
-                        }
-                    }
-                })
-            } else {
-                cell.assignedToImageView.image = nil
-            }
-            return cell
-        }
-        
-        return tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath)
+        return ""
     }
     
+    // 1 for the task view, 1 for the "I just..." section, and #tasks for the todo section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.todos.count + 1
+        return 1
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return indexPath.item < self.todos.count
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:UITableViewCell?
+        if indexPath.section == 0 {
+            let lastTaskCell = self.tableView.dequeueReusableCellWithIdentifier("lastTaskCell", forIndexPath: indexPath) as! LastTaskCell
+            self.lastTaskCell = lastTaskCell
+            return lastTaskCell
+        } else {
+            cell = nil;
+        }
+        return cell!
     }
     
-    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ASSIGN_TASK_SEGUE", sender: indexPath)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "ASSIGN_TASK_SEGUE") {
-            guard let indexPath = sender as? NSIndexPath else {
-                return
-            }
-            if let navVC = segue.destinationViewController as? UINavigationController {
-                if let destVC = navVC.viewControllers.first as? AssignTaskViewController {
-                    destVC.task = self.todos[indexPath.item]
-                }
-            }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        // for the last task row, set the height of the cell 0.25 * the height of the window
+        if indexPath.section == 0 {
+            let windowHeight = self.view.window!.frame.size.height
+            return 0.25 * windowHeight
+        } else {
+            return 0
         }
     }
+    
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1
+//    }
+    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        
+//        // Put in the "add new" cell
+//        if (indexPath.item == self.todos.count) {
+//            if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_ADD_CELL, forIndexPath: indexPath) as? AddNewChoreTableViewCell {
+//                cell.textField.delegate = self
+//                return cell
+//            }
+//        }
+//        
+//        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath) as? ChoreTableViewCell {
+//            cell.tintColor = UIColor.appRed()
+//            cell.nameLabel.text = self.todos[indexPath.item]["title"] as? String
+//            cell.checkbox.addTarget(self, action: #selector(MainViewController.checkOffItem(_:)), forControlEvents: .TouchUpInside)
+//            cell.checkbox.tag = indexPath.item
+//            cell.isChecked = false
+//            cell.checkbox.userInteractionEnabled = true
+//            // TODO: Add in imageview of person
+//            let savedIndexPathItem = indexPath.item
+//            if let assignee = self.todos[indexPath.item]["assignedTo"] as? [String: AnyObject] {
+//                dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+//                    if let urlString = assignee["photo"] as? String {
+//                        if let url = NSURL(string: urlString) {
+//                            if let data = NSData(contentsOfURL: url) {
+//                                if indexPath.item == savedIndexPathItem {
+//                                    NSOperationQueue.mainQueue().addOperationWithBlock({
+//                                        cell.assignedToImageView.image = UIImage(data: data)
+//                                    })
+//                                }
+//                            }
+//                        }
+//                    }
+//                })
+//            } else {
+//                cell.assignedToImageView.image = nil
+//            }
+//            return cell
+//        }
+//        
+//        return tableView.dequeueReusableCellWithIdentifier(Constants.CHORE_CELL, forIndexPath: indexPath)
+//    }
+    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.todos.count + 1
+//    }
+//    
+//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        return indexPath.item < self.todos.count
+//    }
+//    
+//    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+//        self.performSegueWithIdentifier("ASSIGN_TASK_SEGUE", sender: indexPath)
+//    }
+//    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if (segue.identifier == "ASSIGN_TASK_SEGUE") {
+//            guard let indexPath = sender as? NSIndexPath else {
+//                return
+//            }
+//            if let navVC = segue.destinationViewController as? UINavigationController {
+//                if let destVC = navVC.viewControllers.first as? AssignTaskViewController {
+//                    destVC.task = self.todos[indexPath.item]
+//                }
+//            }
+//        }
+//    }
     
     // Handle Delete
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -359,7 +403,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction private func gaveKudos() {
-        let labelSplit = self.peopleJustNameLabel.text!.characters.split{$0 == " "}.map(String.init)
+        // TODO: uncomment
+//        let labelSplit = self.peopleJustNameLabel.text!.characters.split{$0 == " "}.map(String.init)
+        let labelSplit = [""]
         
         if let id = self.lastCompletedTaskUserId {
             NetworkingManager.sharedInstance.giveKudos(id, completionHandler: nil)
@@ -398,25 +444,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func someOneJustActioned(name:String, action:String, photo: String) {
         
         NSOperationQueue.mainQueue().addOperationWithBlock({
-            self.peopleJustNameLabel.text = "\(name) just..."
-            self.peopleJustTaskLabel.text = action
-            
-            if let imageUrl = NSURL(string: photo) {
-                if let data = NSData(contentsOfURL: imageUrl) {
-                    self.peopleJustProfileImageView.image = UIImage(data: data)
-                }
+            if (self.lastTaskCell != nil) {
+                self.lastTaskCell!.loadTask(name, task: action, photo: photo)
             }
-            
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-                if let data = UIImage.imageDataFromTaskName(action.lowercaseString) {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        self.peopleJustBackgroundImageView.image = UIImage(data: data)
-                    })
-                }
-            })
         })
     }
-    
-    
 }
 

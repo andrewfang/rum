@@ -92,10 +92,10 @@ class DataViewController: UIViewController {
             if let navVC = self.tabBarController?.viewControllers?.first as? UINavigationController {
                 if let mainVC = navVC.viewControllers.first as? MainViewController {
                     mainVC.todos = []
-                    mainVC.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
-                    mainVC.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
-                    mainVC.peopleJustNameLabel.text = "Hello!"
-                    mainVC.kudosButton.hidden = true
+//                    mainVC.peopleJustBackgroundImageView.image = UIImage(named: "welcome")
+//                    mainVC.peopleJustTaskLabel.text = "Start by doing a task above or adding a new task below"
+//                    mainVC.peopleJustNameLabel.text = "Hello!"
+//                    mainVC.kudosButton.hidden = true
                     mainVC.userId = nil
                     mainVC.groupId = nil
                     let userDef = NSUserDefaults.standardUserDefaults()

@@ -39,6 +39,9 @@
 		4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D601CE16BBD001C7806 /* Bolts.framework */; };
 		4F5B4D631CE16BCE001C7806 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */; };
 		4F5B4D661CE16F00001C7806 /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B4D651CE16F00001C7806 /* GA.swift */; };
+		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
+		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
+		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,6 +94,9 @@
 		4F5B4D601CE16BBD001C7806 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Bolts.framework"; sourceTree = "<group>"; };
 		4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		4F5B4D651CE16F00001C7806 /* GA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
+		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
+		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
+		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
 		8203871C678ED87348E9EF84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -153,6 +159,7 @@
 		49742C641CC9A6CC0024415A /* rüm */ = {
 			isa = PBXGroup;
 			children = (
+				4FFE580E1CE28D3900B3B00B /* Storyboards */,
 				4F5B4D641CE16EF2001C7806 /* Analytics */,
 				49742C7F1CC9F27A0024415A /* Support */,
 				49742C801CC9F2830024415A /* Extensions */,
@@ -160,6 +167,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
+				4FFE58191CE295BD00B3B00B /* Todo */,
 				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				496E3D151CDD4C1C00072B3F /* SwitchGroupViewController.swift */,
@@ -219,6 +227,23 @@
 				4F5B4D651CE16F00001C7806 /* GA.swift */,
 			);
 			name = Analytics;
+			sourceTree = "<group>";
+		};
+		4FFE580E1CE28D3900B3B00B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4FFE58191CE295BD00B3B00B /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				4FFE58161CE2923200B3B00B /* Todo.storyboard */,
+				4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */,
+				4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */,
+			);
+			name = Todo;
 			sourceTree = "<group>";
 		};
 		903682CCBD68C0727CAD49F4 /* Pods */ = {
@@ -312,6 +337,8 @@
 				49742C6D1CC9A6CC0024415A /* Assets.xcassets in Resources */,
 				4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */,
 				494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */,
+				4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */,
+				4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */,
 				49742C6B1CC9A6CC0024415A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +410,7 @@
 				49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */,
 				49742C681CC9A6CC0024415A /* MainViewController.swift in Sources */,
 				49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */,
+				4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */,
 				49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
 				49962C271CD909B80012C365 /* SignupViewController.swift in Sources */,
@@ -414,6 +442,14 @@
 				49742C6F1CC9A6CC0024415A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4FFE58161CE2923200B3B00B /* Todo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FFE58171CE2923200B3B00B /* Base */,
+			);
+			name = Todo.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
