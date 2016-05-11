@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -47,6 +48,13 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shd-0i-d2r" userLabel="Border">
+                        <rect key="frame" x="30.5" y="215.5" width="605" height="1"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="byf-eZ-YI5"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="3Mg-b4-v8L" firstAttribute="leading" secondItem="OVm-mK-PRD" secondAttribute="leading" id="5Wi-lL-4eh"/>
@@ -56,6 +64,8 @@
                     <constraint firstItem="3Mg-b4-v8L" firstAttribute="leading" secondItem="OVm-mK-PRD" secondAttribute="leading" id="CH8-u7-HWr"/>
                     <constraint firstItem="3Mg-b4-v8L" firstAttribute="top" secondItem="OVm-mK-PRD" secondAttribute="bottom" id="I9p-MY-SIw"/>
                     <constraint firstItem="3Mg-b4-v8L" firstAttribute="trailing" secondItem="TUV-D5-fl3" secondAttribute="leading" id="KqQ-4H-D7m"/>
+                    <constraint firstItem="shd-0i-d2r" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="OKY-Wp-EAZ"/>
+                    <constraint firstItem="shd-0i-d2r" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/1.1" id="QCZ-Uc-ixt"/>
                     <constraint firstItem="3Mg-b4-v8L" firstAttribute="baseline" secondItem="TUV-D5-fl3" secondAttribute="baseline" id="RBN-mP-eWI"/>
                     <constraint firstItem="3Mg-b4-v8L" firstAttribute="top" secondItem="OVm-mK-PRD" secondAttribute="bottom" id="TJ5-bu-Xbl"/>
                     <constraint firstItem="OVm-mK-PRD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ter-wL-3Jq"/>
@@ -64,6 +74,7 @@
                     <constraint firstItem="OVm-mK-PRD" firstAttribute="top" secondItem="TUV-D5-fl3" secondAttribute="top" constant="6" id="bXp-CH-y7I"/>
                     <constraint firstItem="iVU-6E-Sfs" firstAttribute="trailing" secondItem="TUV-D5-fl3" secondAttribute="trailing" id="eJ6-UP-GKP"/>
                     <constraint firstItem="iVU-6E-Sfs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jXD-be-Lgv"/>
+                    <constraint firstAttribute="bottom" secondItem="shd-0i-d2r" secondAttribute="bottom" id="p54-g4-jar"/>
                     <constraint firstItem="TUV-D5-fl3" firstAttribute="leading" secondItem="iVU-6E-Sfs" secondAttribute="trailing" constant="8" id="qxh-85-1Uc"/>
                     <constraint firstItem="OVm-mK-PRD" firstAttribute="trailing" secondItem="TUV-D5-fl3" secondAttribute="leading" id="y5v-Sk-uu1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3Mg-b4-v8L" secondAttribute="trailing" constant="20" id="yLh-ER-ENI"/>

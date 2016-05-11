@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate, UICollectionViewDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -18,6 +18,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var addTaskButton: UIButton!
+    
 //    @IBOutlet weak var collectionView: UICollectionView!
 //    @IBOutlet weak var peopleJustProfileImageView: UIImageView!
 //    @IBOutlet weak var peopleJustNameLabel: UILabel!
@@ -51,6 +53,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let todoCellNib = UINib(nibName: "TodoCell", bundle: nil)
         self.tableView.registerNib(todoCellNib, forCellReuseIdentifier: "todoCell")
+        
+        addTaskButton.layer.masksToBounds = false
+        addTaskButton.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.18).CGColor
+        addTaskButton.layer.shadowOffset = CGSizeMake(0.0, 4.0)
+        addTaskButton.layer.shadowOpacity = 1
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -233,7 +240,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let todoCell = self.tableView.dequeueReusableCellWithIdentifier("todoCell", forIndexPath: indexPath) as! TodoCell
                 let taskTitle = self.todos[indexPath.item]["title"] as? String
                 let assignee  = self.todos[indexPath.item]["assignedTo"] as? [String : AnyObject]
-                todoCell.loadTask(taskTitle!, assignedTo: assignee!)
+                todoCell.loadTask(taskTitle, assignedTo: assignee)
                 return todoCell
     
         }
@@ -243,16 +250,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // for the last task row, set the height of the cell 0.25 * the height of the window
         switch indexPath.section {
             case 0:
-                let windowHeight = self.view.window!.frame.size.height
-                return 0.25 * windowHeight
+                if (self.view.window != nil) {
+                    let windowHeight = self.view.window!.frame.size.height
+                    return 0.25 * windowHeight
+                } else {
+                    return 100
+                }
+            case 1:
+                return 84
             default: return 66
             
         }
     }
-    
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 1
-//    }
     
 //    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        
@@ -355,25 +364,29 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // TextField Delegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
+    // MARK: - TextInputViewController delegation
+    func userDidInputText(text: String?) {
+        if (text != nil) {
+            let trimmed = text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if trimmed.characters.count > 0 {
+                createTask(trimmed)
+            }
+        }
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        if let text = textField.text where text.characters.count > 0 {
-            
+    // MARK: - Create task
+    func createTask(title: String) {
+        if title.characters.count > 0 {
             let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
             GA.sendEvent("task", action: "create", label: eventLabel, value: nil)
             
-            NetworkingManager.sharedInstance.createTask(self.groupId, taskName: text)
-            self.todos.append(["title":text])
-            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.todos.count, inSection: 0)], withRowAnimation: .Automatic)
+            NetworkingManager.sharedInstance.createTask(self.groupId, taskName: title)
+            
+            // TODO should wait on a response from the API before appending, then add it
+            // with its generated task ID
+            self.todos.append(["title": title])
             self.getTodos()
-            textField.text = ""
         }
-        return true
     }
     
     func keyboardDidShow(notification: NSNotification) {
@@ -420,6 +433,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.keyboardVisible = false
     }
     
+    
+    
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "ASSIGN_TASK_SEGUE") {
+            guard let indexPath = sender as? NSIndexPath else {
+                return
+            }
+            if let navVC = segue.destinationViewController as? UINavigationController {
+                if let destVC = navVC.viewControllers.first as? AssignTaskViewController {
+                    destVC.task = self.todos[indexPath.item]
+                }
+            }
+        } else if segue.identifier == "AddTaskSegue" {
+            print(segue.destinationViewController)
+            if let navVC = segue.destinationViewController as? UINavigationController {
+                if let textVC = navVC.viewControllers.first as? TextInputViewController {
+                    textVC.labelText = "Task title"
+                    textVC.navTitle = "Create a task"
+                    textVC.delegate = self
+                }
+            }
+        }
+    }
     
     @IBAction private func gaveKudos() {
         // TODO: uncomment

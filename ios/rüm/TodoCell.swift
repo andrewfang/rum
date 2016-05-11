@@ -26,7 +26,7 @@ class TodoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func loadTask(title: String, assignedTo: [String : AnyObject]?) {
+    func loadTask(title: String?, assignedTo: [String : AnyObject]?) {
         taskLabel.text = title
         
         if (assignedTo != nil) {

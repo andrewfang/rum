@@ -17,7 +17,11 @@ class QuickCompleteCell: UITableViewCell, UICollectionViewDataSource {
             self.collectionView.delegate = collectionViewDelegate
         }
     }
-    var tasks: [String] = []
+    var tasks: [String] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

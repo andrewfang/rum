@@ -50,6 +50,8 @@
 		4FFE582B1CE2C82A00B3B00B /* QuickCompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58291CE2C82A00B3B00B /* QuickCompleteCell.xib */; };
 		4FFE582E1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE582C1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.swift */; };
 		4FFE582F1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE582D1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.xib */; };
+		4FFE58331CE2EF8700B3B00B /* TextInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58321CE2EF8700B3B00B /* TextInput.storyboard */; };
+		4FFE58371CE2F16F00B3B00B /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE58361CE2F16F00B3B00B /* TextInputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -113,6 +115,8 @@
 		4FFE58291CE2C82A00B3B00B /* QuickCompleteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickCompleteCell.xib; sourceTree = "<group>"; };
 		4FFE582C1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickCompleteCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FFE582D1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickCompleteCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FFE58321CE2EF8700B3B00B /* TextInput.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextInput.storyboard; sourceTree = "<group>"; };
+		4FFE58361CE2F16F00B3B00B /* TextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		8203871C678ED87348E9EF84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -183,6 +187,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
+				4FFE58351CE2EF9400B3B00B /* TextInput */,
 				4FFE58191CE295BD00B3B00B /* Todo */,
 				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				49742C671CC9A6CC0024415A /* MainViewController.swift */,
@@ -268,6 +273,15 @@
 				4FFE582D1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.xib */,
 			);
 			name = Todo;
+			sourceTree = "<group>";
+		};
+		4FFE58351CE2EF9400B3B00B /* TextInput */ = {
+			isa = PBXGroup;
+			children = (
+				4FFE58321CE2EF8700B3B00B /* TextInput.storyboard */,
+				4FFE58361CE2F16F00B3B00B /* TextInputViewController.swift */,
+			);
+			name = TextInput;
 			sourceTree = "<group>";
 		};
 		903682CCBD68C0727CAD49F4 /* Pods */ = {
@@ -357,6 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FFE58331CE2EF8700B3B00B /* TextInput.storyboard in Resources */,
 				49742C701CC9A6CC0024415A /* LaunchScreen.storyboard in Resources */,
 				49742C6D1CC9A6CC0024415A /* Assets.xcassets in Resources */,
 				4FFE582B1CE2C82A00B3B00B /* QuickCompleteCell.xib in Resources */,
@@ -429,6 +444,7 @@
 				49086F0D1CDBBEE9001144D6 /* AddNewChoreTableViewCell.swift in Sources */,
 				4F5B4D661CE16F00001C7806 /* GA.swift in Sources */,
 				49742C7E1CC9B82C0024415A /* UIImage+Flickr.swift in Sources */,
+				4FFE58371CE2F16F00B3B00B /* TextInputViewController.swift in Sources */,
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
 				49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,

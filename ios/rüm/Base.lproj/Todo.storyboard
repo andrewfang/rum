@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Todo-->
@@ -17,10 +18,25 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flT-Td-Re9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flT-Td-Re9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utW-zx-CNm">
+                                <rect key="frame" x="275" y="397" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="utW-zx-CNm" secondAttribute="height" multiplier="1:1" id="oRv-sL-VKJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="vXk-bb-WK9"/>
+                                </constraints>
+                                <state key="normal" image="plus_icon"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="25"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="rPU-7g-SFJ" kind="presentation" identifier="AddTaskSegue" id="HzP-Qp-CLA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -29,10 +45,13 @@
                             <constraint firstItem="flT-Td-Re9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="ONW-hC-uUT"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aHc-xY-scs"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bfi-rG-cJO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="utW-zx-CNm" secondAttribute="bottom" constant="18" id="ezp-cn-cPW"/>
+                            <constraint firstItem="utW-zx-CNm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tGl-qJ-5oW"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="yjm-48-ghi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Todo" id="N8v-vp-9Cz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="VPu-Zi-a0D"/>
                         <barButtonItem key="leftBarButtonItem" image="group" id="HTZ-YY-ooy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -51,6 +70,7 @@
                     </simulatedNavigationBarMetrics>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addTaskButton" destination="utW-zx-CNm" id="Nx6-LV-5KE"/>
                         <outlet property="tableView" destination="flT-Td-Re9" id="SyT-X3-fn7"/>
                         <segue destination="tKz-aE-WrI" kind="presentation" identifier="ShowLogin" id="eWN-qa-fd2"/>
                         <segue destination="hjt-ht-bfT" kind="presentation" identifier="GROUP_SWITCH" id="7Ct-Cq-zqG"/>
@@ -60,6 +80,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1964" y="429"/>
+        </scene>
+        <!--TextInput-->
+        <scene sceneID="GDB-uO-gfA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TextInput" id="rPU-7g-SFJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qo0-i7-hrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1964.5" y="1018"/>
         </scene>
         <!--UINavigationController-8rr-S6-pZb-->
         <scene sceneID="TCM-fa-ucE">
@@ -88,6 +116,7 @@
     </scenes>
     <resources>
         <image name="group" width="32" height="32"/>
+        <image name="plus_icon" width="50" height="50"/>
         <image name="share" width="24" height="24"/>
     </resources>
 </document>
