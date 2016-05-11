@@ -120,9 +120,6 @@ class TodoCell: UITableViewCell {
     func loadTask(id: String?, title: String?, assignedTo: [String : AnyObject]?) {
         self.taskId = id
         self.taskLabel.text = title
-        
-        print(self.taskId)
-        
         if (assignedTo != nil) {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
                 if let urlStr = assignedTo!["photo"] as? String {
