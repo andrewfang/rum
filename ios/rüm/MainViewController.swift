@@ -413,11 +413,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - LastTaskCell delegation
     var kudosStartTime: Double = 0.0
-    func userDidBeginKudos() {
+    func userDidBeginKudos(kudosButton: KudosButton) {
         kudosStartTime = NSDate().timeIntervalSince1970
     }
     
-    func userDidEndKudos() {
+    func userDidEndKudos(kudosButton: KudosButton) {
         let total = NSDate().timeIntervalSince1970 - kudosStartTime
         
         // give kudos at a rate of 4 per second, + 1 to ensure that we

@@ -8,47 +8,6 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Kudos-->
-        <scene sceneID="KIC-OR-Lzi">
-            <objects>
-                <viewController id="D9p-xv-0HJ" customClass="DataViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7R3-pK-6fH"/>
-                        <viewControllerLayoutGuide type="bottom" id="DoV-tS-tYW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lc7-Hd-40m">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dj6-jC-tsa" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="dj6-jC-tsa" firstAttribute="leading" secondItem="lc7-Hd-40m" secondAttribute="leading" id="9g2-fB-zHU"/>
-                            <constraint firstItem="dj6-jC-tsa" firstAttribute="top" secondItem="7R3-pK-6fH" secondAttribute="bottom" id="Grs-Ey-13b"/>
-                            <constraint firstItem="dj6-jC-tsa" firstAttribute="bottom" secondItem="DoV-tS-tYW" secondAttribute="top" id="Wz2-jy-Qxi"/>
-                            <constraint firstAttribute="trailing" secondItem="dj6-jC-tsa" secondAttribute="trailing" id="dG2-qu-EyB"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Kudos" id="wmW-Rv-o0D">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="XOH-U3-rGH">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="logout" destination="D9p-xv-0HJ" id="Ozm-Sd-aqP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="pieChartView" destination="dj6-jC-tsa" id="adc-id-VMX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ETD-0M-yE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1152" y="1156"/>
-        </scene>
         <!--Assign Task View Controller-->
         <scene sceneID="fts-6J-M6m">
             <objects>
@@ -661,13 +620,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="D9p-xv-0HJ" kind="relationship" relationship="rootViewController" id="5YO-eY-o24"/>
+                        <segue destination="Rtu-Um-w8d" kind="relationship" relationship="rootViewController" id="5YO-eY-o24"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6b-rj-hh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -739,6 +698,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzN-bw-5vo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2784" y="-286"/>
+        </scene>
+        <!--Kudos-->
+        <scene sceneID="6y6-lf-IbM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Kudos" id="Rtu-Um-w8d" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Mit-48-FrQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMa-XN-FUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1152" y="1156"/>
         </scene>
     </scenes>
     <resources>

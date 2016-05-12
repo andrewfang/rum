@@ -9,11 +9,6 @@
 import UIKit
 import SpriteKit
 
-protocol KudosButtonDelegate: class {
-    func userDidBeginKudos()
-    func userDidEndKudos()
-}
-
 class LastTaskCell: UITableViewCell {
 
     let heartScene = Hearts()
@@ -79,41 +74,5 @@ class LastTaskCell: UITableViewCell {
         taskLabel.text = "Hi there!"
         attributionLabel.hidden = true
         self.disableKudos = true
-    }
-}
-
-class KudosButton: UIImageView {
-    
-    var heartScene: Hearts?
-    var delegate: KudosButtonDelegate?
-    var disabled = false
-    
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if disabled {
-            return
-        }
-        
-        if heartScene != nil {
-            heartScene!.start()
-        }
-        
-        if delegate != nil {
-            delegate!.userDidBeginKudos()
-        }
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if disabled {
-            return
-        }
-        
-        if heartScene != nil {
-            heartScene!.stop()
-        }
-        
-        if delegate != nil {
-            delegate!.userDidEndKudos()
-        }
     }
 }
