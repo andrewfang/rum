@@ -412,20 +412,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // MARK: - LastTaskCell delegation
-    var kudosStartTime: Double = 0.0
     func userDidBeginKudos(kudosButton: KudosButton) {
-        kudosStartTime = NSDate().timeIntervalSince1970
+        //
     }
     
-    func userDidEndKudos(kudosButton: KudosButton) {
-        let total = NSDate().timeIntervalSince1970 - kudosStartTime
-        
-        // give kudos at a rate of 4 per second, + 1 to ensure that we
-        // give at least 1
-        let numKudos = Int(floor(total * 4) + 1)
+    func userDidEndKudos(kudosButton: KudosButton, numKudos: Int) {
         if let receiverId = self.lastCompletedTaskUserId {
             NetworkingManager.sharedInstance.giveKudos(receiverId, number: numKudos, completionHandler: nil)
-            
             // "giver --> reciever"
             let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(receiverId)"
             GA.sendEvent("task", action: "kudos", label: eventLabel, value: nil)

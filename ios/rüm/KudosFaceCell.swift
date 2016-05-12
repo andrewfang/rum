@@ -22,6 +22,7 @@ class KudosFaceCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var heartSceneView: UIView!
     @IBOutlet weak var kudosGraphView: KudosGraphView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,17 +39,29 @@ class KudosFaceCell: UICollectionViewCell {
         self.nameLabel.text = member["fullName"] as? String
         self.kudosButton.userId = member["id"] as? String
         
+        activityIndicator.hidden = false
         dispatch_async(dispatch_get_main_queue(), {
             if let urlStr = member["photo"] as? String {
                 if let url = NSURL(string: urlStr) {
                     if let data = NSData(contentsOfURL: url) {
                         NSOperationQueue.mainQueue().addOperationWithBlock({
                             self.kudosButton.image = UIImage(data: data)
+                            self.activityIndicator.hidden = true
                         })
+                    } else {
+                        self.activityIndicator.hidden = true
                     }
+                } else {
+                    self.activityIndicator.hidden = true
                 }
+            } else {
+                self.activityIndicator.hidden = true
             }
         })
+    }
+    
+    func clearImage() {
+        self.kudosButton.image = nil
     }
     
 }
@@ -109,7 +122,9 @@ class KudosGraphView: UIView {
         self.layer.addSublayer(self.graphLayer!)
     }
     
-    func setValue(proportion: CGFloat, duration: Double, delay: Double) {
+    func setValue(value: CGFloat, duration: Double, delay: Double) {
+        let proportion:CGFloat = max(0, value)
+        
         if self.graphLayer != nil {
             let anim = CABasicAnimation(keyPath: "strokeEnd")
             anim.duration = duration

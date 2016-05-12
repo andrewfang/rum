@@ -42,10 +42,15 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // TODO: Only do this once then add pull to reload
         NetworkingManager.sharedInstance.getGroupForData(NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)!)
     }
     
     func updateData(notification:NSNotification) {
+        self.collectionView.hidden = true
+        self.activityIndicator.hidden = false
+        
         guard let userInfo = notification.userInfo as? [String:AnyObject] else {
             return
         }
@@ -60,6 +65,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.members = m
         dispatch_async(dispatch_get_main_queue(), {
             self.collectionView.reloadData()
+            self.collectionView.hidden = false
             self.activityIndicator.hidden = true
             
             // update graph after layout pass
@@ -80,6 +86,8 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let kudosFaceCell = self.collectionView.dequeueReusableCellWithReuseIdentifier("kudosFaceCell", forIndexPath: indexPath) as! KudosFaceCell
+        kudosFaceCell.clearImage()
+        
         kudosFaceCell.load(members[indexPath.row])
         
         if let userId = members[indexPath.row]["id"] as? String {
@@ -127,13 +135,28 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         kudosStartTime = NSDate().timeIntervalSince1970
     }
     
-    func userDidEndKudos(kudosButton: KudosButton) {
-        let total = NSDate().timeIntervalSince1970 - kudosStartTime
-        
-        // give kudos at a rate of 4 per second, + 1 to ensure that we
-        // give at least 1
-        let numKudos = Int(floor(total * 4) + 1)
+    func userDidEndKudos(kudosButton: KudosButton, numKudos: Int) {
         if let receiverId = kudosButton.userId {
+            
+            // update this member's number of kudos locally, then re-render
+            // the kudos graphs
+            if let i = self.members.indexOf({ $0["id"] as! String == receiverId }) {
+                
+                print("gave to \(receiverId)")
+                var m = self.members[i]
+                var k = m["kudos"] as? Int
+                if k == nil {
+                    k = 0
+                }
+                
+                print(numKudos)
+                print("old k \(k)")
+                m["kudos"] = k! + numKudos
+                self.members[i] = m
+                print("new k \(m["kudos"])")
+                self.updateKudosGraphs()
+            }
+            
             NetworkingManager.sharedInstance.giveKudos(receiverId, number: numKudos, completionHandler: nil)
             
             // "giver --> reciever"
@@ -143,22 +166,21 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     }
     
     func updateKudosGraphs() {
+//        let membersCopy = self.members.sort({ (m1: [String: AnyObject], m2: [String: AnyObject]) -> Bool in
+//            var k1 = m1["kudos"] as? Int
+//            var k2 = m2["kudos"] as? Int
+//            
+//            k1 = k1 == nil ? 0 : k1
+//            k2 = k2 == nil ? 0 : k2
+//            
+//            return k1 < k2
+//        })
         
-        let membersCopy = self.members.sort({ (m1: [String: AnyObject], m2: [String: AnyObject]) -> Bool in
-            var k1 = m1["kudos"] as? Int
-            var k2 = m2["kudos"] as? Int
-            
-            k1 = k1 == nil ? 0 : k1
-            k2 = k2 == nil ? 0 : k2
-            
-            return k1 < k2
-        })
-        
-        let ids = membersCopy.map({ (m: [String: AnyObject]) -> String in
+        let ids = self.members.map({ (m: [String: AnyObject]) -> String in
             return m["id"] as! String
         })
         
-        let kudos = membersCopy.map({ (m: [String: AnyObject]) -> Int in
+        let kudos = self.members.map({ (m: [String: AnyObject]) -> Int in
             if let k = m["kudos"] as? Int {
                 return k
             } else {
@@ -179,12 +201,6 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             let value:CGFloat = CGFloat(k) / CGFloat(max!)
             
             if let faceCell = self.faceCells[id] {
-//                // if the items haven't been bounced in before
-//                if !self.renderedKudosGraph {
-//                    faceCell.bounceIn(0.8)
-//                    self.renderedKudosGraph = true
-//                }
-                
                 faceCell.kudosGraphView.color = color
                 faceCell.kudosGraphView.setValue(value, duration: 1.4, delay: 0.0)
             }
