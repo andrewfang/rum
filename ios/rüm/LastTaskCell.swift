@@ -47,6 +47,17 @@ class LastTaskCell: UITableViewCell {
             skView.allowsTransparency = true
             skView.presentScene(heartScene)
         }
+        
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            // always fill the view
+            blurEffectView.frame = self.contentView.bounds
+            blurEffectView.alpha = 0.8
+            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            self.contentView.insertSubview(blurEffectView, atIndex: 1)
+        }
     }
     
     
@@ -56,12 +67,25 @@ class LastTaskCell: UITableViewCell {
         attributionLabel.hidden = false
         taskLabel.text = task
         
-        if let imageUrl = NSURL(string: photo) {
-            if let data = NSData(contentsOfURL: imageUrl) {
-                let image = UIImage(data: data)
-                self.kudosButton.image = image
-                self.backgroundImageView.image = image
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            if let imageUrl = NSURL(string: photo) {
+                if let data = NSData(contentsOfURL: imageUrl) {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({
+                        self.kudosButton.image = UIImage(data: data)
+                    })
+                }
             }
+        }
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            var imageToShow:UIImage?
+            if let imgData = UIImage.imageDataFromTaskName(task) {
+                imageToShow = UIImage(data: imgData)
+            }
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                self.backgroundImageView.image = imageToShow ?? UIImage(named:"Welcome")
+            })
         }
     }
     
