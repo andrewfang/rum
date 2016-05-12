@@ -133,14 +133,16 @@ class TodoCell: UITableViewCell {
                     if let url = NSURL(string: urlStr) {
                         if let data = NSData(contentsOfURL: url) {
                             NSOperationQueue.mainQueue().addOperationWithBlock({
+                                self.assignedToImageView.alpha = 1
                                 self.assignedToImageView.image = UIImage(data: data)
+                                self.reloadInputViews()
                             })
                         }
                     }
                 }
             })
         } else {
-            assignedToImageView.alpha = 0;
+            self.assignedToImageView.alpha = 0
         }
     }
 }
