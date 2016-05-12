@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let details = userInfo as? [String:AnyObject] {
             if let userId = details["userId"] as? String {
                 application.applicationIconBadgeNumber = 0
-                NetworkingManager.sharedInstance.giveKudos(userId, completionHandler: completionHandler)
+                NetworkingManager.sharedInstance.giveKudos(userId, number: 1, completionHandler: completionHandler)
             }
         }
         
