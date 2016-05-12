@@ -21,14 +21,12 @@ class KudosFaceCell: UICollectionViewCell {
     @IBOutlet weak var kudosButton: KudosButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var heartSceneView: UIView!
+    @IBOutlet weak var kudosGraphView: KudosGraphView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-        kudosButton.layer.borderWidth = 4
-        kudosButton.layer.borderColor = UIColor.whiteColor().CGColor
-        
         if let skView = (heartSceneView as? SKView) {
             kudosButton.heartScene = heartScene
             skView.allowsTransparency = true
@@ -53,4 +51,71 @@ class KudosFaceCell: UICollectionViewCell {
         })
     }
     
+}
+
+class KudosGraphView: UIView {
+    
+    var trackLayer: CAShapeLayer?
+    var graphLayer: CAShapeLayer?
+    
+    var val: CGFloat = 0
+    
+    var color: UIColor? {
+        didSet {
+            if self.graphLayer != nil {
+                self.graphLayer!.strokeColor = color!.CGColor
+            }
+        }
+    }
+    
+    override func drawRect(rect: CGRect) {
+        self.trackLayer = CAShapeLayer()
+        self.graphLayer = CAShapeLayer()
+        
+        let lineWidth: CGFloat = 6.0
+        // subtract lineWidth/2 so border gets drawn inside
+        let radius = self.frame.width/2.0 - lineWidth/2.0
+        
+        let graphFrame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        let graphPosition = CGPoint(x: radius + lineWidth/2, y: radius + lineWidth/2)
+        
+        
+        let backgroundPath = UIBezierPath(arcCenter: self.center, radius: radius, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        let graphPath = UIBezierPath(arcCenter: self.center, radius: radius, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        
+        self.trackLayer!.fillColor = UIColor.clearColor().CGColor
+        self.trackLayer!.path = backgroundPath.CGPath
+        self.trackLayer!.lineWidth = lineWidth
+        self.trackLayer!.strokeStart = 0.0
+        self.trackLayer!.strokeEnd = 1.0
+        self.trackLayer!.frame = graphFrame
+        self.trackLayer!.position = graphPosition
+        self.trackLayer!.fillColor = UIColor.clearColor().CGColor
+        self.trackLayer!.strokeColor = UIColor.rumGrey().CGColor
+        self.trackLayer!.zPosition = 0
+        self.layer.addSublayer(self.trackLayer!)
+        
+        
+        self.graphLayer!.fillColor = UIColor.clearColor().CGColor
+        self.graphLayer!.path = graphPath.CGPath
+        self.graphLayer!.lineWidth = lineWidth
+        self.graphLayer!.strokeStart = 0.0
+        self.graphLayer!.strokeEnd = 0.0
+        self.graphLayer!.frame = graphFrame
+        self.graphLayer!.position = graphPosition
+        self.graphLayer!.fillColor = UIColor.clearColor().CGColor
+        self.graphLayer!.strokeColor = UIColor.appBlue().CGColor
+        self.graphLayer!.zPosition = 1
+        self.layer.addSublayer(self.graphLayer!)
+    }
+    
+    func setValue(proportion: CGFloat, duration: Double, delay: Double) {
+        if self.graphLayer != nil {
+            let anim = CABasicAnimation(keyPath: "strokeEnd")
+            anim.duration = duration
+            anim.timingFunction = CAMediaTimingFunction(controlPoints: 0.68, -0.55, 0.27, 1.55)
+            self.graphLayer!.strokeEnd = proportion
+            self.graphLayer!.addAnimation(anim, forKey: "animateGraph")
+        }
+    }
 }

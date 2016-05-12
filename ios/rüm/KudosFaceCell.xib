@@ -26,6 +26,10 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="60"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="miX-Oc-UKI" userLabel="Graph View" customClass="KudosGraphView" customModule="ru_m" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="523" height="523"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7s-Xp-qJ1" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="523" height="523"/>
                     </view>
@@ -44,9 +48,13 @@
                 <constraint firstItem="w7s-Xp-qJ1" firstAttribute="bottom" secondItem="zmr-Nl-Tdu" secondAttribute="bottom" id="E2F-BJ-DbI"/>
                 <constraint firstItem="zmr-Nl-Tdu" firstAttribute="leading" secondItem="JII-QB-yO5" secondAttribute="leading" id="GUK-Ha-8db"/>
                 <constraint firstItem="oNT-cZ-z3d" firstAttribute="centerY" secondItem="zmr-Nl-Tdu" secondAttribute="centerY" id="K3z-Jw-B79"/>
+                <constraint firstItem="miX-Oc-UKI" firstAttribute="leading" secondItem="w7s-Xp-qJ1" secondAttribute="leading" id="Out-6L-c6k"/>
+                <constraint firstItem="miX-Oc-UKI" firstAttribute="top" secondItem="w7s-Xp-qJ1" secondAttribute="top" id="Oyp-eB-HGy"/>
                 <constraint firstItem="w7s-Xp-qJ1" firstAttribute="top" secondItem="zmr-Nl-Tdu" secondAttribute="top" id="Qoi-ov-m2c"/>
                 <constraint firstItem="oNT-cZ-z3d" firstAttribute="leading" secondItem="zmr-Nl-Tdu" secondAttribute="leading" id="SsT-hc-VrE"/>
+                <constraint firstItem="miX-Oc-UKI" firstAttribute="bottom" secondItem="w7s-Xp-qJ1" secondAttribute="bottom" id="W5K-zj-JVq"/>
                 <constraint firstItem="oNT-cZ-z3d" firstAttribute="top" secondItem="zmr-Nl-Tdu" secondAttribute="bottom" constant="10" id="XIk-cL-iZR"/>
+                <constraint firstItem="miX-Oc-UKI" firstAttribute="trailing" secondItem="w7s-Xp-qJ1" secondAttribute="trailing" id="fIz-tv-Gfo"/>
                 <constraint firstItem="zmr-Nl-Tdu" firstAttribute="width" secondItem="JII-QB-yO5" secondAttribute="height" multiplier="1:1" id="faS-il-lJo"/>
                 <constraint firstAttribute="trailing" secondItem="zmr-Nl-Tdu" secondAttribute="trailing" id="g9Z-4A-aa1"/>
                 <constraint firstItem="zmr-Nl-Tdu" firstAttribute="top" secondItem="JII-QB-yO5" secondAttribute="top" id="lgR-ZL-9Ot"/>
@@ -68,6 +76,7 @@
             <connections>
                 <outlet property="heartSceneView" destination="w7s-Xp-qJ1" id="onK-yS-dku"/>
                 <outlet property="kudosButton" destination="zmr-Nl-Tdu" id="xVl-Pi-Gkb"/>
+                <outlet property="kudosGraphView" destination="miX-Oc-UKI" id="gnV-yk-4oL"/>
                 <outlet property="nameLabel" destination="oNT-cZ-z3d" id="kho-aa-DBY"/>
             </connections>
             <point key="canvasLocation" x="397.5" y="434.5"/>
