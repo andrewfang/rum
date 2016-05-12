@@ -35,9 +35,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="334.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="X6F-d8-5fg">
-                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7k-bY-GAR">
                                 <rect key="frame" x="119.5" y="104" width="460.5" height="30.5"/>
                                 <constraints>
@@ -114,6 +111,9 @@
                                     <segue destination="XOy-Az-Yot" kind="show" identifier="JOIN_SEGUE" id="reM-cB-1We"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="X6F-d8-5fg">
+                                <rect key="frame" x="281.5" y="281.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -121,9 +121,11 @@
                             <constraint firstAttribute="trailing" secondItem="Dx8-Gt-Ht5" secondAttribute="trailing" id="5jH-uV-UFG"/>
                             <constraint firstItem="0kC-VV-wFy" firstAttribute="top" secondItem="96L-24-Q8F" secondAttribute="bottom" constant="-80" id="5rZ-Vm-JY5"/>
                             <constraint firstItem="mlH-x5-P4T" firstAttribute="leading" secondItem="KY6-7b-NiX" secondAttribute="leading" id="6q5-gM-FqY"/>
+                            <constraint firstItem="X6F-d8-5fg" firstAttribute="centerY" secondItem="KY6-7b-NiX" secondAttribute="centerY" id="9Ok-AY-4bx"/>
                             <constraint firstItem="Dx8-Gt-Ht5" firstAttribute="leading" secondItem="KY6-7b-NiX" secondAttribute="leading" id="B86-4m-B79"/>
                             <constraint firstAttribute="centerX" secondItem="tUM-yM-Vyp" secondAttribute="trailing" constant="10" id="BGz-Xc-Iud"/>
                             <constraint firstAttribute="trailing" secondItem="Yyl-jv-IM5" secondAttribute="trailing" constant="20" id="CIK-Ql-ay4"/>
+                            <constraint firstItem="X6F-d8-5fg" firstAttribute="centerX" secondItem="KY6-7b-NiX" secondAttribute="centerX" id="CeR-2v-J91"/>
                             <constraint firstItem="96L-24-Q8F" firstAttribute="height" secondItem="mlH-x5-P4T" secondAttribute="height" id="CwY-CH-etf"/>
                             <constraint firstItem="Dx8-Gt-Ht5" firstAttribute="top" secondItem="0kC-VV-wFy" secondAttribute="bottom" constant="20" id="Dah-hc-i7n"/>
                             <constraint firstItem="Yyl-jv-IM5" firstAttribute="centerY" secondItem="tUM-yM-Vyp" secondAttribute="centerY" id="EHM-8y-ymi"/>
