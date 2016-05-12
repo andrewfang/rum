@@ -23,20 +23,14 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When people in your group complete a task, they'll show up here." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVx-WM-9Bh">
-                        <rect key="frame" x="20" y="190" width="569" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When people in your group complete a task, they'll show up here." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVx-WM-9Bh">
+                        <rect key="frame" x="20" y="180" width="569" height="17"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi there!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beY-TW-xXb">
-                        <rect key="frame" x="20" y="162" width="569" height="28"/>
-                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone completed a task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hs-HW-vYL">
-                        <rect key="frame" x="20" y="145" width="569" height="16.5"/>
+                        <rect key="frame" x="20" y="135" width="569" height="16.5"/>
                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -55,6 +49,12 @@
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwe-IW-LlJ" customClass="SKView">
                         <rect key="frame" x="599" y="8" width="100" height="218"/>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi there!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beY-TW-xXb">
+                        <rect key="frame" x="20" y="152" width="569" height="28"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="MVx-WM-9Bh" secondAttribute="trailing" id="07c-fL-LKY"/>
@@ -72,7 +72,7 @@
                     <constraint firstItem="BWk-Dw-Ana" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SAI-yk-UTY"/>
                     <constraint firstItem="7hs-HW-vYL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="aMY-9R-WU6"/>
                     <constraint firstItem="BWk-Dw-Ana" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="amA-r5-OTf"/>
-                    <constraint firstItem="beY-TW-xXb" firstAttribute="centerY" secondItem="mpp-FK-tqG" secondAttribute="centerY" id="dZh-71-XmN"/>
+                    <constraint firstItem="beY-TW-xXb" firstAttribute="centerY" secondItem="mpp-FK-tqG" secondAttribute="centerY" constant="-10" id="dZh-71-XmN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="7hs-HW-vYL" secondAttribute="trailing" id="jsI-xs-CfY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="beY-TW-xXb" secondAttribute="trailing" id="rJZ-xw-fzg"/>
                     <constraint firstItem="mpp-FK-tqG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="snq-Z5-Gkz"/>
