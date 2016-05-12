@@ -37,6 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true
         
+        // set tab bar font
+        let appearance = UITabBarItem.appearance()
+        let attributes = [
+            NSFontAttributeName : UIFont(name: "Avenir Light", size: 11)!
+        ]
+        appearance.setTitleTextAttributes(attributes, forState: .Normal)
+        
         return true
     }
     
