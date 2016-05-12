@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class DataViewController: UIViewController, UICollectionViewDataSource, KudosButtonDelegate {
+class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, KudosButtonDelegate {
     
     var members: [[String: AnyObject]] = []
     
@@ -33,6 +33,7 @@ class DataViewController: UIViewController, UICollectionViewDataSource, KudosBut
         let kudosFaceCellNib = UINib(nibName: "KudosFaceCell", bundle: nil)
         self.collectionView.registerNib(kudosFaceCellNib, forCellWithReuseIdentifier: "kudosFaceCell")
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
     }
@@ -79,8 +80,27 @@ class DataViewController: UIViewController, UICollectionViewDataSource, KudosBut
         if kudosFaceCell.kudosButton.userId == loggedInUserId {
             kudosFaceCell.kudosButton.disabled = true
         }
+        
+        let cornerRadius = kudosFaceCell.frame.size.width / 2.0
+        kudosFaceCell.kudosButton.layer.cornerRadius = cornerRadius
         return kudosFaceCell
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if self.view.window != nil {
+            // subtract 40pt margins on sides and 40pt for space between 
+            // buttons
+            let space = self.view.window!.frame.size.width - (40 * 2) - 40
+            let width = space / 2.0
+            let height = width * 1.25
+            return CGSize(width: width, height: height)
+        }
+        
+        // default size
+        return CGSize(width: 120, height: 150)
+    }
+    
+    
     
     // MARK:- kudos button delegation
     var kudosStartTime: Double = 0.0
@@ -102,6 +122,7 @@ class DataViewController: UIViewController, UICollectionViewDataSource, KudosBut
             GA.sendEvent("task", action: "kudos", label: eventLabel, value: nil)
         }
     }
+    
     
 //    @IBAction private func logout() {
 //        let alertController = UIAlertController(title: "Logout", message: "Are you sure you want to logout?.", preferredStyle: .Alert)
