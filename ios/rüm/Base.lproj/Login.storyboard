@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VC8-0d-1Ma">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="IJn-AB-Bsx">
+            <objects>
+                <viewController id="VC8-0d-1Ma" customClass="LoginViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wgo-yo-ArC"/>
+                        <viewControllerLayoutGuide type="bottom" id="M48-qe-RXq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qbG-Up-bNq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Q9N-6s-jqB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kde-IB-Nbu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3JK-DV-nxm">
+                                <rect key="frame" x="40" y="452" width="520" height="48"/>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="hdf-nt-mXg"/>
+                                    <constraint firstAttribute="height" constant="48" id="lAH-Ma-3At"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Sign in with ">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" size="14" name="Avenir-Light"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Facebook">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" size="14" name="Avenir-Heavy"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hdf-nt-mXg"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="login" destination="VC8-0d-1Ma" eventType="touchUpInside" id="mdO-Zl-ZXs"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jBW-wV-ff4">
+                                <rect key="frame" x="282" y="507" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Tft-ep-YS3">
+                                <rect key="frame" x="240" y="140" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Tft-ep-YS3" secondAttribute="height" multiplier="1:1" id="7B8-X2-6fB"/>
+                                    <constraint firstAttribute="width" constant="120" id="g0Z-n9-Snb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="30B-OJ-bEg"/>
+                            <constraint firstItem="Tft-ep-YS3" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="57J-4G-28o"/>
+                            <constraint firstItem="3JK-DV-nxm" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="7sc-mI-0mq"/>
+                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="width" secondItem="qbG-Up-bNq" secondAttribute="width" id="8bp-n5-wc1"/>
+                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="height" secondItem="qbG-Up-bNq" secondAttribute="height" id="NC6-YR-uu6"/>
+                            <constraint firstAttribute="trailing" secondItem="3JK-DV-nxm" secondAttribute="trailing" constant="40" id="Rea-mg-QfD"/>
+                            <constraint firstItem="M48-qe-RXq" firstAttribute="top" secondItem="3JK-DV-nxm" secondAttribute="bottom" constant="100" id="T0n-5Z-j58"/>
+                            <constraint firstItem="jBW-wV-ff4" firstAttribute="centerX" secondItem="kde-IB-Nbu" secondAttribute="centerX" id="WMr-lu-9zC"/>
+                            <constraint firstItem="kde-IB-Nbu" firstAttribute="width" secondItem="qbG-Up-bNq" secondAttribute="width" id="Z6w-iS-Odt"/>
+                            <constraint firstItem="kde-IB-Nbu" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="d5D-pU-19m"/>
+                            <constraint firstItem="3JK-DV-nxm" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="dWU-L3-a12"/>
+                            <constraint firstItem="Tft-ep-YS3" firstAttribute="top" secondItem="Wgo-yo-ArC" secondAttribute="bottom" constant="153" id="f8s-od-h3l"/>
+                            <constraint firstItem="jBW-wV-ff4" firstAttribute="top" secondItem="3JK-DV-nxm" secondAttribute="bottom" constant="7" id="fq4-61-sPP"/>
+                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="gd3-Gt-som"/>
+                            <constraint firstItem="kde-IB-Nbu" firstAttribute="height" secondItem="qbG-Up-bNq" secondAttribute="height" id="hzL-Qj-Zpa"/>
+                            <constraint firstItem="Tft-ep-YS3" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" constant="-100" id="jFh-7r-aD3"/>
+                            <constraint firstItem="kde-IB-Nbu" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="rIU-cd-9sI"/>
+                            <constraint firstItem="3JK-DV-nxm" firstAttribute="leading" secondItem="qbG-Up-bNq" secondAttribute="leading" constant="40" id="vmz-bN-o3J"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="f8s-od-h3l"/>
+                                <exclude reference="7sc-mI-0mq"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="khL-ze-Obo"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="jBW-wV-ff4" id="K3y-Gd-b5q"/>
+                        <outlet property="logoImageView" destination="Tft-ep-YS3" id="mq7-1h-wUi"/>
+                        <segue destination="SSN-pV-Dzx" kind="show" identifier="WELCOME_SEGUE" id="vWd-K1-0g8"/>
+                        <segue destination="WBH-hz-x48" kind="show" identifier="SIGNUP_SEGUE" id="JE1-JU-ckH"/>
+                        <segue destination="IMk-Io-BIn" kind="show" identifier="GROUP_SEGUE" id="Hn2-MU-gVH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CEe-gu-kkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2784" y="-286"/>
+        </scene>
+        <!--SwitchGroup-->
+        <scene sceneID="trt-6l-xhc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SwitchGroup" id="IMk-Io-BIn" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bOG-ys-VzG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5JB-d7-ovA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2784.5" y="306"/>
+        </scene>
+        <!--UIViewController-CmL-YF-eyQ-->
+        <scene sceneID="Hon-mr-oWz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-CmL-YF-eyQ" id="SSN-pV-Dzx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="paB-r9-M9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3308" y="-583"/>
+        </scene>
+        <!--UIViewController-4KH-ox-6cZ-->
+        <scene sceneID="W1P-Uk-sfo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-4KH-ox-6cZ" id="WBH-hz-x48" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynN-2P-dmt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3307" y="182"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loginBackground" width="2306" height="1816"/>
+        <image name="logo" width="190" height="190"/>
+    </resources>
+</document>

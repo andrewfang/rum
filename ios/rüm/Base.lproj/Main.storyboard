@@ -231,79 +231,10 @@
             </objects>
             <point key="canvasLocation" x="1152" y="429"/>
         </scene>
-        <!--Login View Controller-->
-        <scene sceneID="IJn-AB-Bsx">
-            <objects>
-                <viewController id="VC8-0d-1Ma" customClass="LoginViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wgo-yo-ArC"/>
-                        <viewControllerLayoutGuide type="bottom" id="M48-qe-RXq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qbG-Up-bNq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Q9N-6s-jqB">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kde-IB-Nbu">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rüm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4a-R7-vWu">
-                                <rect key="frame" x="275.5" y="20" width="49.5" height="33"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JK-DV-nxm">
-                                <rect key="frame" x="237" y="259" width="126" height="81"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="50"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="login" destination="VC8-0d-1Ma" eventType="touchUpInside" id="mdO-Zl-ZXs"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jBW-wV-ff4">
-                                <rect key="frame" x="282" y="347" width="37" height="37"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="30B-OJ-bEg"/>
-                            <constraint firstItem="3JK-DV-nxm" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="7sc-mI-0mq"/>
-                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="width" secondItem="qbG-Up-bNq" secondAttribute="width" id="8bp-n5-wc1"/>
-                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="height" secondItem="qbG-Up-bNq" secondAttribute="height" id="NC6-YR-uu6"/>
-                            <constraint firstItem="jBW-wV-ff4" firstAttribute="centerX" secondItem="kde-IB-Nbu" secondAttribute="centerX" id="WMr-lu-9zC"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="width" secondItem="qbG-Up-bNq" secondAttribute="width" id="Z6w-iS-Odt"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="d5D-pU-19m"/>
-                            <constraint firstItem="3JK-DV-nxm" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="dWU-L3-a12"/>
-                            <constraint firstItem="jBW-wV-ff4" firstAttribute="top" secondItem="3JK-DV-nxm" secondAttribute="bottom" constant="7" id="fq4-61-sPP"/>
-                            <constraint firstItem="Q9N-6s-jqB" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="gd3-Gt-som"/>
-                            <constraint firstItem="S4a-R7-vWu" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="gnb-qc-9Sm"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="height" secondItem="qbG-Up-bNq" secondAttribute="height" id="hzL-Qj-Zpa"/>
-                            <constraint firstItem="S4a-R7-vWu" firstAttribute="top" secondItem="Wgo-yo-ArC" secondAttribute="bottom" id="jOb-Aw-5dF"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="rIU-cd-9sI"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="khL-ze-Obo"/>
-                    <connections>
-                        <outlet property="activityIndicator" destination="jBW-wV-ff4" id="K3y-Gd-b5q"/>
-                        <segue destination="CmL-YF-eyQ" kind="show" identifier="WELCOME_SEGUE" id="vWd-K1-0g8"/>
-                        <segue destination="4KH-ox-6cZ" kind="show" identifier="SIGNUP_SEGUE" id="JE1-JU-ckH"/>
-                        <segue destination="IMk-Io-BIn" kind="show" identifier="GROUP_SEGUE" id="Hn2-MU-gVH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CEe-gu-kkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2784" y="-286"/>
-        </scene>
         <!--Welcome Back View Controller-->
         <scene sceneID="ePF-6B-VNf">
             <objects>
-                <viewController id="CmL-YF-eyQ" customClass="WelcomeBackViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIViewController-CmL-YF-eyQ" id="CmL-YF-eyQ" customClass="WelcomeBackViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ulG-8x-Xhl"/>
                         <viewControllerLayoutGuide type="bottom" id="tXp-qD-5c0"/>
@@ -365,7 +296,7 @@
         <!--Signup View Controller-->
         <scene sceneID="G2S-cr-BmL">
             <objects>
-                <viewController id="4KH-ox-6cZ" customClass="SignupViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIViewController-4KH-ox-6cZ" id="4KH-ox-6cZ" customClass="SignupViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iMw-9B-KCE"/>
                         <viewControllerLayoutGuide type="bottom" id="Zdv-nx-Stb"/>
@@ -761,7 +692,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="VC8-0d-1Ma" kind="relationship" relationship="rootViewController" id="a1Y-aV-PFv"/>
+                        <segue destination="39C-Bj-Xzg" kind="relationship" relationship="rootViewController" id="a1Y-aV-PFv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2v-sJ-TwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -804,7 +735,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5JB-d7-ovA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4043" y="1250"/>
+            <point key="canvasLocation" x="4044.5" y="1258"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="xK1-Na-9g6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="39C-Bj-Xzg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tYo-Ug-rLR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzN-bw-5vo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2784" y="-286"/>
         </scene>
     </scenes>
     <resources>
@@ -812,10 +753,6 @@
         <image name="createBackground" width="2736" height="1824"/>
         <image name="data" width="24" height="24"/>
         <image name="joinBackground" width="2109" height="1401"/>
-        <image name="loginBackground" width="2306" height="1816"/>
         <image name="rüm" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="cfD-4K-fBX"/>
-    </inferredMetricsTieBreakers>
 </document>

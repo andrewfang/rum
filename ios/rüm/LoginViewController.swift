@@ -11,7 +11,10 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
+    var ranLogoAnimation = false
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var logoImageView: UIImageView!
     
     private struct Constants {
         static let GROUP_SEGUE = "GROUP_SEGUE"
@@ -22,6 +25,30 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.checkUser(_:)), name: NetworkingManager.Constants.CHECK_USER_EXISTS, object: nil)
         NotificationManager.sharedInstance.registerForNotifications()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !self.ranLogoAnimation {
+            self.ranLogoAnimation = true
+            var t = CGAffineTransformIdentity
+            t = CGAffineTransformScale(t, 0.4, 0.4)
+            t = CGAffineTransformTranslate(t, 0, 400.0)
+        
+            logoImageView.transform = t
+            logoImageView.alpha = 0
+        
+            UIView.animateWithDuration(0.6,
+                delay: 0.2,
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.4,
+                options: [],
+                animations: {
+                    self.logoImageView.transform = CGAffineTransformIdentity
+                    self.logoImageView.alpha = 1
+                }, completion: nil)
+        }
     }
     
     @IBAction func login() {
