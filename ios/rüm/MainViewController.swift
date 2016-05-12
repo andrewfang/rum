@@ -239,9 +239,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let assignee  = self.todos[indexPath.item]["assignedTo"] as? [String : AnyObject]
                 todoCell.delegate = self
                 todoCell.loadTask(taskId, title: taskTitle, assignedTo: assignee)
+                todoCell.moreButton.tag = indexPath.item
+                todoCell.moreButton.addTarget(self, action: #selector(MainViewController.moreTapped(_:)), forControlEvents: .TouchUpInside)
                 return todoCell
     
         }
+    }
+    
+    func moreTapped(sender: UIButton) {
+        self.performSegueWithIdentifier("ASSIGN_TASK_SEGUE", sender: sender.tag)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -341,12 +347,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ASSIGN_TASK_SEGUE") {
-            guard let indexPath = sender as? NSIndexPath else {
+            guard let indexPathItem = sender as? Int else {
                 return
             }
             if let navVC = segue.destinationViewController as? UINavigationController {
                 if let destVC = navVC.viewControllers.first as? AssignTaskViewController {
-                    destVC.task = self.todos[indexPath.item]
+                    destVC.task = self.todos[indexPathItem]
                 }
             }
         } else if segue.identifier == "AddTaskSegue" {
