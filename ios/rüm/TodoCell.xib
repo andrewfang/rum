@@ -151,7 +151,9 @@
             <connections>
                 <outlet property="assignedToImageView" destination="iVU-6E-Sfs" id="B9A-Jg-rrl"/>
                 <outlet property="completeBackground" destination="b6w-zp-wSr" id="14k-a6-c8s"/>
+                <outlet property="completeBackgroundIcon" destination="Rol-f3-QHr" id="NgB-UM-Skw"/>
                 <outlet property="deleteBackground" destination="q9F-MC-wA8" id="RaQ-A6-iuS"/>
+                <outlet property="deleteBackgroundIcon" destination="Ymu-Qw-P1e" id="NkD-Rf-3Ok"/>
                 <outlet property="moreButton" destination="TUV-D5-fl3" id="gY2-lW-XMT"/>
                 <outlet property="repetitionLabel" destination="3Mg-b4-v8L" id="ZDT-oN-y0C"/>
                 <outlet property="swipeableView" destination="sFr-dC-lh0" id="dOf-uc-LVP"/>

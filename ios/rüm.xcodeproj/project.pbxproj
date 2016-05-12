@@ -44,6 +44,7 @@
 		4FDAA6551CE3F86A00B364AC /* SwitchGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA6541CE3F86A00B364AC /* SwitchGroup.storyboard */; };
 		4FDAA6581CE404BD00B364AC /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA6571CE404BD00B364AC /* GroupCell.swift */; };
 		4FDAA65A1CE404FF00B364AC /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA6591CE404FF00B364AC /* GroupCell.xib */; };
+		4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA65B1CE4108100B364AC /* UIView+animations.swift */; };
 		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
 		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
 		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
@@ -114,6 +115,7 @@
 		4FDAA6541CE3F86A00B364AC /* SwitchGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SwitchGroup.storyboard; sourceTree = "<group>"; };
 		4FDAA6571CE404BD00B364AC /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		4FDAA6591CE404FF00B364AC /* GroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
+		4FDAA65B1CE4108100B364AC /* UIView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
 		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
 		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				49742C7D1CC9B82C0024415A /* UIImage+Flickr.swift */,
 				49742CCC1CC9F7370024415A /* UIColor+rüm.swift */,
+				4FDAA65B1CE4108100B364AC /* UIView+animations.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
 				49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */,
+				4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */,
 				49742C7B1CC9B6BE0024415A /* TaskCollectionViewCell.swift in Sources */,
 				49742CCD1CC9F7370024415A /* UIColor+rüm.swift in Sources */,
 				4FFE582E1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.swift in Sources */,

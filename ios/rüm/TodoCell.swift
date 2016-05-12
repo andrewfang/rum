@@ -23,6 +23,8 @@ class TodoCell: UITableViewCell {
     
     @IBOutlet weak var deleteBackground: UIView!
     @IBOutlet weak var completeBackground: UIView!
+    @IBOutlet weak var deleteBackgroundIcon: UIImageView!
+    @IBOutlet weak var completeBackgroundIcon: UIImageView!
     
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var repetitionLabel: UILabel!
@@ -56,6 +58,11 @@ class TodoCell: UITableViewCell {
             // start by showing complete background
             deleteBackground.alpha = 0
             completeBackground.alpha = 1
+            
+            // bounce in icons -- each is hidden by their parent,
+            // so only the proper one will actually show
+            completeBackgroundIcon.bounceIn(0.8)
+            deleteBackgroundIcon.bounceIn(0.8)
         }
         
         if recognizer.state == .Changed {
