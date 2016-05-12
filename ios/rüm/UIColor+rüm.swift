@@ -20,6 +20,16 @@ extension UIColor {
     static func appBlue() -> UIColor { return UIColor.rgb(82, 132, 195) }
     static func appPurple() -> UIColor { return UIColor.rgb(204, 127, 174) }
     
+    static func rumGrey() -> UIColor { return UIColor.rgb(239, 239, 239) }
+    static func rumBlue() -> UIColor { return UIColor.rgb(59, 167, 255) }
+    static func rumTeal() -> UIColor { return UIColor.rgb(21, 191, 197) }
+    static func rumGold() -> UIColor { return UIColor.rgb(255, 212, 82) }
+    static func rumMagenta() -> UIColor { return UIColor.rgb(254, 62, 128) }
+    
+    static func rumGraphColors() -> [UIColor] {
+        return [rumBlue(), rumTeal(), rumGold(), rumMagenta()]
+    }
+    
     static func heartColors() -> [UIColor] {
         return [
             UIColor.rgb(255, 192, 203),

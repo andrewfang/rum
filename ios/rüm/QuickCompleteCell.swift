@@ -23,14 +23,13 @@ class QuickCompleteCell: UITableViewCell, UICollectionViewDataSource {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
+        self.collectionView.showsHorizontalScrollIndicator = false
+        self.collectionView.showsVerticalScrollIndicator = false
+        
         let quickCompleteCollectionViewCellNib = UINib(nibName: "QuickCompleteCollectionViewCell", bundle: nil)
         self.collectionView.registerNib(quickCompleteCollectionViewCellNib, forCellWithReuseIdentifier: "quickCompleteCollectionViewCell")
         self.collectionView.dataSource = self
