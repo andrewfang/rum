@@ -166,16 +166,6 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     }
     
     func updateKudosGraphs() {
-//        let membersCopy = self.members.sort({ (m1: [String: AnyObject], m2: [String: AnyObject]) -> Bool in
-//            var k1 = m1["kudos"] as? Int
-//            var k2 = m2["kudos"] as? Int
-//            
-//            k1 = k1 == nil ? 0 : k1
-//            k2 = k2 == nil ? 0 : k2
-//            
-//            return k1 < k2
-//        })
-        
         let ids = self.members.map({ (m: [String: AnyObject]) -> String in
             return m["id"] as! String
         })
