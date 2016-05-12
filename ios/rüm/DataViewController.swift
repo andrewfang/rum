@@ -14,6 +14,7 @@ class DataViewController: UIViewController, UICollectionViewDataSource, KudosBut
     var members: [[String: AnyObject]] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     struct Constants {
         static let MEMBER_DATA = "MEMBER_DATA"
@@ -56,6 +57,7 @@ class DataViewController: UIViewController, UICollectionViewDataSource, KudosBut
         self.members = m
         dispatch_async(dispatch_get_main_queue(), {
             self.collectionView.reloadData()
+            self.activityIndicator.hidden = true
         })
     }
     
@@ -100,47 +102,6 @@ class DataViewController: UIViewController, UICollectionViewDataSource, KudosBut
             GA.sendEvent("task", action: "kudos", label: eventLabel, value: nil)
         }
     }
-    
-//    private func loadMembers(members: [[String:AnyObject]]) {
-//        
-//        for (_, member) in members.enumerate() {
-//            let fullName = member["fullName"] as! String
-//            let kudosCount = member["kudos"] as? Int
-//            let userId = member["id"] as! String
-//            let photoUrl = member["photo"] as? String
-//        }
-//        
-//    }
-    
-//    private func showData(members:[[String:AnyObject]] ) {
-//        
-//        var dataEntries: [ChartDataEntry] = []
-//        var titles:[String] = []
-//        
-//        for (i,member) in members.enumerate() {
-//            titles.append(member["firstName"] as! String)
-//            
-//            var kudosCount:Double = 0
-//            if let k = member["kudos"] as? Double {
-//                kudosCount = k
-//            }
-//            dataEntries.append(BarChartDataEntry(value: kudosCount, xIndex: i))
-//        }
-//        
-//        let colors = Array([UIColor.appBlue(), UIColor.appTeal(), UIColor.appRed(), UIColor.appOrange(), UIColor.appPurple(), UIColor.appYellow(), UIColor.blackColor()].prefix(titles.count))
-//        let chartDataSet = PieChartDataSet(yVals: dataEntries, label: "")
-//        chartDataSet.colors = colors
-//        NSOperationQueue.mainQueue().addOperationWithBlock({
-//            self.pieChartView.descriptionText = ""
-//            
-//            if let joinCode = NSUserDefaults.standardUserDefaults().stringForKey("code") {
-//                self.pieChartView.descriptionText = "Join code: \(joinCode)"
-//            }
-//            
-//            self.pieChartView.data = PieChartData(xVals: titles, dataSet: chartDataSet)
-//            self.pieChartView.setNeedsDisplay()
-//        })
-//    }
     
 //    @IBAction private func logout() {
 //        let alertController = UIAlertController(title: "Logout", message: "Are you sure you want to logout?.", preferredStyle: .Alert)
