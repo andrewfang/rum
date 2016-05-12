@@ -18,21 +18,14 @@ class Hearts : SKScene {
     }
     
     func start() {
-        emitter = SKEmitterNode(fileNamed: "HeartsParticle.sks")
-        if emitter != nil {
-            emitter!.particleBirthRate = 4.0
-            let x: CGFloat = floor(self.size.width / 2.0)
-            let y: CGFloat = 30.0
-            emitter!.position = CGPointMake(x, y)
-            
-            emitter!.particleColorSequence = nil
-            emitter!.particleColorBlendFactor = 1.0
-            
-            emitter!.name = "hearts"
-            emitter!.targetNode = self
-            
+        
+        // check if we've already build the emitter. if we haven't
+        // then initialize it, add it to the scene, and give it
+        // a couple actions
+        
+        if emitter == nil {
+            emitter = SKEmitterNode(fileNamed: "HeartsParticle.sks")
             self.addChild(emitter!)
-            
             let action = SKAction.runBlock({
                 let colors = UIColor.heartColors()
                 let rand = Int(arc4random_uniform((UInt32(colors.count))))
@@ -42,7 +35,20 @@ class Hearts : SKScene {
             let wait = SKAction.waitForDuration(0.2)
             self.runAction(SKAction.repeatActionForever(SKAction.sequence([action, wait])))
         }
+    
+        emitter!.particleBirthRate = 4.0
+        let x: CGFloat = floor(self.size.width / 2.0)
+        let y: CGFloat = 30.0
+        emitter!.position = CGPointMake(x, y)
+        
+        emitter!.particleColorSequence = nil
+        emitter!.particleColorBlendFactor = 1.0
+        
+        emitter!.name = "hearts"
+        emitter!.targetNode = self
     }
+
+
     
     func stop() {
         if emitter != nil {
