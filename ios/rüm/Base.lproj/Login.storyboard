@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3JK-DV-nxm">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3JK-DV-nxm">
                                 <rect key="frame" x="40" y="452" width="520" height="48"/>
                                 <color key="backgroundColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -101,6 +101,7 @@
                     <navigationItem key="navigationItem" id="khL-ze-Obo"/>
                     <connections>
                         <outlet property="activityIndicator" destination="jBW-wV-ff4" id="K3y-Gd-b5q"/>
+                        <outlet property="loginButton" destination="3JK-DV-nxm" id="z1i-xK-efb"/>
                         <outlet property="logoImageView" destination="Tft-ep-YS3" id="mq7-1h-wUi"/>
                         <segue destination="SSN-pV-Dzx" kind="show" identifier="WELCOME_SEGUE" id="vWd-K1-0g8"/>
                         <segue destination="WBH-hz-x48" kind="show" identifier="SIGNUP_SEGUE" id="JE1-JU-ckH"/>
