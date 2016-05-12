@@ -27,8 +27,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var lastCompletedTaskUserId:String?
     var quickTasks:[String]!
     var todos:[[String:AnyObject]]!
-    var keyboardVisible:Bool = false
-    var keyboardSize:CGFloat!
     
     var lastTaskCell:LastTaskCell?
     var quickCompleteCell:QuickCompleteCell?
@@ -63,8 +61,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.lastTask(_:)), name: NetworkingManager.Constants.LAST_TASK, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.updateTodos(_:)), name: NetworkingManager.Constants.UPDATE_TODO, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         if let groupid = NSUserDefaults.standardUserDefaults().stringForKey(Constants.GROUP_ID),
         let userid = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
@@ -341,51 +337,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.getTodos()
         }
     }
-    
-    func keyboardDidShow(notification: NSNotification) {
-        self.keyboardVisible = true
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if (!self.keyboardVisible) {
-            if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size {
-                self.keyboardSize = keyboardSize.height
-                
-                let diff = keyboardSize.height
-                if diff > 0 {
-                    UIView.animateWithDuration(0.3, animations: {
-                        var frame = self.view.frame
-                        frame.origin.y = frame.origin.y - diff
-                        self.view.frame = frame
-                    })
-                }
-            }
-            self.keyboardVisible = true
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if (self.keyboardVisible) {
-            if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size {
-                
-                let diff = keyboardSize.height
-                
-                if diff > 0 {
-                    UIView.animateWithDuration(0.3, animations: {
-                        var frame = self.view.frame
-                        frame.origin.y = frame.origin.y + diff
-                        self.view.frame = frame
-                    })
-                }
-            }
-            self.keyboardVisible = false
-        }
-    }
-    
-    func keyboardDidHide(notification: NSNotification) {
-        self.keyboardVisible = false
-    }
-    
     
     // MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
