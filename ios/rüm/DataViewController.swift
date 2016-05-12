@@ -49,7 +49,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func updateData(notification:NSNotification) {
         self.collectionView.hidden = true
-        self.activityIndicator.hidden = false
+        self.activityIndicator.startAnimating()
         
         guard let userInfo = notification.userInfo as? [String:AnyObject] else {
             return
@@ -66,7 +66,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         dispatch_async(dispatch_get_main_queue(), {
             self.collectionView.reloadData()
             self.collectionView.hidden = false
-            self.activityIndicator.hidden = true
+            self.activityIndicator.stopAnimating()
             
             // update graph after layout pass
             dispatch_async(dispatch_get_main_queue(), {
