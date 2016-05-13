@@ -14,6 +14,9 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var photoImgView:UIImageView!
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var joinButton: UIButton!
     
     @IBAction private func cancel() {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -29,13 +32,42 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
         
         NetworkingManager.sharedInstance.getUserInfo(NSUserDefaults.standardUserDefaults().stringForKey("ID")!)
         self.photoImgView.image = FacebookManager.sharedInstance.photo
-        self.nameLabel.text = "Hi, \(FacebookManager.sharedInstance.first_name!)"
+        self.nameLabel.text = "Hey \(FacebookManager.sharedInstance.first_name!)!"
+        
+        let groupCellNib = UINib(nibName: "GroupCell", bundle: nil)
+        self.tableView.registerNib(groupCellNib, forCellReuseIdentifier: "groupCell")
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SwitchGroupViewController.loadUsersGroups(_:)), name: NetworkingManager.Constants.GET_USER_INFO, object: nil)
         self.spinner.startAnimating()
+        
+        
+        self.createButton.layer.borderWidth = 1
+        self.createButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.joinButton.layer.borderWidth = 1
+        self.joinButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        self.tableView.clipsToBounds = true
+        self.tableView.layer.masksToBounds = false
+        self.tableView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.tableView.layer.shadowOffset = CGSizeMake(0, 2)
+        self.tableView.layer.shadowRadius = 1.0
+        self.tableView.layer.shadowOpacity = 0.1
+        
+        //only apply the blur if the user hasn't disabled transparency effects
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            // always fill the view
+            blurEffectView.frame = self.photoImgView.bounds
+            blurEffectView.alpha = 0.6
+            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            self.photoImgView.insertSubview(blurEffectView, atIndex: 1)
+        }
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -62,13 +94,17 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("group cell", forIndexPath: indexPath)
-        
-        if let cell = cell as? GroupTableViewCell {
-            cell.groupName.text = groups[indexPath.item]["name"] as? String
+        let cell = tableView.dequeueReusableCellWithIdentifier("groupCell", forIndexPath: indexPath)
+
+        if let cell = cell as? GroupCell {
+            cell.groupNameLabel.text = groups[indexPath.item]["name"] as? String
         }
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 64
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

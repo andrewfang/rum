@@ -37,6 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true
         
+        // set tab bar font
+        let appearance = UITabBarItem.appearance()
+        let attributes = [
+            NSFontAttributeName : UIFont(name: "Avenir Light", size: 11)!
+        ]
+        appearance.setTitleTextAttributes(attributes, forState: .Normal)
+        
         return true
     }
     
@@ -109,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let details = userInfo as? [String:AnyObject] {
             if let userId = details["userId"] as? String {
                 application.applicationIconBadgeNumber = 0
-                NetworkingManager.sharedInstance.giveKudos(userId, completionHandler: completionHandler)
+                NetworkingManager.sharedInstance.giveKudos(userId, number: 1, completionHandler: completionHandler)
             }
         }
         

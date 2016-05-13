@@ -1,44 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="1KB-2M-5ef">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="EHf-IW-A2E">
+        <scene sceneID="UYP-2H-F6E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController id="1KB-2M-5ef" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                        <viewControllerLayoutGuide type="top" id="bPT-Ph-0a7"/>
+                        <viewControllerLayoutGuide type="bottom" id="LwG-tl-K7O"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="x6I-U4-WTU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lZf-IM-Axc">
-                                <rect key="frame" x="240" y="240" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="lZf-IM-Axc" secondAttribute="height" multiplier="1:1" id="34H-Vu-6bV"/>
-                                    <constraint firstAttribute="height" constant="120" id="F5y-Yq-3Ds"/>
-                                </constraints>
-                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDe-zu-PuZ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="xuz-gr-P8o"/>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t44-ge-EH4">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-Fb-qvY">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tabBar>
                         </subviews>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="lZf-IM-Axc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XBn-kP-B0t"/>
-                            <constraint firstItem="lZf-IM-Axc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fMP-64-fvD"/>
+                            <constraint firstItem="t44-ge-EH4" firstAttribute="trailing" secondItem="pDe-zu-PuZ" secondAttribute="trailing" id="ILv-4k-t32"/>
+                            <constraint firstItem="t44-ge-EH4" firstAttribute="leading" secondItem="pDe-zu-PuZ" secondAttribute="leading" id="L8Q-j6-1Xl"/>
+                            <constraint firstItem="pDe-zu-PuZ" firstAttribute="top" secondItem="bPT-Ph-0a7" secondAttribute="bottom" id="MDW-bR-E3m"/>
+                            <constraint firstItem="t44-ge-EH4" firstAttribute="bottom" secondItem="pDe-zu-PuZ" secondAttribute="top" id="StJ-g0-QZp"/>
+                            <constraint firstItem="pDe-zu-PuZ" firstAttribute="trailing" secondItem="fgu-Fb-qvY" secondAttribute="trailing" id="U9T-GL-sii"/>
+                            <constraint firstItem="fgu-Fb-qvY" firstAttribute="bottom" secondItem="LwG-tl-K7O" secondAttribute="top" id="exQ-gf-mJd"/>
+                            <constraint firstAttribute="trailing" secondItem="pDe-zu-PuZ" secondAttribute="trailing" id="lZA-x5-sbw"/>
+                            <constraint firstItem="pDe-zu-PuZ" firstAttribute="leading" secondItem="x6I-U4-WTU" secondAttribute="leading" id="pO7-Qq-Ovp"/>
+                            <constraint firstItem="t44-ge-EH4" firstAttribute="top" secondItem="x6I-U4-WTU" secondAttribute="top" id="tcd-Mf-JXt"/>
+                            <constraint firstItem="pDe-zu-PuZ" firstAttribute="leading" secondItem="fgu-Fb-qvY" secondAttribute="leading" id="vJ3-1j-71O"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCq-uI-3sS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="365" y="120"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="logo" width="250" height="250"/>
-    </resources>
 </document>
