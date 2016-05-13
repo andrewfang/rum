@@ -190,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				496589711CE540A0006BC319 /* AssignTask.storyboard */,
-				49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */,
 			);
 			name = AssignTask;
 			sourceTree = "<group>";
@@ -227,7 +226,6 @@
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
 				4FDAA65D1CE43D1000B364AC /* Login.storyboard */,
-				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				4FDAA6561CE4045800B364AC /* SwitchGroup */,
 				4FFE58351CE2EF9400B3B00B /* TextInput */,
 				4FFE58191CE295BD00B3B00B /* Todo */,
@@ -327,7 +325,6 @@
 		4FFE58191CE295BD00B3B00B /* Todo */ = {
 			isa = PBXGroup;
 			children = (
-				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				4FFE58161CE2923200B3B00B /* Todo.storyboard */,
 				4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */,
 				4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */,
@@ -694,7 +691,7 @@
 				);
 				INFOPLIST_FILE = "rüm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewbfang.rum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewbfang.kudos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "rüm/rüm-Bridging-Header.h";
@@ -717,7 +714,7 @@
 				);
 				INFOPLIST_FILE = "rüm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewbfang.rum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewbfang.kudos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "rüm/rüm-Bridging-Header.h";

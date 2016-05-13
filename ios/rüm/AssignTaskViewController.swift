@@ -62,6 +62,12 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.clipsToBounds = true
+        self.tableView.layer.masksToBounds = false
+        self.tableView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.tableView.layer.shadowOffset = CGSizeMake(0, 2)
+        self.tableView.layer.shadowRadius = 1.0
+        self.tableView.layer.shadowOpacity = 0.1
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AssignTaskViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
         
@@ -185,6 +191,7 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         NSUserDefaults.standardUserDefaults().setValue(members, forKey: DataViewController.Constants.MEMBER_DATA)
+        self.members = members
         self.tableView.reloadData()
     }
 
