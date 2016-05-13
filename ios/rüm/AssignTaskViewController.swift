@@ -120,17 +120,18 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
             let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(assignedTo) : \(self.task["id"])"
             GA.sendEvent("task", action: "assign", label: eventLabel, value: nil)
         }
+        
         NetworkingManager.sharedInstance.assignTask(NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)!, taskId: self.task["id"]! as! String, assignToId: assignedTo)
         
-        if let tabVC = self.presentingViewController as? UITabBarController {
-            if let navVC = tabVC.viewControllers?.first as? UINavigationController {
-                if let vc = navVC.viewControllers.first as? MainViewController {
-                    dispatch_async(dispatch_get_main_queue(), {
+        dispatch_async(dispatch_get_main_queue(), {
+            if let tabVC = self.presentingViewController as? UITabBarController {
+                if let navVC = tabVC.viewControllers?.first as? UINavigationController {
+                    if let vc = navVC.viewControllers.first as? MainViewController {
                         vc.tableView.reloadData()
-                    })
+                    }
                 }
             }
-        }
+        })
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
