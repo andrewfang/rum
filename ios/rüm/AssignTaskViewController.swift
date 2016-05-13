@@ -47,7 +47,6 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // register assign task page view with ga
         GA.registerPageView("AssignTask")
         
@@ -59,6 +58,11 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
                 })
             }
         })
+        
+        // make nav transparent
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -121,7 +125,9 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
         if let tabVC = self.presentingViewController as? UITabBarController {
             if let navVC = tabVC.viewControllers?.first as? UINavigationController {
                 if let vc = navVC.viewControllers.first as? MainViewController {
-                    vc.tableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        vc.tableView.reloadData()
+                    })
                 }
             }
         }
@@ -192,7 +198,10 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
         
         NSUserDefaults.standardUserDefaults().setValue(members, forKey: DataViewController.Constants.MEMBER_DATA)
         self.members = members
-        self.tableView.reloadData()
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
     }
 
 }
