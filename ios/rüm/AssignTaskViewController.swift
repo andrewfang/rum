@@ -21,7 +21,7 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
     var selected:[String:AnyObject]? {
         didSet {
             if let s = selected {
-                self.assignedToNameLabel.text = s["fullName"] as! String
+                self.assignedToNameLabel.text = s["fullName"] as? String
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
                     // CHECK THIS -- NO WIFI
                     if let urlString = s["photo"] as? String {
