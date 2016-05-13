@@ -66,15 +66,8 @@ class LastTaskCell: UITableViewCell {
         attributionLabel.text = "\(name) completed a task"
         attributionLabel.hidden = false
         taskLabel.text = task
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            if let imageUrl = NSURL(string: photo) {
-                if let data = NSData(contentsOfURL: imageUrl) {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        self.kudosButton.image = UIImage(data: data)
-                    })
-                }
-            }
+        if let imageUrl = NSURL(string: photo) {
+            self.kudosButton.hnk_setImageFromURL(imageUrl)
         }
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
