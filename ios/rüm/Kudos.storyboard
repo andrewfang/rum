@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Kudös-->
@@ -38,19 +39,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-ky-FSH">
+                                <rect key="frame" x="20" y="10" width="560" height="162.5"/>
+                                <connections>
+                                    <segue destination="Hao-n6-i0a" kind="embed" identifier="KudosInstructionsCardSegue" id="AQJ-en-mq1"/>
+                                </connections>
+                            </containerView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kQn-Qs-es5">
                                 <rect key="frame" x="290" y="233" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Uda-ky-FSH" firstAttribute="top" secondItem="7R3-pK-6fH" secondAttribute="bottom" constant="10" id="9B1-6V-vj4"/>
+                            <constraint firstAttribute="trailing" secondItem="Uda-ky-FSH" secondAttribute="trailing" constant="20" id="CV3-36-jor"/>
+                            <constraint firstItem="Uda-ky-FSH" firstAttribute="height" secondItem="lc7-Hd-40m" secondAttribute="height" multiplier="1/3" id="HLY-AA-dpa"/>
+                            <constraint firstItem="Uda-ky-FSH" firstAttribute="leading" secondItem="lc7-Hd-40m" secondAttribute="leading" constant="20" symbolic="YES" id="Hji-jw-RWz"/>
                             <constraint firstItem="RGF-Eu-tzP" firstAttribute="top" secondItem="7R3-pK-6fH" secondAttribute="bottom" id="Iiw-7P-p91"/>
                             <constraint firstItem="kQn-Qs-es5" firstAttribute="centerX" secondItem="lc7-Hd-40m" secondAttribute="centerX" id="M1O-fm-UjQ"/>
+                            <constraint firstItem="Uda-ky-FSH" firstAttribute="leading" secondItem="lc7-Hd-40m" secondAttribute="leading" constant="20" id="Ph3-rp-oFK"/>
                             <constraint firstItem="DoV-tS-tYW" firstAttribute="top" secondItem="RGF-Eu-tzP" secondAttribute="bottom" id="Ra8-km-VfJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Uda-ky-FSH" secondAttribute="trailing" constant="20" id="ahs-cS-qtW"/>
                             <constraint firstAttribute="trailing" secondItem="RGF-Eu-tzP" secondAttribute="trailing" id="e29-DO-diy"/>
                             <constraint firstItem="RGF-Eu-tzP" firstAttribute="leading" secondItem="lc7-Hd-40m" secondAttribute="leading" id="iwZ-Rs-KsT"/>
+                            <constraint firstAttribute="leading" secondItem="Uda-ky-FSH" secondAttribute="leading" constant="20" id="qSO-UY-eTX"/>
                             <constraint firstItem="kQn-Qs-es5" firstAttribute="centerY" secondItem="lc7-Hd-40m" secondAttribute="centerY" id="r9q-zd-1Nl"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Hji-jw-RWz"/>
+                                <exclude reference="ahs-cS-qtW"/>
+                                <exclude reference="qSO-UY-eTX"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Kudös" id="wmW-Rv-o0D"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO">
@@ -63,11 +84,20 @@
                     <connections>
                         <outlet property="activityIndicator" destination="kQn-Qs-es5" id="m1P-4B-vXp"/>
                         <outlet property="collectionView" destination="RGF-Eu-tzP" id="Ghd-ZU-01C"/>
+                        <outlet property="onboardingCardContainerView" destination="Uda-ky-FSH" id="HMf-pD-Ue9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ETD-0M-yE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1152" y="1156"/>
+        </scene>
+        <!--CardViewController-->
+        <scene sceneID="Njd-98-jiG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CardViewController" id="Hao-n6-i0a" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wpa-U6-TQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691.5" y="1156"/>
         </scene>
     </scenes>
 </document>

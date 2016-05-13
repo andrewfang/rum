@@ -35,6 +35,8 @@
 		49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */; };
 		49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */; };
 		49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C04ABC1CE267E000E0F1DA /* ActionButton.swift */; };
+		4F2B410C1CE528AE00601AA8 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B410A1CE528AE00601AA8 /* CardViewController.swift */; };
+		4F2B410F1CE537AA00601AA8 /* CardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2B410E1CE537AA00601AA8 /* CardViewController.storyboard */; };
 		4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */; };
 		4F5B4D5F1CE16BB2001C7806 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D5E1CE16BB2001C7806 /* Charts.framework */; };
 		4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D601CE16BBD001C7806 /* Bolts.framework */; };
@@ -112,6 +114,8 @@
 		49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskViewController.swift; sourceTree = "<group>"; };
 		49BD46DF1CDFEC0A00C66536 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		49C04ABC1CE267E000E0F1DA /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		4F2B410A1CE528AE00601AA8 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		4F2B410E1CE537AA00601AA8 /* CardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardViewController.storyboard; sourceTree = "<group>"; };
 		4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F5B4D5E1CE16BB2001C7806 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
 		4F5B4D601CE16BBD001C7806 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Bolts.framework"; sourceTree = "<group>"; };
@@ -229,6 +233,10 @@
 				4FFE58191CE295BD00B3B00B /* Todo */,
 				496589731CE540C2006BC319 /* AssignTask */,
 				49742C671CC9A6CC0024415A /* MainViewController.swift */,
+				49962C2E1CD9618F0012C365 /* Login View Controllers */,
+				49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */,
+				4F2B410A1CE528AE00601AA8 /* CardViewController.swift */,
+				4F2B410E1CE537AA00601AA8 /* CardViewController.storyboard */,
 				4FB0BA1C1CE4570F00E1741E /* Kudos */,
 				49742C651CC9A6CC0024415A /* AppDelegate.swift */,
 				49742C6C1CC9A6CC0024415A /* Assets.xcassets */,
@@ -319,6 +327,7 @@
 		4FFE58191CE295BD00B3B00B /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				49742C671CC9A6CC0024415A /* MainViewController.swift */,
 				4FFE58161CE2923200B3B00B /* Todo.storyboard */,
 				4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */,
 				4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */,
@@ -440,6 +449,7 @@
 				4FFE582F1CE2CF4400B3B00B /* QuickCompleteCollectionViewCell.xib in Resources */,
 				4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */,
 				4FFE58211CE2B01200B3B00B /* TodoCell.xib in Resources */,
+				4F2B410F1CE537AA00601AA8 /* CardViewController.storyboard in Resources */,
 				4FB0BA1B1CE4563B00E1741E /* Kudos.storyboard in Resources */,
 				4FFE58251CE2C15100B3B00B /* TableSectionHeaderView.xib in Resources */,
 				496589721CE540A0006BC319 /* AssignTask.storyboard in Resources */,
@@ -516,6 +526,7 @@
 				49742C791CC9A7540024415A /* Database.swift in Sources */,
 				4FB0BA261CE4673500E1741E /* KudosButton.swift in Sources */,
 				49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */,
+				4F2B410C1CE528AE00601AA8 /* CardViewController.swift in Sources */,
 				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
 				49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */,
 				4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */,

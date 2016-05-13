@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, KudosButtonDelegate {
+class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, KudosButtonDelegate, CardViewControllerDelegate {
     
     var renderedKudosGraph = false
     var members: [[String: AnyObject]] = []
@@ -17,9 +17,11 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var onboardingCardContainerView: UIView!
     
     struct Constants {
         static let MEMBER_DATA = "MEMBER_DATA"
+        static let DID_CLOSE_KUDOS_ONBOARDING = "DID_CLOSE_KUDOS_ONBOARDING"
     }
     
     override func viewDidLoad() {
@@ -36,6 +38,13 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.registerNib(kudosFaceCellNib, forCellWithReuseIdentifier: "kudosFaceCell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey(Constants.DID_CLOSE_KUDOS_ONBOARDING)) {
+            self.onboardingCardContainerView.hidden = true
+        } else {
+            let inset = self.collectionView.contentInset
+            self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + self.onboardingCardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
+        }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
     }
@@ -110,6 +119,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         kudosFaceCell.bounceIn(0.8, delay: delay)
         kudosFaceCell.bounceSlideUpIn(0.8, delay: 0)
         
+        dispatch_async(dispatch_get_main_queue(), {
+            // NOTE: - doubt we really need to optimize this, but it might be
+            // a bit of a bottleneck -- hence, why it gets its own thread
+            self.updateKudosGraphs()
+        })
+        
         return kudosFaceCell
     }
     
@@ -141,19 +156,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             // update this member's number of kudos locally, then re-render
             // the kudos graphs
             if let i = self.members.indexOf({ $0["id"] as! String == receiverId }) {
-                
-                print("gave to \(receiverId)")
                 var m = self.members[i]
                 var k = m["kudos"] as? Int
                 if k == nil {
                     k = 0
                 }
-                
-                print(numKudos)
-                print("old k \(k)")
-                m["kudos"] = k! + numKudos
                 self.members[i] = m
-                print("new k \(m["kudos"])")
                 self.updateKudosGraphs()
             }
             
@@ -165,17 +173,27 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
     }
     
+    // MARK: - card delegation
+    func userDidCloseCardView(cardView: CardViewController) {
+        let cardHeight = self.onboardingCardContainerView.frame.size.height
+        cardView.runCloseAnimation({(v) in
+            self.onboardingCardContainerView.removeFromSuperview()
+            
+            let inset = self.collectionView.contentInset
+            UIView.animateWithDuration(0.8,
+                delay: 0.4,
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.4,
+                options: [],
+                animations: {
+                    // Need this 64 here to account for the height of the navbar
+                    self.collectionView.contentInset = UIEdgeInsetsMake(inset.top - cardHeight + 64, inset.left, inset.bottom, inset.right)
+                }, completion: nil)
+        })
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.DID_CLOSE_KUDOS_ONBOARDING)
+    }
+    
     func updateKudosGraphs() {
-//        let membersCopy = self.members.sort({ (m1: [String: AnyObject], m2: [String: AnyObject]) -> Bool in
-//            var k1 = m1["kudos"] as? Int
-//            var k2 = m2["kudos"] as? Int
-//            
-//            k1 = k1 == nil ? 0 : k1
-//            k2 = k2 == nil ? 0 : k2
-//            
-//            return k1 < k2
-//        })
-        
         let ids = self.members.map({ (m: [String: AnyObject]) -> String in
             return m["id"] as! String
         })
@@ -204,6 +222,16 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 faceCell.kudosGraphView.color = color
                 faceCell.kudosGraphView.setValue(value, duration: 1.4, delay: 0.0)
             }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "KudosInstructionsCardSegue" {
+            let vc = segue.destinationViewController as! CardViewController
+            vc.pages = [
+                CardContent(header: "Show some love", content: "Feeling appreciative? Tap on a group member to send them kudos!")
+            ]
+            vc.delegate = self
         }
     }
     

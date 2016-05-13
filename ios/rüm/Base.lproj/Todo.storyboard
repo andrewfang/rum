@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Todo-->
@@ -37,15 +38,25 @@
                                     <segue destination="rPU-7g-SFJ" kind="presentation" identifier="AddTaskSegue" modalPresentationStyle="overCurrentContext" id="HzP-Qp-CLA"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpJ-0m-ro8">
+                                <rect key="frame" x="20" y="10" width="560" height="178.5"/>
+                                <connections>
+                                    <segue destination="44f-RM-5b0" kind="embed" identifier="CardViewControllerSegue" id="Gg9-ZM-Pud"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="OpJ-0m-ro8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Egl-Sq-0lX"/>
+                            <constraint firstAttribute="trailing" secondItem="OpJ-0m-ro8" secondAttribute="trailing" constant="20" id="IHP-mb-OfD"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kto-Cp-6KZ"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MMS-0P-2By"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="ONW-hC-uUT"/>
+                            <constraint firstItem="OpJ-0m-ro8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1/3" id="YuQ-D6-5Jg"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aHc-xY-scs"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bfi-rG-cJO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="utW-zx-CNm" secondAttribute="bottom" constant="18" id="ezp-cn-cPW"/>
+                            <constraint firstItem="OpJ-0m-ro8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="gJe-rd-EG2"/>
                             <constraint firstItem="utW-zx-CNm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tGl-qJ-5oW"/>
                             <constraint firstItem="flT-Td-Re9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="yjm-48-ghi"/>
                         </constraints>
@@ -71,6 +82,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addTaskButton" destination="utW-zx-CNm" id="Nx6-LV-5KE"/>
+                        <outlet property="onboardingCardContainerView" destination="OpJ-0m-ro8" id="D2k-g0-W28"/>
                         <outlet property="tableView" destination="flT-Td-Re9" id="SyT-X3-fn7"/>
                         <segue destination="tKz-aE-WrI" kind="presentation" identifier="ShowLogin" id="eWN-qa-fd2"/>
                         <segue destination="hjt-ht-bfT" kind="presentation" identifier="GROUP_SWITCH" id="7Ct-Cq-zqG"/>
@@ -88,6 +100,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qo0-i7-hrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1964.5" y="1018"/>
+        </scene>
+        <!--CardViewController-->
+        <scene sceneID="uFk-6N-HKF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CardViewController" id="44f-RM-5b0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0el-Se-N6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2456" y="143"/>
         </scene>
         <!--UINavigationController-8rr-S6-pZb-->
         <scene sceneID="TCM-fa-ucE">
