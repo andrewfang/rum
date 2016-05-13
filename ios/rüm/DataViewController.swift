@@ -21,6 +21,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     struct Constants {
         static let MEMBER_DATA = "MEMBER_DATA"
+        static let DID_CLOSE_KUDOS_ONBOARDING = "DID_CLOSE_KUDOS_ONBOARDING"
     }
     
     override func viewDidLoad() {
@@ -38,8 +39,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        let inset = self.collectionView.contentInset
-        self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + self.onboardingCardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
+        if (NSUserDefaults.standardUserDefaults().boolForKey(Constants.DID_CLOSE_KUDOS_ONBOARDING)) {
+            self.onboardingCardContainerView.hidden = true
+        } else {
+            let inset = self.collectionView.contentInset
+            self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + self.onboardingCardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
+        }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
     }
@@ -181,9 +186,11 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 initialSpringVelocity: 0.4,
                 options: [],
                 animations: {
-                    self.collectionView.contentInset = UIEdgeInsetsMake(inset.top - cardHeight, inset.left, inset.bottom, inset.right)
+                    // Need this 64 here to account for the height of the navbar
+                    self.collectionView.contentInset = UIEdgeInsetsMake(inset.top - cardHeight + 64, inset.left, inset.bottom, inset.right)
                 }, completion: nil)
         })
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.DID_CLOSE_KUDOS_ONBOARDING)
     }
     
     func updateKudosGraphs() {

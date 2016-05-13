@@ -15,6 +15,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         static let CHORE_ADD_CELL = "chore add new cell"
         static let ME_CELL = "task cell"
         static let GROUP_ID = "GROUP_ID"
+        static let DID_CLOSE_ONBOARDING = "DID_CLOSE_ONBOARDING"
     }
     
     let TODO_SECTION = 2
@@ -79,6 +80,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.performSegueWithIdentifier("ShowLogin", sender: self)
             self.quickTasks = []
             self.todos = []
+        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.DID_CLOSE_ONBOARDING) {
+            self.onboardingCardContainerView.hidden = true
         }
     }
     
@@ -422,6 +427,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func userDidCloseCardView(cardView: CardViewController) {
         cardView.runCloseAnimation({ (_) in
             self.onboardingCardContainerView.hidden = true
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.DID_CLOSE_ONBOARDING)
         })
     }
     
