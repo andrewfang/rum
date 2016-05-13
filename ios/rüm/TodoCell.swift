@@ -133,11 +133,13 @@ class TodoCell: UITableViewCell {
                 if let urlStr = assignedTo!["photo"] as? String {
                     if let url = NSURL(string: urlStr) {
                         self.assignedToImageView.hnk_setImageFromURL(url)
+                        self.assignedToImageView.alpha = 1
+                        self.reloadInputViews()
                     }
                 }
             })
         } else {
-            assignedToImageView.alpha = 0;
+            self.assignedToImageView.alpha = 0
         }
     }
 }
