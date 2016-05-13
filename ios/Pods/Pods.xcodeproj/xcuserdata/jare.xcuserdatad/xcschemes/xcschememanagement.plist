@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HanekeSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PDKTZipArchive.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -43,6 +48,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0EB19C1377A747F81110D44E2D5FCF78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>478542138C094E8C0B85A580FF576B23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AF459D9C280CE7015ADFFE6A388C5E2</key>
+		<key>7DDF79495F24B309AF089ACC99FC1151</key>
 		<dict>
 			<key>primary</key>
 			<true/>

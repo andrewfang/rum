@@ -55,13 +55,10 @@ class LastTaskCell: UITableViewCell {
         attributionLabel.text = "\(name) completed a task"
         attributionLabel.hidden = false
         taskLabel.text = task
-        
+
         if let imageUrl = NSURL(string: photo) {
-            if let data = NSData(contentsOfURL: imageUrl) {
-                let image = UIImage(data: data)
-                self.kudosButton.image = image
-                self.backgroundImageView.image = image
-            }
+            self.backgroundImageView.hnk_setImageFromURL(imageUrl)
+            self.kudosButton.hnk_setImageFromURL(imageUrl)
         }
     }
     

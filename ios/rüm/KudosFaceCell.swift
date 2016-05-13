@@ -40,24 +40,16 @@ class KudosFaceCell: UICollectionViewCell {
         self.kudosButton.userId = member["id"] as? String
         
         activityIndicator.startAnimating()
-        dispatch_async(dispatch_get_main_queue(), {
-            if let urlStr = member["photo"] as? String {
-                if let url = NSURL(string: urlStr) {
-                    if let data = NSData(contentsOfURL: url) {
-                        NSOperationQueue.mainQueue().addOperationWithBlock({
-                            self.kudosButton.image = UIImage(data: data)
-                            self.activityIndicator.stopAnimating()
-                        })
-                    } else {
-                        self.activityIndicator.stopAnimating()
-                    }
-                } else {
-                    self.activityIndicator.stopAnimating()
-                }
+        if let urlStr = member["photo"] as? String {
+            if let url = NSURL(string: urlStr) {
+                self.kudosButton.hnk_setImageFromURL(url)
+                self.activityIndicator.stopAnimating()
             } else {
                 self.activityIndicator.stopAnimating()
             }
-        })
+        } else {
+            self.activityIndicator.stopAnimating()
+        }
     }
     
     func clearImage() {

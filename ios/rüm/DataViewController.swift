@@ -37,10 +37,6 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.registerNib(kudosFaceCellNib, forCellWithReuseIdentifier: "kudosFaceCell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
-        let inset = self.collectionView.contentInset
-        self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + self.onboardingCardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
     }
     
@@ -170,19 +166,8 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     // MARK: - card delegation
     func userDidCloseCardView(cardView: CardViewController) {
-        let cardHeight = self.onboardingCardContainerView.frame.size.height
         cardView.runCloseAnimation({(v) in
             self.onboardingCardContainerView.removeFromSuperview()
-            
-            let inset = self.collectionView.contentInset
-            UIView.animateWithDuration(0.8,
-                delay: 0.4,
-                usingSpringWithDamping: 0.8,
-                initialSpringVelocity: 0.4,
-                options: [],
-                animations: {
-                    self.collectionView.contentInset = UIEdgeInsetsMake(inset.top - cardHeight, inset.left, inset.bottom, inset.right)
-                }, completion: nil)
         })
     }
     
