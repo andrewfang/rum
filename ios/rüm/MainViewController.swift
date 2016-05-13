@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate, TodoCellDelegate, KudosButtonDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, TextInputViewControllerDelegate, TodoCellDelegate, KudosButtonDelegate, CardViewControllerDelegate {
     
     struct Constants {
         static let CHORE_CELL = "chore cell"
@@ -21,6 +21,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var addTaskButton: UIButton!
+    @IBOutlet weak var onboardingCardContainerView: UIView!
     
     var groupId:String!
     var userId:String!
@@ -399,7 +400,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         } else if segue.identifier == "AddTaskSegue" {
-            print(segue.destinationViewController)
             if let navVC = segue.destinationViewController as? UINavigationController {
                 if let textVC = navVC.viewControllers.first as? TextInputViewController {
                     textVC.labelText = "Task title"
@@ -407,9 +407,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     textVC.delegate = self
                 }
             }
+        } else if segue.identifier == "CardViewControllerSegue" {
+            if let cardVC = segue.destinationViewController as? CardViewController {
+                cardVC.pages = [
+                    CardContent(header: "Add a task", content: "You can add tasks to the todo list by hitting the “+” button at the bottom of the screen."),
+                    CardContent(header: "Cross it off", content: "When you’ve completed a task, just swipe it away to let everyone know you’re done."),
+                    CardContent(header: "Do it again", content: "You can use the “I just…” section to quickly add and check off common tasks.")
+                ]
+                cardVC.delegate = self
+            }
         }
     }
     
+    func userDidCloseCardView(cardView: CardViewController) {
+        cardView.runCloseAnimation({ (_) in
+            self.onboardingCardContainerView.hidden = true
+        })
+    }
     
     // MARK: - LastTaskCell delegation
     func userDidBeginKudos(kudosButton: KudosButton) {

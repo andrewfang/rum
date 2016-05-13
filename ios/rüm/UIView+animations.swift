@@ -21,8 +21,30 @@ extension UIView {
             delay: delay,
             springDamping: 0.5,
             springVelocity: 0.2,
-            transform: t,
-            alpha: true)
+            startTransform: t,
+            endTransform: CGAffineTransformIdentity,
+            alpha: true,
+            startAlpha: nil,
+            endAlpha: nil,
+            completion: nil)
+    }
+    
+    func fallOut(duration: Double, delay: Double) {
+        self.fallOut(duration, delay: delay, completion: nil)
+    }
+    
+    func fallOut(duration: Double, delay: Double, completion: ((Bool) -> Void)?) {
+        let t = CGAffineTransformRotate(CGAffineTransformMakeTranslation(0, 40), CGFloat(M_PI/32))
+        self.bounceTransform(duration,
+            delay: delay,
+            springDamping: 1,
+            springVelocity: 0,
+            startTransform: CGAffineTransformIdentity,
+            endTransform: t,
+            alpha: true,
+            startAlpha: 1.0,
+            endAlpha: 0,
+            completion: completion)
     }
     
     func bounceSlideUpIn(duration: Double, delay: Double) {
@@ -31,17 +53,25 @@ extension UIView {
             delay: delay,
             springDamping: 0.9,
             springVelocity: 0.2,
-            transform: t,
-            alpha: true)
+            startTransform: t,
+            endTransform: CGAffineTransformIdentity,
+            alpha: true,
+            startAlpha: nil,
+            endAlpha: nil,
+            completion: nil)
     }
     
-    func bounceTransform(duration: Double, delay: Double, springDamping: CGFloat, springVelocity: CGFloat, transform: CGAffineTransform, alpha: Bool) {
+    func bounceTransform(duration: Double, delay: Double, springDamping: CGFloat, springVelocity: CGFloat, startTransform: CGAffineTransform, endTransform: CGAffineTransform, alpha: Bool, startAlpha: CGFloat?, endAlpha: CGFloat?, completion: ((Bool) -> Void)?) {
         
-        self.transform = CGAffineTransformConcat(self.transform, transform)
+        self.transform = CGAffineTransformConcat(self.transform, startTransform)
         if alpha {
+            
+            if startAlpha != nil {
+                self.alpha = startAlpha!
+            }
             // if we happen to be in the middle of animating the alpha,
             // just let it go
-            if self.alpha == 1 {
+            else if self.alpha == 1 {
                 self.alpha = 0
             }
         }
@@ -53,9 +83,13 @@ extension UIView {
             options: [],
             animations: {
                 if alpha {
-                    self.alpha = 1
+                    if endAlpha != nil {
+                        self.alpha = endAlpha!
+                    } else {
+                        self.alpha = 1
+                    }
                 }
-                self.transform = CGAffineTransformIdentity
-            }, completion: nil)
+                self.transform = endTransform
+            }, completion: completion)
     }
 }

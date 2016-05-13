@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, KudosButtonDelegate {
+class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, KudosButtonDelegate, CardViewControllerDelegate {
     
     var renderedKudosGraph = false
     var members: [[String: AnyObject]] = []
@@ -17,6 +17,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var cardContainerView: UIView!
     
     struct Constants {
         static let MEMBER_DATA = "MEMBER_DATA"
@@ -36,6 +37,9 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.registerNib(kudosFaceCellNib, forCellWithReuseIdentifier: "kudosFaceCell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
+        let inset = self.collectionView.contentInset
+        self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + cardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
     }
@@ -110,6 +114,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         kudosFaceCell.bounceIn(0.8, delay: delay)
         kudosFaceCell.bounceSlideUpIn(0.8, delay: 0)
         
+        dispatch_async(dispatch_get_main_queue(), {
+            // NOTE: - doubt we really need to optimize this, but it might be
+            // a bit of a bottleneck -- hence, why it gets its own thread
+            self.updateKudosGraphs()
+        })
+        
         return kudosFaceCell
     }
     
@@ -141,19 +151,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             // update this member's number of kudos locally, then re-render
             // the kudos graphs
             if let i = self.members.indexOf({ $0["id"] as! String == receiverId }) {
-                
-                print("gave to \(receiverId)")
                 var m = self.members[i]
                 var k = m["kudos"] as? Int
                 if k == nil {
                     k = 0
                 }
-                
-                print(numKudos)
-                print("old k \(k)")
-                m["kudos"] = k! + numKudos
                 self.members[i] = m
-                print("new k \(m["kudos"])")
                 self.updateKudosGraphs()
             }
             
@@ -163,6 +166,24 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) --> \(receiverId)"
             GA.sendEvent("task", action: "kudos", label: eventLabel, value: nil)
         }
+    }
+    
+    // MARK: - card delegation
+    func userDidCloseCardView(cardView: CardViewController) {
+        let cardHeight = cardContainerView.frame.size.height
+        cardView.runCloseAnimation({(v) in
+            self.cardContainerView.removeFromSuperview()
+            
+            let inset = self.collectionView.contentInset
+            UIView.animateWithDuration(0.8,
+                delay: 0.4,
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.4,
+                options: [],
+                animations: {
+                    self.collectionView.contentInset = UIEdgeInsetsMake(inset.top - cardHeight, inset.left, inset.bottom, inset.right)
+                }, completion: nil)
+        })
     }
     
     func updateKudosGraphs() {
@@ -194,6 +215,16 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 faceCell.kudosGraphView.color = color
                 faceCell.kudosGraphView.setValue(value, duration: 1.4, delay: 0.0)
             }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "KudosInstructionsCardSegue" {
+            let vc = segue.destinationViewController as! CardViewController
+            vc.pages = [
+                CardContent(header: "Show some love", content: "Feeling appreciative? Tap on a group member to send them kudos!")
+            ]
+            vc.delegate = self
         }
     }
     
