@@ -30,7 +30,11 @@ class WelcomeBackViewController: UIViewController {
             }
         }
         
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        if (NotificationManager.sharedInstance.notificationsAllowed()) {
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+        }
     }
     
 }

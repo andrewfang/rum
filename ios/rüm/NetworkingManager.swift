@@ -156,6 +156,11 @@ class NetworkingManager {
         })
     }
     
+    func updateDeviceToken(userId:String, deviceToken:String) {
+        let endpoint = "/user/\(userId)"
+        self.sendRequest(endpoint, body: ["deviceId": deviceToken], method: "PUT", useJSON: true, handler: nil)
+    }
+    
     // MARK: - Group Info
     func getGroupInfo(groupId:String) {
         self.sendGetRequest("/group/\(groupId)", handler: nil)

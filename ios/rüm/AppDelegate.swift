@@ -62,10 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Device Token", tokenString)
         NSUserDefaults.standardUserDefaults().setValue(tokenString, forKey: NotificationManager.Constants.DEVICE_TOKEN)
+        
+        if let userId = NSUserDefaults.standardUserDefaults().stringForKey("ID") {
+            NetworkingManager.sharedInstance.updateDeviceToken(userId, deviceToken: tokenString)
+        } else {
+            print("Tried to update token, but user is nil")
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(EnableNotifsViewController.Constants.NOTIF_REGISTER_SUCCESS, object: nil)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("Failed to register for remote: ", error)
+        NSNotificationCenter.defaultCenter().postNotificationName(EnableNotifsViewController.Constants.NOTIF_REGISTER_FAILED, object: nil)
     }
 
     func applicationWillResignActive(application: UIApplication) {
