@@ -33,6 +33,9 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="handleTextInput:" destination="8Gv-4c-iCn" eventType="editingChanged" id="M5S-py-cRJ"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="0.6192198057432432" colorSpace="calibratedRGB"/>

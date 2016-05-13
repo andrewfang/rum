@@ -37,9 +37,15 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         
         if (self.rightBarButtonItemText != nil) {
             self.rightBarButtonItem.title = rightBarButtonItemText
+            let font = UIFont(name: "Avenir", size: 17)
+            self.rightBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font!], forState: .Normal)
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
+        
+        // run handle text input delegate to clear out right bar button
+        // if we need to
+        self.handleTextInput(self)
 
         textField.delegate = self
         
@@ -68,6 +74,18 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         textFieldShouldReturn(self.textField)
     }
     
+    @IBAction func handleTextInput(sender: AnyObject) {
+        if self.rightBarButtonItem == nil {
+            return
+        }
+        
+        if !self.textValid(self.textField) {
+            self.rightBarButtonItem.tintColor = UIColor.rumTransparentWhite()
+        } else {
+            self.rightBarButtonItem.tintColor = UIColor.whiteColor()
+        }
+    }
+    
     @IBAction func handleClose(sender: AnyObject) {
         self.view.endEditing(true)
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -80,12 +98,9 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
     
     var pressedDone = false
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if let trimmed = textField.text?.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
-            if trimmed.characters.count != 0 {
-                pressedDone = true
-                textField.resignFirstResponder()
-            }
+        if self.textValid(textField) {
+            pressedDone = true
+            textField.resignFirstResponder()
         }
         return false
     }
@@ -97,6 +112,18 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         if pressedDone {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    private func textValid(textInput: UITextField?) -> Bool {
+        if textField != nil {
+            if let trimmed = textField.text?.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
+                if trimmed.characters.count != 0 {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
 
