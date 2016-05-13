@@ -425,7 +425,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - External facing methods
     // AppDelegate calls this method when a notification comes in
     func someOneJustActioned(name:String, action:String, photo: String) {
-        
         NSOperationQueue.mainQueue().addOperationWithBlock({
             if (self.lastTaskCell != nil) {
                 self.lastTaskCell!.loadTask(name, task: action, photo: photo)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 protocol TodoCellDelegate {
     func userDidCompleteTodo(todoCell: TodoCell)
@@ -131,13 +132,9 @@ class TodoCell: UITableViewCell {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
                 if let urlStr = assignedTo!["photo"] as? String {
                     if let url = NSURL(string: urlStr) {
-                        if let data = NSData(contentsOfURL: url) {
-                            NSOperationQueue.mainQueue().addOperationWithBlock({
-                                self.assignedToImageView.alpha = 1
-                                self.assignedToImageView.image = UIImage(data: data)
-                                self.reloadInputViews()
-                            })
-                        }
+                        self.assignedToImageView.hnk_setImageFromURL(url)
+                        self.assignedToImageView.alpha = 1
+                        self.reloadInputViews()
                     }
                 }
             })

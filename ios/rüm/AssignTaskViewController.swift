@@ -165,12 +165,8 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
                 if let urlString = self.members[indexPath.item]["photo"] as? String {
                     if let url = NSURL(string: urlString) {
-                        if let data = NSData(contentsOfURL: url) {
-                            if indexPath.item == savedIndexPathItem {
-                                NSOperationQueue.mainQueue().addOperationWithBlock({
-                                    cell.personImage.image = UIImage(data: data)
-                                })
-                            }
+                        if indexPath.item == savedIndexPathItem {
+                            cell.personImage.hnk_setImageFromURL(url)
                         }
                     }
                 }
