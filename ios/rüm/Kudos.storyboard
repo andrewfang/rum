@@ -83,8 +83,8 @@
                     </simulatedTabBarMetrics>
                     <connections>
                         <outlet property="activityIndicator" destination="kQn-Qs-es5" id="m1P-4B-vXp"/>
-                        <outlet property="cardContainerView" destination="Uda-ky-FSH" id="ION-gt-2Nw"/>
                         <outlet property="collectionView" destination="RGF-Eu-tzP" id="Ghd-ZU-01C"/>
+                        <outlet property="onboardingCardContainerView" destination="Uda-ky-FSH" id="HMf-pD-Ue9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ETD-0M-yE3" userLabel="First Responder" sceneMemberID="firstResponder"/>

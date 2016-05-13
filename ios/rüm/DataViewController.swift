@@ -17,7 +17,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var cardContainerView: UIView!
+    @IBOutlet weak var onboardingCardContainerView: UIView!
     
     struct Constants {
         static let MEMBER_DATA = "MEMBER_DATA"
@@ -39,7 +39,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.delegate = self
         
         let inset = self.collectionView.contentInset
-        self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + cardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
+        self.collectionView.contentInset = UIEdgeInsetsMake(inset.top + self.onboardingCardContainerView.frame.size.height, inset.left, inset.bottom, inset.right)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
     }
@@ -170,9 +170,9 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     // MARK: - card delegation
     func userDidCloseCardView(cardView: CardViewController) {
-        let cardHeight = cardContainerView.frame.size.height
+        let cardHeight = self.onboardingCardContainerView.frame.size.height
         cardView.runCloseAnimation({(v) in
-            self.cardContainerView.removeFromSuperview()
+            self.onboardingCardContainerView.removeFromSuperview()
             
             let inset = self.collectionView.contentInset
             UIView.animateWithDuration(0.8,
