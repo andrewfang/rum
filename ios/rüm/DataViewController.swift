@@ -21,6 +21,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     struct Constants {
         static let MEMBER_DATA = "MEMBER_DATA"
+        static let DID_CLOSE_KUDOS_ONBOARDING = "DID_CLOSE_KUDOS_ONBOARDING"
     }
     
     override func viewDidLoad() {
@@ -169,6 +170,7 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         cardView.runCloseAnimation({(v) in
             self.onboardingCardContainerView.removeFromSuperview()
         })
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.DID_CLOSE_KUDOS_ONBOARDING)
     }
     
     func updateKudosGraphs() {

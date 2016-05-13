@@ -47,6 +47,17 @@ class LastTaskCell: UITableViewCell {
             skView.allowsTransparency = true
             skView.presentScene(heartScene)
         }
+        
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            // always fill the view
+            blurEffectView.frame = self.contentView.bounds
+            blurEffectView.alpha = 0.8
+            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            self.contentView.insertSubview(blurEffectView, atIndex: 1)
+        }
     }
     
     
@@ -55,10 +66,19 @@ class LastTaskCell: UITableViewCell {
         attributionLabel.text = "\(name) completed a task"
         attributionLabel.hidden = false
         taskLabel.text = task
-
         if let imageUrl = NSURL(string: photo) {
-            self.backgroundImageView.hnk_setImageFromURL(imageUrl)
             self.kudosButton.hnk_setImageFromURL(imageUrl)
+        }
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            var imageToShow:UIImage?
+            if let imgData = UIImage.imageDataFromTaskName(task) {
+                imageToShow = UIImage(data: imgData)
+            }
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                self.backgroundImageView.image = imageToShow ?? UIImage(named:"Welcome")
+            })
         }
     }
     

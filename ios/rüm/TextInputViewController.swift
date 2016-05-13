@@ -47,6 +47,17 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         textField.layer.addSublayer(bottomBorder)
         
         textField.becomeFirstResponder()
+        
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            // always fill the view
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.alpha = 1.0
+            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            self.view.insertSubview(blurEffectView, atIndex: 0)
+        }
     }
 
     @IBAction func handleClose(sender: AnyObject) {
