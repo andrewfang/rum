@@ -16,17 +16,13 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
 
     var delegate: TextInputViewControllerDelegate?
     var labelText:String?
-    var navTitle:String? {
-        didSet {
-            if self.isViewLoaded() {
-                print(navTitle)
-                self.navigationItem.title = navTitle!
-            }
-        }
-    }
+    var navTitle:String?
+    
+    var rightBarButtonItemText: String?
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +33,12 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         
         if (self.navTitle != nil) {
             self.navigationItem.title = navTitle!
+        }
+        
+        if (self.rightBarButtonItemText != nil) {
+            self.rightBarButtonItem.title = rightBarButtonItemText
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
         }
 
         textField.delegate = self
@@ -60,6 +62,12 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func pushedRightButtonItem(sender: AnyObject) {
+        // just call the delegate function to simulate a
+        // done push
+        textFieldShouldReturn(self.textField)
+    }
+    
     @IBAction func handleClose(sender: AnyObject) {
         self.view.endEditing(true)
         self.dismissViewControllerAnimated(true, completion: nil)

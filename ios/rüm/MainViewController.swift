@@ -360,6 +360,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let textVC = navVC.viewControllers.first as? TextInputViewController {
                     textVC.labelText = "Task title"
                     textVC.navTitle = "Create a task"
+                    textVC.rightBarButtonItemText = "Create"
                     textVC.delegate = self
                 }
             }
