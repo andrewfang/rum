@@ -113,7 +113,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rm8-cg-8yD">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rm8-cg-8yD">
                                 <rect key="frame" x="111" y="24" width="314" height="193"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hi, name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8XI-ck-KlM">
@@ -450,12 +450,6 @@
                                 <color key="textColor" red="0.3294117647" green="0.72549019609999998" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap “OK” on the popup to get alerts when people complete tasks or give you kudos." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-uD-upB">
-                                <rect key="frame" x="117" y="278" width="365.5" height="44"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjq-4R-4S6">
                                 <rect key="frame" x="182" y="342" width="235" height="38"/>
                                 <color key="backgroundColor" red="0.3294117647" green="0.72549019609999998" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -482,6 +476,12 @@
                                     <action selector="noNotif" destination="WxP-uU-eIx" eventType="touchUpInside" id="HOF-Aw-Rnn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tap “OK” on the popup to get alerts when people complete tasks or give you kudos." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-uD-upB">
+                                <rect key="frame" x="117" y="278" width="365.5" height="44"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -495,6 +495,7 @@
                             <constraint firstItem="Fjq-4R-4S6" firstAttribute="bottom" secondItem="JmM-CZ-0Cq" secondAttribute="top" constant="-10" id="Jy0-dA-7F6"/>
                             <constraint firstItem="QIT-9H-qzl" firstAttribute="centerY" secondItem="Cy4-2a-ufq" secondAttribute="centerY" id="KgV-yE-Qi4"/>
                             <constraint firstItem="Fjq-4R-4S6" firstAttribute="top" secondItem="DKS-uD-upB" secondAttribute="bottom" constant="-37" id="PRo-EC-A8p"/>
+                            <constraint firstItem="DKS-uD-upB" firstAttribute="width" secondItem="Cy4-2a-ufq" secondAttribute="width" multiplier="0.75" id="Ro3-Yh-ntX"/>
                             <constraint firstItem="QIT-9H-qzl" firstAttribute="width" secondItem="Cy4-2a-ufq" secondAttribute="width" id="SG9-kX-Xe2"/>
                             <constraint firstItem="JmM-CZ-0Cq" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="V3H-GG-jB7"/>
                             <constraint firstItem="QIT-9H-qzl" firstAttribute="height" secondItem="Cy4-2a-ufq" secondAttribute="height" id="VbQ-fJ-dNz"/>
@@ -508,6 +509,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="8IU-Bf-4hM"/>
+                                <exclude reference="ELI-mO-4Wc"/>
                                 <exclude reference="77Q-OZ-Hlf"/>
                                 <exclude reference="PRo-EC-A8p"/>
                             </mask>
