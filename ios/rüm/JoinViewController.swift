@@ -43,8 +43,6 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
         border.borderWidth = width
         textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
-        
-        textField.attributedPlaceholder = NSAttributedString(string: "code", attributes: [NSForegroundColorAttributeName : UIColor.lightGrayColor()])
     }
     
     @IBAction func back() {

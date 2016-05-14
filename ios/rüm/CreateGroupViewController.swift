@@ -14,6 +14,7 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
     @IBOutlet weak var textField:UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var createGroupStackView:UIStackView!
     @IBOutlet weak var showCodeStackView:UIStackView!
     @IBOutlet weak var backButton: UIButton!
@@ -64,8 +65,6 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
         border.borderWidth = width
         textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
-        
-        textField.attributedPlaceholder = NSAttributedString(string: "group name", attributes: [NSForegroundColorAttributeName : UIColor.lightGrayColor()])
     }
     
     func groupCreated(notification: NSNotification) {
@@ -81,17 +80,18 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
             }
             
             self.codeLabel.text = code
-            
             self.textField.resignFirstResponder()
             
             UIView.animateWithDuration(1.0, animations: {
-                self.showCodeStackView.hidden = false
-                self.showCodeStackView.alpha = 1.0
                 self.createGroupStackView.alpha = 0.0
+                self.groupNameLabel.alpha = 0.0
                 self.backButton.hidden = true
                 }, completion: { done in
+                    self.groupNameLabel.hidden = true
                     self.createGroupStackView.hidden = true
                     
+                    self.showCodeStackView.hidden = false
+                    self.showCodeStackView.bounceSlideUpIn(0.4, delay: 0)
             })
         })
     }
