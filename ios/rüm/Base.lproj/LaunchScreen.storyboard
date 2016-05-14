@@ -19,14 +19,14 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDe-zu-PuZ">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <color key="barTintColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="xuz-gr-P8o"/>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t44-ge-EH4">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
-                                <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-Fb-qvY">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
@@ -49,7 +49,7 @@
                             <constraint firstItem="pDe-zu-PuZ" firstAttribute="leading" secondItem="fgu-Fb-qvY" secondAttribute="leading" id="vJ3-1j-71O"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCq-uI-3sS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

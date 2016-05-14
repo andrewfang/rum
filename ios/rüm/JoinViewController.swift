@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JoinViewController: UIViewController {
+class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -151,5 +151,19 @@ class JoinViewController: UIViewController {
         })
         
     }
-
+    
+    // MARK: - Enable push notifs vc delegate
+    func userDidMakeSelection() {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE {
+            if let nav = segue.destinationViewController as? UINavigationController {
+                if let vc = nav.childViewControllers.first as? EnableNotifsViewController {
+                    vc.delegate = self
+                }
+            }
+        }
+    }
 }

@@ -30,7 +30,6 @@
 		497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497B63341CD5228300DCE361 /* FacebookManager.swift */; };
 		497B633B1CD5256600DCE361 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497B633A1CD5256600DCE361 /* LoginViewController.swift */; };
 		49962C271CD909B80012C365 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C261CD909B80012C365 /* SignupViewController.swift */; };
-		49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C281CD909C70012C365 /* WelcomeBackViewController.swift */; };
 		49962C2B1CD938210012C365 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2A1CD938210012C365 /* JoinViewController.swift */; };
 		49962C2D1CD961840012C365 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49962C2C1CD961840012C365 /* CreateGroupViewController.swift */; };
 		49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */; };
@@ -55,6 +54,7 @@
 		4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA65B1CE4108100B364AC /* UIView+animations.swift */; };
 		4FDAA65F1CE43D1000B364AC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA65D1CE43D1000B364AC /* Login.storyboard */; };
 		4FF160E71CE6BF3E00591D7C /* EnablePush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */; };
+		4FF160E91CE6C74C00591D7C /* PostReg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E81CE6C74C00591D7C /* PostReg.storyboard */; };
 		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
 		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
 		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
@@ -111,7 +111,6 @@
 		497B63341CD5228300DCE361 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		497B633A1CD5256600DCE361 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49962C261CD909B80012C365 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		49962C281CD909C70012C365 /* WelcomeBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeBackViewController.swift; sourceTree = "<group>"; };
 		49962C2A1CD938210012C365 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		49962C2C1CD961840012C365 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		49BD46DD1CDFE12600C66536 /* AssignTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		4FDAA65B1CE4108100B364AC /* UIView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		4FDAA65E1CE43D1000B364AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		4FF160E61CE6BF3E00591D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EnablePush.storyboard; sourceTree = "<group>"; };
+		4FF160E81CE6C74C00591D7C /* PostReg.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostReg.storyboard; sourceTree = "<group>"; };
 		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
 		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
 		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
@@ -229,6 +229,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
+				4FF160E81CE6C74C00591D7C /* PostReg.storyboard */,
 				4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */,
 				4FDAA65D1CE43D1000B364AC /* Login.storyboard */,
 				49962C2E1CD9618F0012C365 /* Login View Controllers */,
@@ -285,7 +286,6 @@
 				49962C261CD909B80012C365 /* SignupViewController.swift */,
 				49962C2C1CD961840012C365 /* CreateGroupViewController.swift */,
 				49962C2A1CD938210012C365 /* JoinViewController.swift */,
-				49962C281CD909C70012C365 /* WelcomeBackViewController.swift */,
 				496589741CE68586006BC319 /* EnableNotifsViewController.swift */,
 			);
 			name = "Login View Controllers";
@@ -458,6 +458,7 @@
 				4FFE58251CE2C15100B3B00B /* TableSectionHeaderView.xib in Resources */,
 				496589721CE540A0006BC319 /* AssignTask.storyboard in Resources */,
 				4FDAA6551CE3F86A00B364AC /* SwitchGroup.storyboard in Resources */,
+				4FF160E91CE6C74C00591D7C /* PostReg.storyboard in Resources */,
 				4FDAA6501CE3C50800B364AC /* HeartsParticle.sks in Resources */,
 				494A827B1CD40C8F001C0BAA /* Hope.aif in Resources */,
 				4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */,
@@ -531,7 +532,6 @@
 				4FB0BA261CE4673500E1741E /* KudosButton.swift in Sources */,
 				49C04ABD1CE267E000E0F1DA /* ActionButton.swift in Sources */,
 				4F2B410C1CE528AE00601AA8 /* CardViewController.swift in Sources */,
-				49962C291CD909C70012C365 /* WelcomeBackViewController.swift in Sources */,
 				49BD46DE1CDFE12600C66536 /* AssignTaskViewController.swift in Sources */,
 				4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */,
 				49742C7B1CC9B6BE0024415A /* TaskCollectionViewCell.swift in Sources */,
