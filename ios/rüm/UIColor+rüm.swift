@@ -27,6 +27,7 @@ extension UIColor {
     static func rumGold() -> UIColor { return UIColor.rgb(255, 212, 82) }
     static func rumMagenta() -> UIColor { return UIColor.rgb(254, 62, 128) }
     static func rumBlack() -> UIColor { return UIColor.rgb(25, 25, 25) }
+    static func rumRed() -> UIColor { return UIColor.rgb(186, 29, 29) }
     
     static func rumGraphColors() -> [UIColor] {
         return [rumBlue(), rumTeal(), rumGold(), rumMagenta()]

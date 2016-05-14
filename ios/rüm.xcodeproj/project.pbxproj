@@ -39,7 +39,6 @@
 		4F2B410C1CE528AE00601AA8 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B410A1CE528AE00601AA8 /* CardViewController.swift */; };
 		4F2B410F1CE537AA00601AA8 /* CardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2B410E1CE537AA00601AA8 /* CardViewController.storyboard */; };
 		4F5B4D5D1CE1691A001C7806 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */; };
-		4F5B4D5F1CE16BB2001C7806 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D5E1CE16BB2001C7806 /* Charts.framework */; };
 		4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D601CE16BBD001C7806 /* Bolts.framework */; };
 		4F5B4D631CE16BCE001C7806 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */; };
 		4F5B4D661CE16F00001C7806 /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B4D651CE16F00001C7806 /* GA.swift */; };
@@ -55,6 +54,10 @@
 		4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA65B1CE4108100B364AC /* UIView+animations.swift */; };
 		4FDAA65F1CE43D1000B364AC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA65D1CE43D1000B364AC /* Login.storyboard */; };
 		4FF160E71CE6BF3E00591D7C /* EnablePush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */; };
+		4FF160EC1CE6F34A00591D7C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160EA1CE6F34A00591D7C /* Settings.storyboard */; };
+		4FF160EE1CE6F77300591D7C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF160ED1CE6F77300591D7C /* SettingsViewController.swift */; };
+		4FF160F41CE6FC2D00591D7C /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF160F21CE6FC2D00591D7C /* SettingsTableViewCell.swift */; };
+		4FF160F51CE6FC2D00591D7C /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160F31CE6FC2D00591D7C /* SettingsTableViewCell.xib */; };
 		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
 		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
 		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
@@ -120,7 +123,6 @@
 		4F2B410A1CE528AE00601AA8 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		4F2B410E1CE537AA00601AA8 /* CardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardViewController.storyboard; sourceTree = "<group>"; };
 		4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4F5B4D5E1CE16BB2001C7806 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
 		4F5B4D601CE16BBD001C7806 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/Bolts.framework"; sourceTree = "<group>"; };
 		4F5B4D621CE16BCE001C7806 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/rüm-dmpxukuxznzgcwgmdaspaehpbuct/Build/Products/Debug-iphonesimulator/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		4F5B4D651CE16F00001C7806 /* GA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
@@ -136,6 +138,10 @@
 		4FDAA65B1CE4108100B364AC /* UIView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		4FDAA65E1CE43D1000B364AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		4FF160E61CE6BF3E00591D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EnablePush.storyboard; sourceTree = "<group>"; };
+		4FF160EB1CE6F34A00591D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		4FF160ED1CE6F77300591D7C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4FF160F21CE6FC2D00591D7C /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		4FF160F31CE6FC2D00591D7C /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
 		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
 		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
@@ -160,7 +166,6 @@
 				4F5B4D611CE16BBD001C7806 /* Bolts.framework in Frameworks */,
 				1AC5A4FE57F031961DB68CC5 /* Pods.framework in Frameworks */,
 				4F5B4D631CE16BCE001C7806 /* FBSDKLoginKit.framework in Frameworks */,
-				4F5B4D5F1CE16BB2001C7806 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +206,6 @@
 		49742C591CC9A6CB0024415A = {
 			isa = PBXGroup;
 			children = (
-				4F5B4D5E1CE16BB2001C7806 /* Charts.framework */,
 				4F5B4D5C1CE1691A001C7806 /* GoogleService-Info.plist */,
 				49742C641CC9A6CC0024415A /* rüm */,
 				49742C631CC9A6CB0024415A /* Products */,
@@ -229,7 +233,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
-				4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */,
+				4FF160EF1CE6F77C00591D7C /* Settings */,
 				4FDAA65D1CE43D1000B364AC /* Login.storyboard */,
 				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				4FDAA6561CE4045800B364AC /* SwitchGroup */,
@@ -286,6 +290,7 @@
 				49962C2C1CD961840012C365 /* CreateGroupViewController.swift */,
 				49962C2A1CD938210012C365 /* JoinViewController.swift */,
 				49962C281CD909C70012C365 /* WelcomeBackViewController.swift */,
+				4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */,
 				496589741CE68586006BC319 /* EnableNotifsViewController.swift */,
 			);
 			name = "Login View Controllers";
@@ -319,6 +324,17 @@
 				496E3D151CDD4C1C00072B3F /* SwitchGroupViewController.swift */,
 			);
 			name = SwitchGroup;
+			sourceTree = "<group>";
+		};
+		4FF160EF1CE6F77C00591D7C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4FF160EA1CE6F34A00591D7C /* Settings.storyboard */,
+				4FF160ED1CE6F77300591D7C /* SettingsViewController.swift */,
+				4FF160F21CE6FC2D00591D7C /* SettingsTableViewCell.swift */,
+				4FF160F31CE6FC2D00591D7C /* SettingsTableViewCell.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		4FFE580E1CE28D3900B3B00B /* Storyboards */ = {
@@ -456,6 +472,8 @@
 				4FB0BA1B1CE4563B00E1741E /* Kudos.storyboard in Resources */,
 				4FF160E71CE6BF3E00591D7C /* EnablePush.storyboard in Resources */,
 				4FFE58251CE2C15100B3B00B /* TableSectionHeaderView.xib in Resources */,
+				4FF160F51CE6FC2D00591D7C /* SettingsTableViewCell.xib in Resources */,
+				4FF160EC1CE6F34A00591D7C /* Settings.storyboard in Resources */,
 				496589721CE540A0006BC319 /* AssignTask.storyboard in Resources */,
 				4FDAA6551CE3F86A00B364AC /* SwitchGroup.storyboard in Resources */,
 				4FDAA6501CE3C50800B364AC /* HeartsParticle.sks in Resources */,
@@ -546,7 +564,9 @@
 				4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */,
 				49BD46E01CDFEC0A00C66536 /* MemberTableViewCell.swift in Sources */,
 				49742CCB1CC9F6D00024415A /* DataViewController.swift in Sources */,
+				4FF160F41CE6FC2D00591D7C /* SettingsTableViewCell.swift in Sources */,
 				49962C271CD909B80012C365 /* SignupViewController.swift in Sources */,
+				4FF160EE1CE6F77300591D7C /* SettingsViewController.swift in Sources */,
 				49086F0F1CDBBEFE001144D6 /* ChoreTableViewCell.swift in Sources */,
 				497B63351CD5228300DCE361 /* FacebookManager.swift in Sources */,
 				4FDAA6531CE3C65300B364AC /* Hearts.swift in Sources */,
@@ -594,6 +614,14 @@
 				4FF160E61CE6BF3E00591D7C /* Base */,
 			);
 			name = EnablePush.storyboard;
+			sourceTree = "<group>";
+		};
+		4FF160EA1CE6F34A00591D7C /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FF160EB1CE6F34A00591D7C /* Base */,
+			);
+			name = Settings.storyboard;
 			sourceTree = "<group>";
 		};
 		4FFE58161CE2923200B3B00B /* Todo.storyboard */ = {

@@ -45,7 +45,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         super.viewWillAppear(animated)
         
         // TODO: Only do this once then add pull to reload
-        NetworkingManager.sharedInstance.getGroupForData(NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)!)
+        // load group
+        
+        let groupId = NSUserDefaults.standardUserDefaults().stringForKey(MainViewController.Constants.GROUP_ID)
+        if groupId != nil {
+            NetworkingManager.sharedInstance.getGroupForData(groupId!)
+        }
     }
     
     func updateData(notification:NSNotification) {
@@ -214,31 +219,4 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             vc.delegate = self
         }
     }
-    
-    
-//    @IBAction private func logout() {
-//        let alertController = UIAlertController(title: "Logout", message: "Are you sure you want to logout?.", preferredStyle: .Alert)
-//        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-//        alertController.addAction(UIAlertAction(title: "Logout", style: .Destructive, handler: { done in
-//            // yes
-//            if let navVC = self.tabBarController?.viewControllers?.first as? UINavigationController {
-//                if let mainVC = navVC.viewControllers.first as? MainViewController {
-//                    mainVC.todos = []
-//                    if mainVC.lastTaskCell != nil {
-//                        mainVC.lastTaskCell!.loadEmpty()
-//                    }
-//                    mainVC.userId = nil
-//                    mainVC.groupId = nil
-//                    let userDef = NSUserDefaults.standardUserDefaults()
-//                    userDef.setValue(nil, forKey: MainViewController.Constants.GROUP_ID)
-//                    userDef.setValue(nil, forKey: "ID")
-//                    
-//                    mainVC.performSegueWithIdentifier("ShowLogin", sender: self)
-//                    
-//                    self.tabBarController?.selectedIndex = 0
-//                }
-//            }
-//        }))
-//        self.presentViewController(alertController, animated: true, completion: nil)
-//    }
 }

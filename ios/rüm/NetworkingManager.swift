@@ -175,7 +175,6 @@ class NetworkingManager {
             guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
                 return
             }
-            
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.GROUP_DATA, object: nil, userInfo: ["members":json!["members"]!])
         })
     }

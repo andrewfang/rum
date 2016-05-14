@@ -1,7 +1,6 @@
 use_frameworks!
 pod 'Lookback', :configurations => ['Debug']
 pod 'LookbackSafe', :configurations => ['Release']
-pod 'Charts'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
