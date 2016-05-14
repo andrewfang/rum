@@ -333,7 +333,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="20" height="16"/>
+        <image name="back" width="11" height="19"/>
         <image name="createBackground" width="2736" height="1824"/>
         <image name="joinBackground" width="2109" height="1401"/>
     </resources>
