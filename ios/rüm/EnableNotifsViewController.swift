@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EnableNotifsViewControllerDelegate: class {
+    func userDidMakeSelection()
+}
+
 class EnableNotifsViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!
@@ -22,9 +26,18 @@ class EnableNotifsViewController: UIViewController {
         static let NOTIF_REGISTER_SUCCESS = "NOTIF_REGISTER_SUCCESS"
         static let NOTIF_REGISTER_FAILED = "NOTIF_REGISTER_FAILED"
     }
+
+    var delegate: EnableNotifsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barStyle = .Default
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EnableNotifsViewController.registerNotifSuccess), name: Constants.NOTIF_REGISTER_SUCCESS, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EnableNotifsViewController.registerNotifFailed), name: Constants.NOTIF_REGISTER_FAILED, object: nil)
@@ -41,10 +54,16 @@ class EnableNotifsViewController: UIViewController {
 
     @IBAction private func showNotif() {
         NotificationManager.sharedInstance.registerForNotifications()
+        if (self.delegate != nil) {
+            self.delegate!.userDidMakeSelection()
+        }
     }
     
     @IBAction private func noNotif() {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        if (self.delegate != nil) {
+            self.delegate!.userDidMakeSelection()
+        }
     }
     
     func registerNotifSuccess() {

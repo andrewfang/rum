@@ -108,7 +108,6 @@
                         <outlet property="activityIndicator" destination="jBW-wV-ff4" id="RCB-aR-Cs4"/>
                         <outlet property="loginButton" destination="3JK-DV-nxm" id="z1i-xK-efb"/>
                         <outlet property="logoImageView" destination="Tft-ep-YS3" id="mq7-1h-wUi"/>
-                        <segue destination="SSN-pV-Dzx" kind="show" identifier="WELCOME_SEGUE" id="vWd-K1-0g8"/>
                         <segue destination="WBH-hz-x48" kind="show" identifier="SIGNUP_SEGUE" id="JE1-JU-ckH"/>
                         <segue destination="IMk-Io-BIn" kind="show" identifier="GROUP_SEGUE" id="Hn2-MU-gVH"/>
                     </connections>
@@ -127,21 +126,13 @@
             </objects>
             <point key="canvasLocation" x="2784.5" y="306"/>
         </scene>
-        <!--UIViewController-CmL-YF-eyQ-->
-        <scene sceneID="Hon-mr-oWz">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-CmL-YF-eyQ" id="SSN-pV-Dzx" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="paB-r9-M9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3308" y="-583"/>
-        </scene>
         <!--UIViewController-4KH-ox-6cZ-->
         <scene sceneID="W1P-Uk-sfo">
             <objects>
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-4KH-ox-6cZ" id="WBH-hz-x48" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynN-2P-dmt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3307" y="182"/>
+            <point key="canvasLocation" x="3163" y="306"/>
         </scene>
     </scenes>
     <resources>

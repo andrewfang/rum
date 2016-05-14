@@ -27,6 +27,8 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
         // register switch group page view with ga
         GA.registerPageView("SwitchGroup")
         
