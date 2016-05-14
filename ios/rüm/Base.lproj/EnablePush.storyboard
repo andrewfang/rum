@@ -118,6 +118,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="Jgm-B7-g6L"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="copyLabel" destination="DKS-uD-upB" id="aYS-Sh-lYl"/>
+                        <outlet property="enableButton" destination="Fjq-4R-4S6" id="OvI-BN-Bt4"/>
+                        <outlet property="headerLabel" destination="Wl7-bD-Byd" id="aHi-zn-zLT"/>
+                        <outlet property="notNowButton" destination="JmM-CZ-0Cq" id="2ge-5z-tr0"/>
+                        <outlet property="phoneIcon" destination="7DD-2c-fVD" id="zGT-2c-AzT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M59-Qd-2UT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
