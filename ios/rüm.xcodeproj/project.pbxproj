@@ -54,6 +54,7 @@
 		4FDAA65A1CE404FF00B364AC /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA6591CE404FF00B364AC /* GroupCell.xib */; };
 		4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA65B1CE4108100B364AC /* UIView+animations.swift */; };
 		4FDAA65F1CE43D1000B364AC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA65D1CE43D1000B364AC /* Login.storyboard */; };
+		4FF160E71CE6BF3E00591D7C /* EnablePush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */; };
 		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
 		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
 		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
@@ -134,6 +135,7 @@
 		4FDAA6591CE404FF00B364AC /* GroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		4FDAA65B1CE4108100B364AC /* UIView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		4FDAA65E1CE43D1000B364AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		4FF160E61CE6BF3E00591D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EnablePush.storyboard; sourceTree = "<group>"; };
 		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
 		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
 		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				496042721CD03BBD00B658A0 /* Views */,
 				497893B41CD3D91D004D7371 /* Managers */,
 				49742C691CC9A6CC0024415A /* Main.storyboard */,
+				4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */,
 				4FDAA65D1CE43D1000B364AC /* Login.storyboard */,
 				49962C2E1CD9618F0012C365 /* Login View Controllers */,
 				4FDAA6561CE4045800B364AC /* SwitchGroup */,
@@ -451,6 +454,7 @@
 				4FFE58211CE2B01200B3B00B /* TodoCell.xib in Resources */,
 				4F2B410F1CE537AA00601AA8 /* CardViewController.storyboard in Resources */,
 				4FB0BA1B1CE4563B00E1741E /* Kudos.storyboard in Resources */,
+				4FF160E71CE6BF3E00591D7C /* EnablePush.storyboard in Resources */,
 				4FFE58251CE2C15100B3B00B /* TableSectionHeaderView.xib in Resources */,
 				496589721CE540A0006BC319 /* AssignTask.storyboard in Resources */,
 				4FDAA6551CE3F86A00B364AC /* SwitchGroup.storyboard in Resources */,
@@ -582,6 +586,14 @@
 				4FDAA65E1CE43D1000B364AC /* Base */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FF160E61CE6BF3E00591D7C /* Base */,
+			);
+			name = EnablePush.storyboard;
 			sourceTree = "<group>";
 		};
 		4FFE58161CE2923200B3B00B /* Todo.storyboard */ = {

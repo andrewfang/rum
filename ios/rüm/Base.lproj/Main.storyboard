@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AG1-mX-ZTQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AG1-mX-ZTQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -333,7 +333,7 @@
                         <outlet property="createGroupStackView" destination="486-ZV-GrW" id="9Yd-Fw-IHV"/>
                         <outlet property="showCodeStackView" destination="yfq-re-uDq" id="89k-OZ-fdE"/>
                         <outlet property="textField" destination="Y5N-Ga-zQZ" id="MTP-Ml-z3w"/>
-                        <segue destination="WxP-uU-eIx" kind="show" identifier="SETUP_NOTIF_SEGUE" id="Peb-KZ-Mzr"/>
+                        <segue destination="lLL-aQ-aDU" kind="show" identifier="SETUP_NOTIF_SEGUE" id="Peb-KZ-Mzr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhB-5E-BeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -418,108 +418,12 @@
                     <connections>
                         <outlet property="activityIndicator" destination="BQb-Ev-25E" id="Ypz-q4-y7G"/>
                         <outlet property="textField" destination="A98-Dy-I83" id="AgW-qH-P8A"/>
-                        <segue destination="WxP-uU-eIx" kind="show" identifier="SETUP_NOTIF_SEGUE" id="uo5-Ai-hEc"/>
+                        <segue destination="lLL-aQ-aDU" kind="show" identifier="SETUP_NOTIF_SEGUE" id="uo5-Ai-hEc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2Y-d2-X1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4210" y="525"/>
-        </scene>
-        <!--Enable Notifs View Controller-->
-        <scene sceneID="yzb-W4-wGW">
-            <objects>
-                <viewController id="WxP-uU-eIx" customClass="EnableNotifsViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="c6q-2y-6Le"/>
-                        <viewControllerLayoutGuide type="bottom" id="5rN-qY-GIS"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Cy4-2a-ufq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notifBackground" translatesAutoresizingMaskIntoConstraints="NO" id="QIT-9H-qzl">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-1g-egH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Push Notifications?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wl7-bD-Byd">
-                                <rect key="frame" x="176" y="230.5" width="249" height="27.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="0.3294117647" green="0.72549019609999998" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjq-4R-4S6">
-                                <rect key="frame" x="182" y="342" width="235" height="38"/>
-                                <color key="backgroundColor" red="0.3294117647" green="0.72549019609999998" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="30" minY="10" maxX="30" maxY="10"/>
-                                <state key="normal" title="Enable Push Notifications">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="showNotif" destination="WxP-uU-eIx" eventType="touchUpInside" id="12C-Yb-BZo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JmM-CZ-0Cq">
-                                <rect key="frame" x="258" y="390" width="84" height="33"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="No, not now">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="noNotif" destination="WxP-uU-eIx" eventType="touchUpInside" id="HOF-Aw-Rnn"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tap “OK” on the popup to get alerts when people complete tasks or give you kudos." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-uD-upB">
-                                <rect key="frame" x="117" y="278" width="365.5" height="44"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="DKS-uD-upB" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="4mt-MZ-OTO"/>
-                            <constraint firstItem="QIT-9H-qzl" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="6A0-08-Dnf"/>
-                            <constraint firstItem="Fjq-4R-4S6" firstAttribute="centerY" secondItem="DKS-uD-upB" secondAttribute="centerY" id="77Q-OZ-Hlf"/>
-                            <constraint firstItem="DKS-uD-upB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cy4-2a-ufq" secondAttribute="leadingMargin" constant="75" id="8IU-Bf-4hM"/>
-                            <constraint firstItem="Wl7-bD-Byd" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="Ay8-Ou-esP"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DKS-uD-upB" secondAttribute="trailing" constant="75" id="ELI-mO-4Wc"/>
-                            <constraint firstItem="Fjq-4R-4S6" firstAttribute="top" secondItem="DKS-uD-upB" secondAttribute="bottom" constant="20" id="HAw-Ww-tqq"/>
-                            <constraint firstItem="Fjq-4R-4S6" firstAttribute="bottom" secondItem="JmM-CZ-0Cq" secondAttribute="top" constant="-10" id="Jy0-dA-7F6"/>
-                            <constraint firstItem="QIT-9H-qzl" firstAttribute="centerY" secondItem="Cy4-2a-ufq" secondAttribute="centerY" id="KgV-yE-Qi4"/>
-                            <constraint firstItem="Fjq-4R-4S6" firstAttribute="top" secondItem="DKS-uD-upB" secondAttribute="bottom" constant="-37" id="PRo-EC-A8p"/>
-                            <constraint firstItem="DKS-uD-upB" firstAttribute="width" secondItem="Cy4-2a-ufq" secondAttribute="width" multiplier="0.75" id="Ro3-Yh-ntX"/>
-                            <constraint firstItem="QIT-9H-qzl" firstAttribute="width" secondItem="Cy4-2a-ufq" secondAttribute="width" id="SG9-kX-Xe2"/>
-                            <constraint firstItem="JmM-CZ-0Cq" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="V3H-GG-jB7"/>
-                            <constraint firstItem="QIT-9H-qzl" firstAttribute="height" secondItem="Cy4-2a-ufq" secondAttribute="height" id="VbQ-fJ-dNz"/>
-                            <constraint firstItem="Wl7-bD-Byd" firstAttribute="bottom" secondItem="DKS-uD-upB" secondAttribute="top" constant="-20" id="Ydj-Tj-51O"/>
-                            <constraint firstItem="DKS-uD-upB" firstAttribute="centerY" secondItem="Cy4-2a-ufq" secondAttribute="centerY" id="bYP-Dp-KZK"/>
-                            <constraint firstItem="jiX-1g-egH" firstAttribute="centerY" secondItem="Cy4-2a-ufq" secondAttribute="centerY" id="cql-aE-Z9B"/>
-                            <constraint firstItem="Fjq-4R-4S6" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="fdK-4b-wK3"/>
-                            <constraint firstItem="jiX-1g-egH" firstAttribute="width" secondItem="Cy4-2a-ufq" secondAttribute="width" id="g4k-GC-svv"/>
-                            <constraint firstItem="jiX-1g-egH" firstAttribute="height" secondItem="Cy4-2a-ufq" secondAttribute="height" id="ibz-v1-VXd"/>
-                            <constraint firstItem="jiX-1g-egH" firstAttribute="centerX" secondItem="Cy4-2a-ufq" secondAttribute="centerX" id="wbX-Go-tFt"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="8IU-Bf-4hM"/>
-                                <exclude reference="ELI-mO-4Wc"/>
-                                <exclude reference="77Q-OZ-Hlf"/>
-                                <exclude reference="PRo-EC-A8p"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M59-Qd-2UT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4937" y="56"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sLL-bt-isP">
@@ -629,6 +533,14 @@
             </objects>
             <point key="canvasLocation" x="1152" y="1156"/>
         </scene>
+        <!--EnablePush-->
+        <scene sceneID="yKl-D4-3xD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EnablePush" id="lLL-aQ-aDU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qFh-p8-SQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4937" y="56"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="20" height="16"/>
@@ -636,9 +548,8 @@
         <image name="createBackground" width="2736" height="1824"/>
         <image name="joinBackground" width="2109" height="1401"/>
         <image name="kudos_tab_icon" width="16" height="13"/>
-        <image name="notifBackground" width="3008" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Peb-KZ-Mzr"/>
+        <segue reference="uo5-Ai-hEc"/>
     </inferredMetricsTieBreakers>
 </document>
