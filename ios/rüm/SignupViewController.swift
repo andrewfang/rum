@@ -21,6 +21,8 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
         self.photoImgView.image = FacebookManager.sharedInstance.photo
         self.nameLabel.text = "Hi, \(FacebookManager.sharedInstance.first_name!)"
     }

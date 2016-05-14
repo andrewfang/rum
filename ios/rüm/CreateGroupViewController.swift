@@ -39,6 +39,9 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
     // MARK: - View Controller Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
         self.setupTextField()
         
         // NetworkManager will send out notifications if the user join was successful
@@ -65,6 +68,10 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
         border.borderWidth = width
         textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func groupCreated(notification: NSNotification) {

@@ -68,6 +68,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     @IBAction func login() {
         FacebookManager.sharedInstance.login(self)
         self.activityIndicator.startAnimating()

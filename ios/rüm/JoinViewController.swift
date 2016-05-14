@@ -15,6 +15,9 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
         self.setupTextField()
         
         // NetworkManager will send out notifications if the user join was successful
@@ -67,6 +70,10 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
         GA.sendEvent("group", action: "join", label: eventLabel, value: nil)
         
         NetworkingManager.sharedInstance.joinUserToGroup(id, groupCode: text)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     // MARK: - Actions triggered by NetworkManager

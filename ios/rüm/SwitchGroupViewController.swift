@@ -105,6 +105,10 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 64
     }
