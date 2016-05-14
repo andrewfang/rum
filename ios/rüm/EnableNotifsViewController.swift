@@ -27,13 +27,22 @@ class EnableNotifsViewController: UIViewController {
         NotificationManager.sharedInstance.registerForNotifications()
     }
     
-    func registerNotifSuccess() {
+    @IBAction private func noNotif() {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func registerNotifSuccess() {
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        })
+        
     }
     
     func registerNotifFailed() {
         print("Failed to register")
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
     
