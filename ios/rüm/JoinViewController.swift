@@ -92,7 +92,12 @@ class JoinViewController: UIViewController {
                         }
                     }
                 }
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                if (NotificationManager.sharedInstance.notificationsAllowed()) {
+                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+                }
+                
             } else if (response.statusCode == 404){
                 let notif = UIAlertController(title: "Error", message: "No group exists with code \"\(self.textField.text!)\". Please double check your code and try again.", preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
@@ -132,7 +137,11 @@ class JoinViewController: UIViewController {
             
             if (message == "") {
                 // Error 409, user already part of group. Just take them there.
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                if (NotificationManager.sharedInstance.notificationsAllowed()) {
+                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+                }
             } else {
                 let notif = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))

@@ -25,7 +25,19 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.checkUser(_:)), name: NetworkingManager.Constants.CHECK_USER_EXISTS, object: nil)
-        NotificationManager.sharedInstance.registerForNotifications()
+        self.activityIndicator.stopAnimating()
+        
+        if !self.ranLogoAnimation {
+            var t = CGAffineTransformIdentity
+            t = CGAffineTransformScale(t, 0.4, 0.4)
+            t = CGAffineTransformTranslate(t, 0, 100.0)
+            
+            logoImageView.transform = t
+            logoImageView.alpha = 0
+            
+            loginButton.transform = CGAffineTransformMakeTranslation(0.0, 40.0)
+            loginButton.alpha = 0
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,15 +45,6 @@ class LoginViewController: UIViewController {
         
         if !self.ranLogoAnimation {
             self.ranLogoAnimation = true
-            var t = CGAffineTransformIdentity
-            t = CGAffineTransformScale(t, 0.4, 0.4)
-            t = CGAffineTransformTranslate(t, 0, 100.0)
-        
-            logoImageView.transform = t
-            logoImageView.alpha = 0
-            
-            loginButton.transform = CGAffineTransformMakeTranslation(0.0, 40.0)
-            loginButton.alpha = 0
             
             UIView.animateWithDuration(0.6,
                 delay: 0.4,
@@ -72,6 +75,10 @@ class LoginViewController: UIViewController {
     
     override func notifyLoggedIn() {
         NetworkingManager.sharedInstance.checkUser(NSUserDefaults.standardUserDefaults().stringForKey("ID")!)
+    }
+    
+    override func notifyNotLoggedIn() {
+        self.activityIndicator.stopAnimating()
     }
     
     func checkUser(notification:NSNotification) {

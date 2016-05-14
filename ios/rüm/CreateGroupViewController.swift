@@ -33,7 +33,6 @@ class CreateGroupViewController: UIViewController {
         let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
         GA.sendEvent("group", action: "create", label: eventLabel, value: nil)
         NetworkingManager.sharedInstance.createGroup(text)
-        
     }
     
     // MARK: - View Controller Life cycle
@@ -106,7 +105,11 @@ class CreateGroupViewController: UIViewController {
             }
         }
         
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        if (NotificationManager.sharedInstance.notificationsAllowed()) {
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+        }
     }
 
 }

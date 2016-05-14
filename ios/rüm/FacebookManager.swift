@@ -38,9 +38,11 @@ class FacebookManager {
         FBSDKLoginManager().logInWithReadPermissions(["public_profile"], fromViewController: viewController, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) in
             if (error != nil) {
                 FBSDKLoginManager().logOut()
+                viewController.notifyNotLoggedIn()
                 print("error: ", error)
             } else if (result.isCancelled) {
                 FBSDKLoginManager().logOut()
+                viewController.notifyNotLoggedIn()
                 print ("cancelled")
             } else {
                 self.loadFBDetails(viewController)
@@ -114,6 +116,9 @@ protocol FBViewController {
 
 extension UIViewController : FBViewController {
     func notifyLoggedIn() {
+        return
+    }
+    func notifyNotLoggedIn() {
         return
     }
 }
