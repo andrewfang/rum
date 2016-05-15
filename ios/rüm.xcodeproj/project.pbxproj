@@ -53,11 +53,11 @@
 		4FDAA65C1CE4108100B364AC /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAA65B1CE4108100B364AC /* UIView+animations.swift */; };
 		4FDAA65F1CE43D1000B364AC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDAA65D1CE43D1000B364AC /* Login.storyboard */; };
 		4FF160E71CE6BF3E00591D7C /* EnablePush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */; };
+		4FF160E91CE6C74C00591D7C /* PostReg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E81CE6C74C00591D7C /* PostReg.storyboard */; };
 		4FF160EC1CE6F34A00591D7C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160EA1CE6F34A00591D7C /* Settings.storyboard */; };
 		4FF160EE1CE6F77300591D7C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF160ED1CE6F77300591D7C /* SettingsViewController.swift */; };
 		4FF160F41CE6FC2D00591D7C /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF160F21CE6FC2D00591D7C /* SettingsTableViewCell.swift */; };
 		4FF160F51CE6FC2D00591D7C /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160F31CE6FC2D00591D7C /* SettingsTableViewCell.xib */; };
-		4FF160E91CE6C74C00591D7C /* PostReg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF160E81CE6C74C00591D7C /* PostReg.storyboard */; };
 		4FFE58181CE2923200B3B00B /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE58161CE2923200B3B00B /* Todo.storyboard */; };
 		4FFE581C1CE2960F00B3B00B /* LastTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */; };
 		4FFE581D1CE2960F00B3B00B /* LastTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */; };
@@ -137,11 +137,11 @@
 		4FDAA65B1CE4108100B364AC /* UIView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		4FDAA65E1CE43D1000B364AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		4FF160E61CE6BF3E00591D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EnablePush.storyboard; sourceTree = "<group>"; };
+		4FF160E81CE6C74C00591D7C /* PostReg.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostReg.storyboard; sourceTree = "<group>"; };
 		4FF160EB1CE6F34A00591D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		4FF160ED1CE6F77300591D7C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FF160F21CE6FC2D00591D7C /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		4FF160F31CE6FC2D00591D7C /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
-		4FF160E81CE6C74C00591D7C /* PostReg.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostReg.storyboard; sourceTree = "<group>"; };
 		4FFE58171CE2923200B3B00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todo.storyboard; sourceTree = "<group>"; };
 		4FFE581A1CE2960F00B3B00B /* LastTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastTaskCell.swift; sourceTree = "<group>"; };
 		4FFE581B1CE2960F00B3B00B /* LastTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastTaskCell.xib; sourceTree = "<group>"; };
@@ -291,8 +291,6 @@
 				49962C261CD909B80012C365 /* SignupViewController.swift */,
 				49962C2C1CD961840012C365 /* CreateGroupViewController.swift */,
 				49962C2A1CD938210012C365 /* JoinViewController.swift */,
-				49962C281CD909C70012C365 /* WelcomeBackViewController.swift */,
-				4FF160E51CE6BF3E00591D7C /* EnablePush.storyboard */,
 				496589741CE68586006BC319 /* EnableNotifsViewController.swift */,
 			);
 			name = "Login View Controllers";
