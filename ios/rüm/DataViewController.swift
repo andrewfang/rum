@@ -141,14 +141,12 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     
     // MARK:- kudos button delegation
-    var kudosStartTime: Double = 0.0
     func userDidBeginKudos(kudosButton: KudosButton) {
-        kudosStartTime = NSDate().timeIntervalSince1970
+        //
     }
     
     func userDidEndKudos(kudosButton: KudosButton, numKudos: Int) {
         if let receiverId = kudosButton.userId {
-            
             // update this member's number of kudos locally, then re-render
             // the kudos graphs
             if let i = self.members.indexOf({ $0["id"] as! String == receiverId }) {
@@ -157,7 +155,8 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 if k == nil {
                     k = 0
                 }
-                self.members[i] = m
+                k! += numKudos
+                self.members[i]["kudos"] = k
                 self.updateKudosGraphs()
             }
             
