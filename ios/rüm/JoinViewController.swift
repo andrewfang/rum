@@ -10,6 +10,8 @@ import UIKit
 
 class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
 
+    var navWasHidden = false
+    
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -29,9 +31,21 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.textField.becomeFirstResponder()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let nvc = self.navigationController {
+            self.navWasHidden = nvc.navigationBarHidden
+            nvc.setNavigationBarHidden(true, animated: false)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let nvc = self.navigationController {
+            nvc.setNavigationBarHidden(self.navWasHidden, animated: false)
+        }
     }
     
     // Textfield is just a line, white text and light gray hint text

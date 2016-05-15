@@ -321,7 +321,7 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="join"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2S-KS-qup" customClass="ActionButton" customModule="ru_m" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2S-KS-qup" customClass="ActionButton" customModule="ru_m" customModuleProvider="target">
                                         <rect key="frame" x="245" y="55" width="30" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="iHD-nY-bvg"/>
@@ -372,6 +372,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="BQb-Ev-25E" id="Ypz-q4-y7G"/>
                         <outlet property="textField" destination="A98-Dy-I83" id="AgW-qH-P8A"/>
