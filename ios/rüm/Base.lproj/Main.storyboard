@@ -89,7 +89,7 @@
         <scene sceneID="3Wx-sb-hO5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TKd-sY-X03" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Kudos" image="kudos_tab_icon" id="jPB-ju-3NZ"/>
+                    <tabBarItem key="tabBarItem" title="Kudos" image="kudos_tab_icon" selectedImage="kudos_tab_selected_icon" id="jPB-ju-3NZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="TGX-HQ-fQD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -161,7 +161,7 @@
         <scene sceneID="CFS-dc-S6g">
             <objects>
                 <navigationController id="dgY-fk-FUo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings_icon" id="77d-Ii-ipr"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings_icon" selectedImage="settings_selected_icon" id="77d-Ii-ipr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Re8-pz-QSM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -236,6 +236,8 @@
         <image name="back" width="11" height="19"/>
         <image name="check_icon" width="16" height="11"/>
         <image name="kudos_tab_icon" width="16" height="13"/>
+        <image name="kudos_tab_selected_icon" width="16" height="13"/>
         <image name="settings_icon" width="17" height="17"/>
+        <image name="settings_selected_icon" width="15" height="15"/>
     </resources>
 </document>
