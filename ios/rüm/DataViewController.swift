@@ -38,6 +38,10 @@ class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DataViewController.updateData(_:)), name: NetworkingManager.Constants.GROUP_DATA, object: nil)
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.DID_CLOSE_KUDOS_ONBOARDING) {
+            self.onboardingCardContainerView.hidden = true
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
