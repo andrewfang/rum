@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '084040F1C38804666520DB6B'
+               BlueprintIdentifier = '9328C4B9008D151D2AB7B34E'
                BlueprintName = 'PDKTZipArchive'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PDKTZipArchive.framework'>

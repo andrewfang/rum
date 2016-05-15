@@ -46,4 +46,8 @@ class NotificationManager {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
+    func notificationsAllowed() -> Bool {
+        return UIApplication.sharedApplication().isRegisteredForRemoteNotifications()
+    }
+    
 }

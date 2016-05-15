@@ -8,12 +8,13 @@
 
 import UIKit
 
-class CreateGroupViewController: UIViewController {
+class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDelegate {
 
     @IBOutlet weak var codeLabel:UILabel!
     @IBOutlet weak var textField:UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var createGroupStackView:UIStackView!
     @IBOutlet weak var showCodeStackView:UIStackView!
     @IBOutlet weak var backButton: UIButton!
@@ -33,17 +34,20 @@ class CreateGroupViewController: UIViewController {
         let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
         GA.sendEvent("group", action: "create", label: eventLabel, value: nil)
         NetworkingManager.sharedInstance.createGroup(text)
-        
     }
     
     // MARK: - View Controller Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
         self.setupTextField()
         
         // NetworkManager will send out notifications if the user join was successful
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateGroupViewController.groupCreated(_:)), name: NetworkingManager.Constants.USER_CREATED_GROUP, object: nil)
 
+        self.navigationItem.setHidesBackButton(true, animated: false)
         self.showCodeStackView.alpha = 0
         self.showCodeStackView.hidden = true
     }
@@ -64,8 +68,10 @@ class CreateGroupViewController: UIViewController {
         border.borderWidth = width
         textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
-        
-        textField.attributedPlaceholder = NSAttributedString(string: "group name", attributes: [NSForegroundColorAttributeName : UIColor.lightGrayColor()])
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func groupCreated(notification: NSNotification) {
@@ -81,31 +87,51 @@ class CreateGroupViewController: UIViewController {
             }
             
             self.codeLabel.text = code
-            
             self.textField.resignFirstResponder()
             
             UIView.animateWithDuration(1.0, animations: {
-                self.showCodeStackView.hidden = false
-                self.showCodeStackView.alpha = 1.0
                 self.createGroupStackView.alpha = 0.0
+                self.groupNameLabel.alpha = 0.0
                 self.backButton.hidden = true
                 }, completion: { done in
+                    self.groupNameLabel.hidden = true
                     self.createGroupStackView.hidden = true
                     
+                    self.showCodeStackView.hidden = false
+                    self.showCodeStackView.bounceSlideUpIn(0.4, delay: 0)
             })
         })
     }
     
+    // MARK: - Enable push notifications VC delegate
+    func userDidMakeSelection() {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction private func done() {
         if let tabvc = self.presentingViewController as? UITabBarController {
-            if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+            if let navvc = tabvc.viewControllers![1] as? UINavigationController {
                 if let mainvc = navvc.viewControllers.first as? MainViewController {
                     mainvc.setupTasks()
                 }
             }
         }
         
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        if (NotificationManager.sharedInstance.notificationsAllowed()) {
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE {
+            if let nav = segue.destinationViewController as? UINavigationController {
+                if let vc = nav.childViewControllers.first as? EnableNotifsViewController {
+                    vc.delegate = self
+                }
+            }
+        }
     }
 
 }

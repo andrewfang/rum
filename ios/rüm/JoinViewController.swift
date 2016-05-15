@@ -8,18 +8,23 @@
 
 import UIKit
 
-class JoinViewController: UIViewController {
+class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
         self.setupTextField()
         
         // NetworkManager will send out notifications if the user join was successful
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JoinViewController.userJoined(_:)), name: NetworkingManager.Constants.USER_JOINED_GROUP, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JoinViewController.groupDontExist(_:)), name: NetworkingManager.Constants.GROUP_DOESNT_EXIST, object: nil)
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         
     }
@@ -41,8 +46,6 @@ class JoinViewController: UIViewController {
         border.borderWidth = width
         textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
-        
-        textField.attributedPlaceholder = NSAttributedString(string: "code", attributes: [NSForegroundColorAttributeName : UIColor.lightGrayColor()])
     }
     
     @IBAction func back() {
@@ -69,6 +72,10 @@ class JoinViewController: UIViewController {
         NetworkingManager.sharedInstance.joinUserToGroup(id, groupCode: text)
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     // MARK: - Actions triggered by NetworkManager
     func userJoined(notification: NSNotification) {
         NSOperationQueue.mainQueue().addOperationWithBlock({
@@ -84,20 +91,25 @@ class JoinViewController: UIViewController {
             
             if (response.statusCode == 200 || response.statusCode == 409) {
                 if let tabvc = self.presentingViewController as? UITabBarController {
-                    if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+                    if let navvc = tabvc.viewControllers![1] as? UINavigationController {
                         if let mainvc = navvc.viewControllers.first as? MainViewController {
                             mainvc.setupTasks()
                         }
                     }
                 }
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                if (NotificationManager.sharedInstance.notificationsAllowed()) {
+                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+                }
+                
             } else if (response.statusCode == 404){
                 let notif = UIAlertController(title: "Error", message: "No group exists with code \"\(self.textField.text!)\". Please double check your code and try again.", preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 
                 self.presentViewController(notif, animated: true, completion: nil)
             } else {
-                let notif = UIAlertController(title: "Error: \(response.statusCode)", message: "Not sure what happened", preferredStyle: .Alert)
+                let notif = UIAlertController(title: "Error: \(response.statusCode)", message: "Check your network connection and try again.", preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 
                 self.presentViewController(notif, animated: true, completion: nil)
@@ -130,7 +142,11 @@ class JoinViewController: UIViewController {
             
             if (message == "") {
                 // Error 409, user already part of group. Just take them there.
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                if (NotificationManager.sharedInstance.notificationsAllowed()) {
+                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.performSegueWithIdentifier(EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE, sender: nil)
+                }
             } else {
                 let notif = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
@@ -140,5 +156,19 @@ class JoinViewController: UIViewController {
         })
         
     }
-
+    
+    // MARK: - Enable push notifs vc delegate
+    func userDidMakeSelection() {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == EnableNotifsViewController.Constants.SETUP_NOTIF_SEGUE {
+            if let nav = segue.destinationViewController as? UINavigationController {
+                if let vc = nav.childViewControllers.first as? EnableNotifsViewController {
+                    vc.delegate = self
+                }
+            }
+        }
+    }
 }

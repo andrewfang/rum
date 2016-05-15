@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Todo-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flT-Td-Re9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utW-zx-CNm">
+                                <rect key="frame" x="275" y="419" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.32941176470588235" green="0.72549019607843135" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="utW-zx-CNm" secondAttribute="height" multiplier="1:1" id="oRv-sL-VKJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="vXk-bb-WK9"/>
+                                </constraints>
+                                <state key="normal" image="plus_icon"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="25"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="rPU-7g-SFJ" kind="presentation" identifier="AddTaskSegue" modalPresentationStyle="overCurrentContext" id="HzP-Qp-CLA"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpJ-0m-ro8">
+                                <rect key="frame" x="20" y="10" width="560" height="178.5"/>
+                                <connections>
+                                    <segue destination="44f-RM-5b0" kind="embed" identifier="CardViewControllerSegue" id="Gg9-ZM-Pud"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OpJ-0m-ro8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Egl-Sq-0lX"/>
+                            <constraint firstAttribute="trailing" secondItem="OpJ-0m-ro8" secondAttribute="trailing" constant="20" id="IHP-mb-OfD"/>
+                            <constraint firstItem="flT-Td-Re9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kto-Cp-6KZ"/>
+                            <constraint firstItem="flT-Td-Re9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MMS-0P-2By"/>
+                            <constraint firstItem="flT-Td-Re9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="ONW-hC-uUT"/>
+                            <constraint firstItem="OpJ-0m-ro8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1/3" id="YuQ-D6-5Jg"/>
+                            <constraint firstItem="flT-Td-Re9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aHc-xY-scs"/>
+                            <constraint firstItem="flT-Td-Re9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bfi-rG-cJO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="utW-zx-CNm" secondAttribute="bottom" constant="18" id="ezp-cn-cPW"/>
+                            <constraint firstItem="OpJ-0m-ro8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="gJe-rd-EG2"/>
+                            <constraint firstItem="utW-zx-CNm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tGl-qJ-5oW"/>
+                            <constraint firstItem="flT-Td-Re9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="yjm-48-ghi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Todo" id="N8v-vp-9Cz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="VPu-Zi-a0D"/>
+                        <barButtonItem key="leftBarButtonItem" image="group" id="HTZ-YY-ooy">
+                            <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="switchGroups" destination="BYZ-38-t0r" id="H8P-br-zSm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="share" id="VwE-9L-hFz">
+                            <color key="tintColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showJoinCode" destination="BYZ-38-t0r" id="nuI-Q7-4JR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO">
+                        <color key="barTintColor" red="0.94509803921568625" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                    </simulatedNavigationBarMetrics>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addTaskButton" destination="utW-zx-CNm" id="Nx6-LV-5KE"/>
+                        <outlet property="onboardingCardContainerView" destination="OpJ-0m-ro8" id="D2k-g0-W28"/>
+                        <outlet property="tableView" destination="flT-Td-Re9" id="SyT-X3-fn7"/>
+                        <segue destination="tKz-aE-WrI" kind="presentation" identifier="ShowLogin" id="eWN-qa-fd2"/>
+                        <segue destination="hjt-ht-bfT" kind="presentation" identifier="GROUP_SWITCH" id="7Ct-Cq-zqG"/>
+                        <segue destination="hdd-hQ-G8r" kind="presentation" identifier="ASSIGN_TASK_SEGUE" id="N4w-sB-oCe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1964" y="429"/>
+        </scene>
+        <!--TextInput-->
+        <scene sceneID="GDB-uO-gfA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TextInput" id="rPU-7g-SFJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qo0-i7-hrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1964.5" y="1018"/>
+        </scene>
+        <!--CardViewController-->
+        <scene sceneID="uFk-6N-HKF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CardViewController" id="44f-RM-5b0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0el-Se-N6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2456" y="143"/>
+        </scene>
+        <!--UINavigationController-8rr-S6-pZb-->
+        <scene sceneID="TCM-fa-ucE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UINavigationController-8rr-S6-pZb" id="tKz-aE-WrI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4c-Mb-XcC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2697.5" y="429"/>
+        </scene>
+        <!--AssignTask-->
+        <scene sceneID="7OU-60-3tS">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UINavigationController-QVI-N5-9NV" storyboardName="AssignTask" id="hdd-hQ-G8r" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MQ0-Fg-Xtt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2633.5" y="672"/>
+        </scene>
+        <!--UINavigationController-qZg-cy-d3a-->
+        <scene sceneID="Rhe-Ma-snC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UINavigationController-qZg-cy-d3a" id="hjt-ht-bfT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p1n-zp-Ail" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2697" y="892"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="group" width="36" height="21"/>
+        <image name="plus_icon" width="50" height="50"/>
+        <image name="share" width="24" height="24"/>
+    </resources>
+</document>
