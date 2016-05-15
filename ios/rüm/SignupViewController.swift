@@ -34,5 +34,9 @@ class SignupViewController: UIViewController {
     @IBAction func join() {
         self.performSegueWithIdentifier(Constants.JOIN_SEGUE, sender: nil)
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 
 }
