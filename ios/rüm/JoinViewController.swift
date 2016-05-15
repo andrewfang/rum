@@ -109,7 +109,7 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
                 
                 self.presentViewController(notif, animated: true, completion: nil)
             } else {
-                let notif = UIAlertController(title: "Error: \(response.statusCode)", message: "Try checking your network connection and try again.", preferredStyle: .Alert)
+                let notif = UIAlertController(title: "Error: \(response.statusCode)", message: "Check your network connection and try again.", preferredStyle: .Alert)
                 notif.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 
                 self.presentViewController(notif, animated: true, completion: nil)

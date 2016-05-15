@@ -172,10 +172,12 @@ class NetworkingManager {
             
             self.reportErrors(endpoint, data: data, response: response, error: error)
             
-            guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
-                return
+            if error == nil && data != nil {
+                guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
+                    return
+                }
+                NSNotificationCenter.defaultCenter().postNotificationName(Constants.GROUP_DATA, object: nil, userInfo: ["members":json!["members"]!])
             }
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.GROUP_DATA, object: nil, userInfo: ["members":json!["members"]!])
         })
     }
     
@@ -184,11 +186,12 @@ class NetworkingManager {
         self.sendGetRequest(endpoint, handler: {data, response, error in
             self.reportErrors(endpoint, data: data, response: response, error: error)
             
-            guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
-                return
+            if error == nil && data != nil {
+                guard let json = try? NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] else {
+                    return
+                }
+                NSNotificationCenter.defaultCenter().postNotificationName(Constants.GET_USER_INFO, object: nil, userInfo: json)
             }
-            
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.GET_USER_INFO, object: nil, userInfo: json)
         })
     }
     
@@ -207,7 +210,6 @@ class NetworkingManager {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? [String:AnyObject] {
                     if let taskId = json["taskId"] as? String {
                         
-                        
                         // send GA events
                         // label = "taskCompleter : taskId"
                         GA.sendEvent("task", action: "complete-quick", label: "\(creatorId) : \(taskId)", value: nil)
@@ -215,8 +217,7 @@ class NetworkingManager {
                         self.sendPostRequest("/group/\(groupId)/complete/\(taskId)", body: ["groupId":groupId, "taskId":taskId, "userId":creatorId], handler: nil)
                     }
                 }
-            } catch {
-            }
+            } catch {}
         })
     }
     
