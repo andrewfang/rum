@@ -125,7 +125,7 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
         NSUserDefaults.standardUserDefaults().setValue(self.groups[indexPath.item]["id"] as! String, forKey: MainViewController.Constants.GROUP_ID)
         NetworkingManager.sharedInstance.generateCodeForGroup(self.groups[indexPath.item]["id"] as! String)
         if let tabvc = self.presentingViewController as? UITabBarController {
-            if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+            if let navvc = tabvc.viewControllers![1] as? UINavigationController {
                 if let mainvc = navvc.viewControllers.first as? MainViewController {
                     mainvc.setupTasks()
                 }

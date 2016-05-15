@@ -91,7 +91,7 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
             
             if (response.statusCode == 200 || response.statusCode == 409) {
                 if let tabvc = self.presentingViewController as? UITabBarController {
-                    if let navvc = tabvc.viewControllers?.first as? UINavigationController {
+                    if let navvc = tabvc.viewControllers![1] as? UINavigationController {
                         if let mainvc = navvc.viewControllers.first as? MainViewController {
                             mainvc.setupTasks()
                         }

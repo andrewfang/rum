@@ -125,7 +125,7 @@ class AssignTaskViewController: UIViewController, UITableViewDelegate, UITableVi
         
         dispatch_async(dispatch_get_main_queue(), {
             if let tabVC = self.presentingViewController as? UITabBarController {
-                if let navVC = tabVC.viewControllers?.first as? UINavigationController {
+                if let navVC = tabVC.viewControllers![1] as? UINavigationController {
                     if let vc = navVC.viewControllers.first as? MainViewController {
                         vc.tableView.reloadData()
                     }
