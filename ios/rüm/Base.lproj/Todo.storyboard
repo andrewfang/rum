@@ -135,7 +135,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="group" width="32" height="32"/>
+        <image name="group" width="36" height="21"/>
         <image name="plus_icon" width="50" height="50"/>
         <image name="share" width="24" height="24"/>
     </resources>

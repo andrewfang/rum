@@ -39,6 +39,7 @@ class LastTaskCell: UITableViewCell {
         
         self.selectionStyle = .None
         
+        attributionLabel.hidden = true
         kudosButton.layer.borderWidth = 4
         kudosButton.layer.borderColor = UIColor.whiteColor().CGColor
         
