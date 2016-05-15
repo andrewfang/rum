@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Charts
 
 class DataViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, KudosButtonDelegate, CardViewControllerDelegate {
     
