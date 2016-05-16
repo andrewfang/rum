@@ -32,6 +32,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.numberOfSections = 2
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let code = NSUserDefaults.standardUserDefaults().stringForKey("code") {
+            self.groupCode = code
+            self.numberOfSections = 2
+        }
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
