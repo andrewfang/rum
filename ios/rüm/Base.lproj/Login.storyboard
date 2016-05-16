@@ -18,13 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Q9N-6s-jqB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="Q9N-6s-jqB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kde-IB-Nbu">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3JK-DV-nxm">
                                 <rect key="frame" x="40" y="452" width="520" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,17 +80,13 @@
                             <constraint firstItem="Q9N-6s-jqB" firstAttribute="height" secondItem="qbG-Up-bNq" secondAttribute="height" id="NC6-YR-uu6"/>
                             <constraint firstAttribute="trailing" secondItem="3JK-DV-nxm" secondAttribute="trailing" constant="40" id="Rea-mg-QfD"/>
                             <constraint firstItem="M48-qe-RXq" firstAttribute="top" secondItem="3JK-DV-nxm" secondAttribute="bottom" constant="100" id="T0n-5Z-j58"/>
-                            <constraint firstItem="jBW-wV-ff4" firstAttribute="centerX" secondItem="kde-IB-Nbu" secondAttribute="centerX" id="WMr-lu-9zC"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="width" secondItem="qbG-Up-bNq" secondAttribute="width" id="Z6w-iS-Odt"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="d5D-pU-19m"/>
                             <constraint firstItem="3JK-DV-nxm" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="dWU-L3-a12"/>
                             <constraint firstItem="Tft-ep-YS3" firstAttribute="top" secondItem="Wgo-yo-ArC" secondAttribute="bottom" constant="153" id="f8s-od-h3l"/>
                             <constraint firstItem="jBW-wV-ff4" firstAttribute="bottom" secondItem="3JK-DV-nxm" secondAttribute="top" constant="40" id="fq4-61-sPP"/>
                             <constraint firstItem="Q9N-6s-jqB" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="gd3-Gt-som"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="height" secondItem="qbG-Up-bNq" secondAttribute="height" id="hzL-Qj-Zpa"/>
+                            <constraint firstItem="jBW-wV-ff4" firstAttribute="centerX" secondItem="qbG-Up-bNq" secondAttribute="centerX" id="iao-R4-mRD"/>
                             <constraint firstItem="Tft-ep-YS3" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" constant="-100" id="jFh-7r-aD3"/>
                             <constraint firstItem="3JK-DV-nxm" firstAttribute="top" secondItem="jBW-wV-ff4" secondAttribute="bottom" constant="20" id="ojD-Hg-t5v"/>
-                            <constraint firstItem="kde-IB-Nbu" firstAttribute="centerY" secondItem="qbG-Up-bNq" secondAttribute="centerY" id="rIU-cd-9sI"/>
                             <constraint firstItem="3JK-DV-nxm" firstAttribute="leading" secondItem="qbG-Up-bNq" secondAttribute="leading" constant="40" id="vmz-bN-o3J"/>
                         </constraints>
                         <variation key="default">
@@ -138,7 +130,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="loginBackground" width="2306" height="1816"/>
         <image name="logo" width="95" height="95"/>
+        <image name="splash" width="375" height="667"/>
     </resources>
 </document>
