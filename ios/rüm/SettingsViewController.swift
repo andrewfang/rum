@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch (section) {
         case 0 where numberOfSections == 2:
-            return "GROUP CODE"
+            return "JOIN CODE"
         case 1 where numberOfSections == 2:
             fallthrough
         case 0 where numberOfSections == 1:
@@ -64,7 +64,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = self.tableView.dequeueReusableCellWithIdentifier("settingsTableViewCell") as! SettingsTableViewCell
         switch (indexPath.section) {
         case 0 where numberOfSections == 2:
-            cell.label.text = "Join code: \(self.groupCode)"
+            cell.label.text = "Code: \(self.groupCode)"
+            cell.showArrow = true
         case 1 where numberOfSections == 2:
             fallthrough
         case 0 where numberOfSections == 1:

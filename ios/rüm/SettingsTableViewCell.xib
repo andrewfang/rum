@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -28,10 +29,19 @@
                             <constraint firstAttribute="height" constant="1" id="ZPT-Pg-Ns8"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward_icon" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-wT-L7j">
+                        <rect key="frame" x="484" y="112.5" width="6" height="11"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="6" id="FQY-KR-Tbp"/>
+                            <constraint firstAttribute="width" secondItem="hOf-wT-L7j" secondAttribute="height" multiplier="5:9" id="rMA-4x-FWy"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="hOf-wT-L7j" secondAttribute="trailing" constant="20" id="27O-WI-xCK"/>
                     <constraint firstAttribute="bottom" secondItem="Ebi-Da-BuG" secondAttribute="bottom" id="Ffx-85-nkP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="h67-I1-LuR" secondAttribute="trailing" id="Oqj-ym-SS7"/>
+                    <constraint firstItem="hOf-wT-L7j" firstAttribute="centerY" secondItem="h67-I1-LuR" secondAttribute="centerY" id="SGV-SB-f6m"/>
                     <constraint firstItem="Ebi-Da-BuG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SqO-NM-wUO"/>
                     <constraint firstItem="h67-I1-LuR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Y2b-ij-jI6"/>
                     <constraint firstItem="h67-I1-LuR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gZr-b9-IXB"/>
@@ -39,9 +49,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="forwardArrowImageView" destination="hOf-wT-L7j" id="fNP-KP-oWm"/>
                 <outlet property="label" destination="h67-I1-LuR" id="wI5-fY-pux"/>
             </connections>
             <point key="canvasLocation" x="529" y="548"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="forward_icon" width="11" height="19"/>
+    </resources>
 </document>
