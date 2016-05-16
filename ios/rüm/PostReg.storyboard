@@ -178,13 +178,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="486-ZV-GrW">
                                 <rect key="frame" x="150" y="231" width="520" height="103"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="groupname" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y5N-Ga-zQZ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y5N-Ga-zQZ">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM8-fI-m6d" customClass="ActionButton" customModule="ru_m" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM8-fI-m6d" customClass="ActionButton" customModule="ru_m" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55" width="520" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="kPn-Bi-gwD"/>
@@ -321,7 +321,7 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="join"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2S-KS-qup" customClass="ActionButton" customModule="ru_m" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2S-KS-qup" customClass="ActionButton" customModule="ru_m" customModuleProvider="target">
                                         <rect key="frame" x="245" y="55" width="30" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="iHD-nY-bvg"/>
@@ -372,6 +372,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="BQb-Ev-25E" id="Ypz-q4-y7G"/>
                         <outlet property="textField" destination="A98-Dy-I83" id="AgW-qH-P8A"/>
@@ -393,10 +394,10 @@
     </scenes>
     <resources>
         <image name="back" width="11" height="19"/>
-        <image name="createBackground" width="2736" height="1824"/>
-        <image name="joinBackground" width="2109" height="1401"/>
+        <image name="createBackground" width="375" height="667"/>
+        <image name="joinBackground" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uo5-Ai-hEc"/>
+        <segue reference="Peb-KZ-Mzr"/>
     </inferredMetricsTieBreakers>
 </document>

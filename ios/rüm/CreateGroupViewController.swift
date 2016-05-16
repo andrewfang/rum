@@ -19,6 +19,8 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
     @IBOutlet weak var showCodeStackView:UIStackView!
     @IBOutlet weak var backButton: UIButton!
     
+    private var navWasHidden = false
+    
     // MARK: - Btn Actions
     @IBAction private func back() {
         self.navigationController?.popViewControllerAnimated(true)
@@ -50,6 +52,23 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.showCodeStackView.alpha = 0
         self.showCodeStackView.hidden = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let nvc = self.navigationController {
+            self.navWasHidden = nvc.navigationBarHidden
+            nvc.setNavigationBarHidden(true, animated: false)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let nvc = self.navigationController {
+            nvc.setNavigationBarHidden(self.navWasHidden, animated: false)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
