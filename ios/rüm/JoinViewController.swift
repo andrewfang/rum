@@ -79,6 +79,7 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
         
         // If it hits here, we're ready to try joining the group
         self.activityIndicator.startAnimating()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
         let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID")) : \(text)"
         GA.sendEvent("group", action: "join", label: eventLabel, value: nil)
@@ -94,6 +95,7 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
     func userJoined(notification: NSNotification) {
         NSOperationQueue.mainQueue().addOperationWithBlock({
             self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             
             guard let userInfo = notification.userInfo else {
                 return
@@ -153,6 +155,7 @@ class JoinViewController: UIViewController, EnableNotifsViewControllerDelegate {
         
         NSOperationQueue.mainQueue().addOperationWithBlock({
             self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             
             if (message == "") {
                 // Error 409, user already part of group. Just take them there.

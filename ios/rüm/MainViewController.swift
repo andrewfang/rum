@@ -86,8 +86,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (self.groupId != nil) {
-            self.getTodos()
-            self.getLastTask()
+            NetworkingManager.sharedInstance.login(self.userId, groupid: self.groupId)
         }
     }
     

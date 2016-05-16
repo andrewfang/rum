@@ -31,8 +31,10 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
             return
         }
         
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.activityIndicator.startAnimating()
-        // "userId"
+        
+        
         let eventLabel = "\(NSUserDefaults.standardUserDefaults().stringForKey("ID"))"
         GA.sendEvent("group", action: "create", label: eventLabel, value: nil)
         NetworkingManager.sharedInstance.createGroup(text)
@@ -96,6 +98,7 @@ class CreateGroupViewController: UIViewController, EnableNotifsViewControllerDel
     func groupCreated(notification: NSNotification) {
         NSOperationQueue.mainQueue().addOperationWithBlock({
             self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             
             guard let userInfo = notification.userInfo else {
                 return
