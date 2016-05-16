@@ -67,6 +67,13 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
             self.view.insertSubview(blurEffectView, atIndex: 0)
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+    }
 
     @IBAction func pushedRightButtonItem(sender: AnyObject) {
         // just call the delegate function to simulate a
@@ -84,6 +91,10 @@ class TextInputViewController: UIViewController, UITextFieldDelegate {
         } else {
             self.rightBarButtonItem.tintColor = UIColor.whiteColor()
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     @IBAction func handleClose(sender: AnyObject) {
