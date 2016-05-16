@@ -12,6 +12,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var tableView: UITableView!
     
+    var numberOfSections = 2
+    var groupCode:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +26,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let cellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "settingsTableViewCell")
 //        self.tableView.registerNib(cellNib, forCellWithReuseIdentifier: "settingsTableViewCell")
+        
+        if let code = NSUserDefaults.standardUserDefaults().stringForKey("code") {
+            self.groupCode = code
+            self.numberOfSections = 2
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,11 +39,21 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "ACCOUNT"
+        switch (section) {
+        case 0 where numberOfSections == 2:
+            return "GROUP CODE"
+        case 1 where numberOfSections == 2:
+            fallthrough
+        case 0 where numberOfSections == 1:
+            return "ACCOUNT"
+        default:
+            return ""
+        }
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,7 +62,17 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("settingsTableViewCell") as! SettingsTableViewCell
-        cell.label.text = "Sign out"
+        switch (indexPath.section) {
+        case 0 where numberOfSections == 2:
+            cell.label.text = "Join code: \(self.groupCode)"
+        case 1 where numberOfSections == 2:
+            fallthrough
+        case 0 where numberOfSections == 1:
+            cell.label.text = "Sign out"
+        default:
+            break
+        }
+        
         return cell
     }
     
@@ -57,8 +85,19 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch (indexPath.section) {
+        case 0 where numberOfSections == 2:
+            let shareVc = UIActivityViewController(activityItems: ["Join my Kudös group with this code: \(self.groupCode)"], applicationActivities: nil)
+            self.presentViewController(shareVc, animated: true, completion: nil)
+        case 1 where numberOfSections == 2:
+            fallthrough
+        case 0 where numberOfSections == 1:
+            logout()
+        default:
+            break
+        }
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        logout()
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
