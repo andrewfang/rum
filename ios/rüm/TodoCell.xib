@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9F-MC-wA8" userLabel="Delete Background">
-                        <rect key="frame" x="0.0" y="0.5" width="666" height="216.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="666" height="216.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-DY-zVR">
                                 <rect key="frame" x="449" y="0.0" width="216.5" height="216.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ymu-Qw-P1e">
-                                        <rect key="frame" x="100.5" y="100.5" width="16" height="16"/>
+                                        <rect key="frame" x="100" y="100" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Ftm-jH-CiN"/>
                                             <constraint firstAttribute="width" constant="16" id="KnR-3n-gAu"/>
@@ -76,15 +76,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="666" height="216.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVm-mK-PRD">
-                                <rect key="frame" x="20" y="93" width="552" height="19.5"/>
+                                <rect key="frame" x="20" y="93" width="552" height="30.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <color key="textColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repetition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mg-b4-v8L">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Repetition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mg-b4-v8L">
                                 <rect key="frame" x="20" y="113" width="552" height="19.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iVU-6E-Sfs">
@@ -123,6 +123,7 @@
                             <constraint firstItem="OVm-mK-PRD" firstAttribute="leading" secondItem="sFr-dC-lh0" secondAttribute="leading" constant="20" id="EfU-gB-LRh"/>
                             <constraint firstItem="3Mg-b4-v8L" firstAttribute="trailing" secondItem="iVU-6E-Sfs" secondAttribute="leading" id="J8j-2y-Xsd"/>
                             <constraint firstAttribute="trailing" secondItem="TUV-D5-fl3" secondAttribute="trailing" constant="4" id="Kde-Qm-E4a"/>
+                            <constraint firstItem="OVm-mK-PRD" firstAttribute="centerY" secondItem="sFr-dC-lh0" secondAttribute="centerY" id="OgX-Ru-CYX"/>
                             <constraint firstItem="OVm-mK-PRD" firstAttribute="top" secondItem="iVU-6E-Sfs" secondAttribute="top" id="Qoi-CW-nPc"/>
                             <constraint firstItem="iVU-6E-Sfs" firstAttribute="centerY" secondItem="sFr-dC-lh0" secondAttribute="centerY" id="UBy-3z-TTs"/>
                             <constraint firstItem="OVm-mK-PRD" firstAttribute="trailing" secondItem="iVU-6E-Sfs" secondAttribute="leading" id="a2c-ne-cdk"/>
@@ -131,6 +132,12 @@
                             <constraint firstItem="3Mg-b4-v8L" firstAttribute="leading" secondItem="OVm-mK-PRD" secondAttribute="leading" id="ncw-sh-qSa"/>
                             <constraint firstAttribute="bottom" secondItem="shd-0i-d2r" secondAttribute="bottom" id="thM-Go-axe"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8OC-qE-AmT"/>
+                                <exclude reference="ncw-sh-qSa"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <constraints>
