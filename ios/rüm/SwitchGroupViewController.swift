@@ -100,6 +100,13 @@ class SwitchGroupViewController: UIViewController, UITableViewDataSource, UITabl
 
         if let cell = cell as? GroupCell {
             cell.groupNameLabel.text = groups[indexPath.item]["name"] as? String
+            if let members = groups[indexPath.item]["members"] as? [String: AnyObject] {
+                if (members.count > 1) {
+                    cell.numOpenTasksLabel.text = "\(members.count) members"
+                } else {
+                    cell.numOpenTasksLabel.text = "\(members.count) member"
+                }
+            }
         }
         
         return cell
