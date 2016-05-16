@@ -10,11 +10,23 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
 
+    var showArrow = false {
+        didSet {
+            if self.forwardArrowImageView != nil {
+                self.forwardArrowImageView.hidden = !showArrow
+            }
+        }
+    }
+    
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var forwardArrowImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.forwardArrowImageView.hidden = !self.showArrow
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
