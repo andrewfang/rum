@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Todo-->
+        <!--To-Do-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ru_m" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                             <constraint firstItem="flT-Td-Re9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="yjm-48-ghi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Todo" id="N8v-vp-9Cz">
+                    <navigationItem key="navigationItem" title="To-Do" id="N8v-vp-9Cz">
                         <barButtonItem key="backBarButtonItem" title=" " id="VPu-Zi-a0D"/>
                         <barButtonItem key="leftBarButtonItem" image="group" id="HTZ-YY-ooy">
                             <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>

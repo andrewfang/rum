@@ -195,7 +195,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return nil
             case TODO_SECTION:
                 if (headerView != nil) {
-                    headerView!.headerLabel.text = "TODO"
+                    headerView!.headerLabel.text = "TO-DO"
                     return headerView
                 }
                 return nil
